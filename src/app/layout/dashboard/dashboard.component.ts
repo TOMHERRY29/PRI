@@ -11,6 +11,43 @@ export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
+    //Récupérer ici toutes les informations sur les stages
+    stages = [
+
+        {
+          
+          prenom: 'eazea',
+    
+          nom: 'aeae',
+          ville: "Paris",
+          pays: "France",
+          semestre: "S10",
+          spec: "Informatique",
+          entreprise: "Arinfo"
+    
+        },
+        {
+          
+            prenom: 'test',
+      
+            nom: 'afaf',
+            ville: "Paris",
+          pays: "France",
+          semestre: "S10",
+          spec: "Informatique",
+          entreprise: "Arinfo"
+      
+          },
+          {
+          
+            prenom: 'OUI',
+      
+            nom: 'NON'
+      
+          },
+    
+      ];
+
     constructor() {
         this.sliders.push(
             {
