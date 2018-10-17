@@ -76,23 +76,19 @@
                     </tr>
                     </thead>
                         <tr class="table" *ngFor="let stage of stages">
-                            <td >{{stage.prenom}}</td>
+                            <td> {{stage.prenom}}</td>
                             <td> {{stage.nom}}</td>
                             <td> {{stage.ville}}</td>
                             <td> {{stage.pays}}</td>
                             <td> {{stage.semestre}}</td>
                             <td> {{stage.spec}}</td>
                             <td> {{stage.entreprise}}</td>
+                            <td><a href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td>
                         </tr>
                 </table>
-
-                    
-                    
-                    
             </div>
         </div>
     </div>
-    <a href="../../../assets/images/Fiche_synthese.pdf" title="Pdf">Download the catalog here (.pdf)</a>
 
 
 

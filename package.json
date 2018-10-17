@@ -30,8 +30,10 @@
         "core-js": "^2.5.5",
         "font-awesome": "^4.7.0",
         "ng2-charts": "^1.6.0",
+        "ng2-pdf-viewer": "^5.2.0",
         "popper.js": "^1.14.4",
         "rxjs": "^6.1.0",
+        "simple-pdf-viewer": "^2.0.2",
         "yarn": "^1.6.0",
         "zone.js": "^0.8.26"
     },

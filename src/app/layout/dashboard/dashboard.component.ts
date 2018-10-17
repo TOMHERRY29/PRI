@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 
+
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -10,6 +12,7 @@ import { routerTransition } from '../../router.animations';
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
+    
 
     //Récupérer ici toutes les informations sur les stages
     stages = [
@@ -22,7 +25,8 @@ export class DashboardComponent implements OnInit {
           pays: "France",
           semestre: "S10",
           spec: "Informatique",
-          entreprise: "Arinfo"
+          entreprise: "Arinfo",
+          pdf: "https://nuxeo.enib.fr/nuxeo/nxdoc/default/5a424b06-a846-49ad-9106-b29d6b285f1f/view_documents"
     
         },
         {
@@ -73,6 +77,8 @@ export class DashboardComponent implements OnInit {
     
       ];
 
+
+
     constructor() {
         this.sliders.push(
             {
@@ -116,8 +122,10 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {}
 
+
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);
         this.alerts.splice(index, 1);
-    }
+    }    
+   
 }
