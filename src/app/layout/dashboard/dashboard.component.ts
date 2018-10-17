@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
         {
           
           prenom: 'eazea',
-    
           nom: 'aeae',
           ville: "Paris",
           pays: "France",
@@ -29,20 +28,46 @@ export class DashboardComponent implements OnInit {
         {
           
             prenom: 'test',
-      
             nom: 'afaf',
             ville: "Paris",
-          pays: "France",
-          semestre: "S10",
-          spec: "Informatique",
-          entreprise: "Arinfo"
+            pays: "France",
+            semestre: "S10",
+            spec: "Informatique",
+            entreprise: "Arinfo"
       
           },
           {
           
-            prenom: 'OUI',
+            prenom: 'test',
+            nom: 'afaf',
+            ville: "Paris",
+            pays: "France",
+            semestre: "S10",
+            spec: "Informatique",
+            entreprise: "Arinfo"
       
-            nom: 'NON'
+          },
+          {
+          
+            prenom: 'blabla',
+            nom: 'fdp',
+            ville: "Paris",
+            pays: "France",
+            semestre: "S10",
+            spec: "Informatique",
+            entreprise: "Arinfo"
+      
+          },
+
+          {
+          
+            prenom: 'heeeeeeey',
+            nom: 'afaf',
+            ville: "Paris",
+            pays: "France",
+            semestre: "S10",
+            spec: "Informatique",
+            entreprise: "Arinfo"
       
           },
     
