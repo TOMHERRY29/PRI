@@ -1,46 +1,96 @@
 <div [@routerTransition]>
-
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Stage
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Actionb,jzoifoiz,f</a>
-                    <a class="dropdown-item" href="#">Another actionfzefezaf</a>
-                    <a class="dropdown-item" href="#">Something else fazafeahere</a>
-                </div>
-            </div>
-        </div>
-        <div class="btn-group mr-2" role="group" aria-label="Second group">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Module
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Actionb,jzoifoiz,f</a>
-                    <a class="dropdown-item" href="#">Another actionfzefezaf</a>
-                    <a class="dropdown-item" href="#">Something else fazafeahere</a>
-                </div>
-            </div>
-        </div>
-        <div class="btn-group" role="group" aria-label="Third group">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Tri par
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Actionb,jzoifoiz,f</a>
-                    <a class="dropdown-item" href="#">Another actionfzefezaf</a>
-                    <a class="dropdown-item" href="#">Something else fazafeahere</a>
-                </div>
+    
+    <div class="row">
+        <div class="col col-xl-6 col-lg-12">
+            
+            <div class="card mb-3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th> 
+                            <div> Nom:
+                                   <input id="searchInput" 
+                                    class="searchInput" 
+                                    v-model="filterText">
+                            </div>
+                        </th>
+                        <th>
+                            <div> Prénom:
+                                <input id="searchInput" 
+                                 class="searchInput" 
+                                 v-model="filterText">
+                            </div>
+                        </th>
+                        <th>
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Ville
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                            </div>
+                        </th>
+                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Pays
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                        </div></th>
+                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Semestre
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                        </div></th>
+                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Spécialité
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                        </div></th>
+                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Entreprise
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                        </div></th>
+                    </tr>
+                    </thead>
+                        <tr class="table" *ngFor="let stage of stages">
+                            <td> {{stage.prenom}}</td>
+                            <td> {{stage.nom}}</td>
+                            <td> {{stage.ville}}</td>
+                            <td> {{stage.pays}}</td>
+                            <td> {{stage.semestre}}</td>
+                            <td> {{stage.spec}}</td>
+                            <td> {{stage.entreprise}}</td>
+                            <td><a href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td>
+                        </tr>
+                </table>
             </div>
         </div>
     </div>
+
+
 
 
 
