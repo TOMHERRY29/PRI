@@ -12,6 +12,9 @@ import { routerTransition } from '../../router.animations';
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
+
+    //var nomRequest = document.getElementById('nomInput').value;
+
     
 
     //Récupérer ici toutes les informations sur les stages
@@ -78,8 +81,8 @@ export class DashboardComponent implements OnInit {
       ];
 
 
-
-    constructor() {
+      constructor() {
+      
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
@@ -122,10 +125,16 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {}
 
-
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);
         this.alerts.splice(index, 1);
     }    
-   
+
+    public filtreName(requete) {
+
+                return this.stages.filter(function (el) {
+                    return el.nom.toLowerCase().indexOf(requete.toLowerCase()) > -1;
+                  })
+            }
+
 }

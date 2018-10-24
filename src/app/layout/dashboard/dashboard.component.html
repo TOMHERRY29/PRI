@@ -9,16 +9,17 @@
                     <tr>
                         <th> 
                             <div> Nom:
-                                   <input id="searchInput" 
+                                   <input id="nomInput" 
+                                    name = "nomInput"
                                     class="searchInput" 
                                     v-model="filterText">
                             </div>
                         </th>
                         <th>
                             <div> Prénom:
-                                <input id="searchInput" 
+                                <input id="prenomInput" 
                                  class="searchInput" 
-                                 v-model="filterText">
+                                 v-model="filterText" onkeyup="filtreName()">
                             </div>
                         </th>
                         <th>
