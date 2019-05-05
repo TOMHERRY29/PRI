@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 01 mai 2019 à 14:52
+-- Généré le :  Dim 05 mai 2019 à 13:47
 -- Version du serveur :  10.1.37-MariaDB
 -- Version de PHP :  7.3.0
 
@@ -24,12 +24,31 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `gst` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `gst`;
 
+DELIMITER $$
+--
+-- Procédures
+--
+DROP PROCEDURE IF EXISTS `StagiaireAjoutOuModification`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StagiaireAjoutOuModification` (IN `_idStagiaire` VARCHAR(60), IN `_Nom` VARCHAR(60), IN `_Prenom` VARCHAR(60))  NO SQL
+BEGIN
+SELECT @A := COUNT(idStagiaire) FROM stagiaire WHERE idStagiaire = _idStagiaire;
+	IF @A = 0 THEN
+		INSERT INTO stagiaire(idStagiaire,Nom,Prenom)
+        values(_idStagiaire,_Nom,_Prenom);        
+	ELSE
+		UPDATE Stagiaire SET Nom = _Nom, Prenom = _Prenom WHERE idStagiaire = _idStagiaire;
+	END IF;
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `entreprise`
 --
 
+DROP TABLE IF EXISTS `entreprise`;
 CREATE TABLE `entreprise` (
   `idEntreprise` varchar(60) NOT NULL,
   `nomEntreprise` varchar(60) NOT NULL
@@ -49,6 +68,7 @@ INSERT INTO `entreprise` (`idEntreprise`, `nomEntreprise`) VALUES
 -- Structure de la table `pays`
 --
 
+DROP TABLE IF EXISTS `pays`;
 CREATE TABLE `pays` (
   `idPays` varchar(60) NOT NULL,
   `nomPays` varchar(60) NOT NULL
@@ -68,6 +88,7 @@ INSERT INTO `pays` (`idPays`, `nomPays`) VALUES
 -- Structure de la table `periode`
 --
 
+DROP TABLE IF EXISTS `periode`;
 CREATE TABLE `periode` (
   `idPeriode` int(11) NOT NULL,
   `dateDebut` date NOT NULL,
@@ -81,6 +102,7 @@ CREATE TABLE `periode` (
 -- Structure de la table `piecesjointes`
 --
 
+DROP TABLE IF EXISTS `piecesjointes`;
 CREATE TABLE `piecesjointes` (
   `idPiecesJointes` varchar(60) NOT NULL,
   `titre` varchar(60) NOT NULL,
@@ -94,6 +116,7 @@ CREATE TABLE `piecesjointes` (
 -- Structure de la table `semestre`
 --
 
+DROP TABLE IF EXISTS `semestre`;
 CREATE TABLE `semestre` (
   `idSemestre` varchar(60) NOT NULL,
   `libelle` varchar(60) NOT NULL
@@ -113,6 +136,7 @@ INSERT INTO `semestre` (`idSemestre`, `libelle`) VALUES
 -- Structure de la table `stage`
 --
 
+DROP TABLE IF EXISTS `stage`;
 CREATE TABLE `stage` (
   `idStage` varchar(60) NOT NULL,
   `sujet` varchar(60) NOT NULL,
@@ -131,6 +155,7 @@ CREATE TABLE `stage` (
 -- Structure de la table `stagiaire`
 --
 
+DROP TABLE IF EXISTS `stagiaire`;
 CREATE TABLE `stagiaire` (
   `idStagiaire` varchar(60) NOT NULL,
   `Nom` varchar(60) NOT NULL,
@@ -151,6 +176,7 @@ INSERT INTO `stagiaire` (`idStagiaire`, `Nom`, `Prenom`) VALUES
 -- Structure de la table `tuteur`
 --
 
+DROP TABLE IF EXISTS `tuteur`;
 CREATE TABLE `tuteur` (
   `idTuteur` varchar(60) NOT NULL,
   `Nom` varchar(60) NOT NULL,
@@ -171,6 +197,7 @@ INSERT INTO `tuteur` (`idTuteur`, `Nom`, `Prenom`) VALUES
 -- Structure de la table `ville`
 --
 
+DROP TABLE IF EXISTS `ville`;
 CREATE TABLE `ville` (
   `idVille` varchar(60) NOT NULL,
   `nomVille` varchar(60) NOT NULL,

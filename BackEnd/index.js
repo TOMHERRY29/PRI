@@ -9,8 +9,8 @@ app.use(bodyparser.json()); //pour l'utilisation de json
 var mysqlConnection = mysql.createConnection({
     host:'localhost',
     user:'root',
-    password:'root',
-    database:'gestionStages',
+    password:'',
+    database:'gst',
     multipleStatements: true //pour avoir plusieurs instructions dans une seule chaîne
 
 });
