@@ -10,68 +10,111 @@
 
     <ng-container *ngIf="show">
     <div class="row">
-        <div class="col col-xl-6 col-lg-12">
+        <div class="col col-xl-12 col-lg-12">
             
             <div class="card mb-3">
                 <table class="table">
                     <thead>
                     <tr>
                         <th> 
-                            <div> Nom:
+                            <div>
                                    <input id="searchInput" 
-                                    class="searchInput" 
-                                    v-model="filterText">
+                                    class="searchInput form-control" 
+                                    v-model="filterText"
+                                    placeholder="Nom">
                             </div>
                         </th>
                         <th>
-                            <div> Prénom:
+                            <div>
                                 <input id="searchInput" 
-                                 class="searchInput" 
-                                 v-model="filterText">
+                                 class="searchInput form-control" 
+                                 v-model="filterText"
+                                 placeholder="Prénom">
                             </div>
                         </th>
                         <th>
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Semestre
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="btn-group mr-2 tail" role="group" aria-label="First group">
+                                    <div>
+                                        <input class="form-control" list="recherche_semestre" name="myBrowser" placeholder="Semestre" />
+                                        <datalist id="recherche_semestre">
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                            <option>S2</option>
+                                            <option>S4</option>
+                                            <option>S8</option>
+                                            <option>S10</option>
+                                        </datalist>
+                                    </div>
                                 </div>
-                            </div>
-                            </div>
-                        </th>
-                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Stage Trouvé
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                        </div></th>
-                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Entreprise
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                        </div></th>
-                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Tuteur
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                        </div></th>
+                            </th>
+                            <th>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <div>
+                                            <input class="form-control" list="selection_choix" name="myBrowser" placeholder="Stage trouvé" />
+                                            <datalist id="selection_choix">
+                                                <option>Oui</option>
+                                                <option>Non</option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                                            <div>
+                                                <input class="form-control" list="recherche_entreprise" name="myBrowser" placeholder="Entreprise" />
+                                                <datalist id="recherche_entreprise">
+                                                        <option>Sopra Steria</option>
+                                                        <option>Capgemini</option>
+                                                        <option>SFR</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <div>
+                                                    <input class="form-control" list="recherche_tuteur" name="myBrowser" placeholder="Entreprise" />
+                                                    <datalist id="recherche_tuteur">
+                                                            <option>NEDELEC Alexis</option>
+                                                            <option>OUSSIN Caroline</option>
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </th>
                     </tr>
                     </thead>
                         <tr class="table" *ngFor="let stage of stages">

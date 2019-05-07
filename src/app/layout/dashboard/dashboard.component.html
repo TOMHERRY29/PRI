@@ -8,22 +8,23 @@
                     <thead>
                     <tr>
                         <th> 
-                            <div> Prénom:
+                            <div>
                                 <input id="prenomInput" 
                                     name = "prenomInput"
-                                    class="searchInput"
-                                    list="listPrenom" (keyup.enter)="onKey($event)">
+                                    class="searchInput form-control"
+                                    list="listPrenom" placeholder="Prénom" (keyup.enter)="onKey($event)">
                                     <datalist id="listPrenom">
                                         <option *ngFor="let stage of stages">{{stage.prenom}}</option>
                                     </datalist>
                             </div>
                         </th>
                         <th>
-                            <div> Nom:
+                            <div>
                                 <input id="nomInput" 
                                 name = "nomInput"
-                                class="searchInput"
-                                list="listNom">
+                                class="searchInput form-control"
+                                list="listNom"
+                                placeholder="Nom">
                                 <datalist id="listNom">
                                     <option *ngFor="let stage of stages">{{stage.nom}}</option>
                                 </datalist>
@@ -31,57 +32,67 @@
  
                         </th>
                         <th>
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Ville
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div>
+                                    <input class="form-control" list="recherche_ville" name="myBrowser" placeholder="Ville" />
+                                    <datalist id="recherche_ville">
+                                        <option>Paris</option>
+                                        <option>Lyon</option>
+                                        <option>Brest</option>
+                                        <option>Nantes</option>
+                                        <option>Rennes</option>
+                                        <option>Marseille</option>
+                                    </datalist>
                                 </div>
-                            </div>
-                            </div>
-                        </th>
-                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Pays
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                        </div></th>
-                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Semestre
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                        </div></th>
-                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Spécialité
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                        </div></th>
-                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Entreprise
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                        </div></th>
+                            </th>
+                            <th>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <div>
+                                            <input class="form-control" list="recherche_pays" name="myBrowser" placeholder="Pays" />
+                                            <datalist id="recherche_pays">
+                                                <option>France</option>
+                                                <option>Espagne</option>
+                                                <option>Italie</option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                                            <div>
+                                                <input class="form-control" list="recherche_semestre" name="myBrowser" placeholder="Semestre" />
+                                                <datalist id="recherche_semestre">
+                                                    <option>S2</option>
+                                                    <option>S4</option>
+                                                    <option>S8</option>
+                                                    <option>S10</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                <div>
+                                                    <input class="form-control" list="recherche_spécialité" name="myBrowser" placeholder="Spécialité" />
+                                                    <datalist id="recherche_spécialité">
+                                                        <option>Informatique</option>
+                                                        <option>Mécatronique</option>
+                                                        <option>Electronique</option>
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                    <div>
+                                                        <input class="form-control" list="recherche_pays" name="myBrowser" placeholder="Entreprise" />
+                                                        <datalist id="recherche_pays">
+                                                            <option>Sopra Steria</option>
+                                                            <option>Capgemini</option>
+                                                            <option>SFR</option>
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+                                            </th>
                     </tr>
                     </thead>
                         <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered">
