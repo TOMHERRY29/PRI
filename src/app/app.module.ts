@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
+import { SearchPipe } from './layout/components/search/search.module'
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -20,6 +20,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     ); */
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 };
+
+
 
 @NgModule({
     imports: [
@@ -40,4 +42,6 @@ export const createTranslateLoader = (http: HttpClient) => {
     providers: [AuthGuard],
     bootstrap: [AppComponent]
 })
+
 export class AppModule {}
+

@@ -9,13 +9,17 @@ import { routerTransition } from '../../router.animations';
     styleUrls: ['./dashboard.component.scss'],
     animations: [routerTransition()]
 })
+
+
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
-    //var nomRequest = document.getElementById('nomInput').value;
+    test : string = "TEST";
+    value : string = "";
+    searchText;
 
-    
+    //var nomRequest = document.getElementById('nomInput').value;
 
     //Récupérer ici toutes les informations sur les stages
     stages = [
@@ -29,7 +33,8 @@ export class DashboardComponent implements OnInit {
           semestre: "S10",
           spec: "Informatique",
           entreprise: "Arinfo",
-          pdf: "https://nuxeo.enib.fr/nuxeo/nxdoc/default/5a424b06-a846-49ad-9106-b29d6b285f1f/view_documents"
+          pdf: "https://nuxeo.enib.fr/nuxeo/nxdoc/default/5a424b06-a846-49ad-9106-b29d6b285f1f/view_documents",
+          visible: 1
     
         },
         {
@@ -40,7 +45,8 @@ export class DashboardComponent implements OnInit {
             pays: "France",
             semestre: "S10",
             spec: "Informatique",
-            entreprise: "Arinfo"
+            entreprise: "Arinfo",
+            visible: 1
       
           },
           {
@@ -51,7 +57,8 @@ export class DashboardComponent implements OnInit {
             pays: "France",
             semestre: "S10",
             spec: "Informatique",
-            entreprise: "Arinfo"
+            entreprise: "Arinfo",
+            visible: 1
       
           },
           {
@@ -62,7 +69,8 @@ export class DashboardComponent implements OnInit {
             pays: "France",
             semestre: "S10",
             spec: "Informatique",
-            entreprise: "Arinfo"
+            entreprise: "Arinfo",
+            visible: 1
       
           },
 
@@ -74,15 +82,18 @@ export class DashboardComponent implements OnInit {
             pays: "France",
             semestre: "S10",
             spec: "Informatique",
-            entreprise: "Arinfo"
+            entreprise: "Arinfo",
+            visible: 1
       
           },
     
       ];
 
+      stagesFiltered = this.stages;
+
 
       constructor() {
-      
+
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
@@ -130,11 +141,44 @@ export class DashboardComponent implements OnInit {
         this.alerts.splice(index, 1);
     }    
 
-    public filtreName(requete) {
+    onKey() {
+        this.filtreName();
+      }
+    
+   // requete: string = (<HTMLInputElement>document.getElementById("prenomInput")).value;
+    filtreName() {
 
-                return this.stages.filter(function (el) {
-                    return el.nom.toLowerCase().indexOf(requete.toLowerCase()) > -1;
-                  })
+        var requete = (<HTMLInputElement>document.getElementById("prenomInput")).value;
+
+        this.stagesFiltered = [];
+
+        if(requete != '')
+        {
+            for(let i = 0; i < this.stages.length; i++)
+            {    
+                if(this.stages[i].prenom == requete){
+                    this.stagesFiltered.push(this.stages[i]);
+                }
             }
+        }
 
-}
+        else{
+            this.stagesFiltered = this.stages;
+        }
+
+    }
+
+    isVisible(visible) {
+        if(visible == 1)
+        {
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+ }   
+
+
