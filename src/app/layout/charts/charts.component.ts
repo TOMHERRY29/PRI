@@ -8,6 +8,48 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
+
+
+    public show:boolean = true;
+    public show_diag:boolean = false;
+    public buttonName:any = 'Tableau';
+    public buttonName2:any = 'Diagrammes';
+
+    //Récupérer ici toutes les informations sur les stages
+    stages = [
+
+        {
+          
+          prenom: 'eazea',
+          nom: 'aeae',
+          semestre: "S10",
+          trouve: "OUI",
+          entreprise: "Arinfo",
+          tuteur: "LE MAGUERESSE T."
+    
+        },
+        {
+          
+            prenom: 'test',
+            nom: 'afaf',
+            semestre: "S8",
+            trouve: "NON",
+            entreprise: "",
+            tuteur: ""
+      
+          },
+          {
+          
+            prenom: 'test',
+            nom: 'afaf',
+            semestre: "IS2",
+            trouve: "OUI",
+            entreprise: "SDMO",
+            tuteur: "ANSQUER C."
+      
+          },
+    
+      ];
     // bar chart
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
@@ -157,8 +199,17 @@ export class ChartsComponent implements OnInit {
          * assign it;
          */
     }
+    
 
     constructor() {}
 
     ngOnInit() {}
+
+    toggle() {
+        this.show = !this.show;
+      }
+
+    toggle_diag() {
+        this.show_diag = !this.show_diag;
+      }
 }

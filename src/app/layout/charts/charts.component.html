@@ -1,5 +1,94 @@
 <div [@routerTransition]>
     <app-page-header [heading]="'Charts'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+    <button (click)="toggle()" id="bt">
+            {{buttonName}}
+    </button>
+    <button (click)="toggle_diag()" id="bt2">
+            {{buttonName2}}
+    </button>
+
+    <ng-container *ngIf="show">
+    <div class="row">
+        <div class="col col-xl-6 col-lg-12">
+            
+            <div class="card mb-3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th> 
+                            <div> Nom:
+                                   <input id="searchInput" 
+                                    class="searchInput" 
+                                    v-model="filterText">
+                            </div>
+                        </th>
+                        <th>
+                            <div> Prénom:
+                                <input id="searchInput" 
+                                 class="searchInput" 
+                                 v-model="filterText">
+                            </div>
+                        </th>
+                        <th>
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Semestre
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                            </div>
+                        </th>
+                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Stage Trouvé
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                        </div></th>
+                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Entreprise
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                        </div></th>
+                        <th><div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Tuteur
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                        </div></th>
+                    </tr>
+                    </thead>
+                        <tr class="table" *ngFor="let stage of stages">
+                            <td> {{stage.prenom}}</td>
+                            <td> {{stage.nom}}</td>
+                            <td> {{stage.semestre}}</td>
+                            <td> {{stage.trouve}}</td>
+                            <td> {{stage.entreprise}}</td>
+                            <td> {{stage.tuteur}}</td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    </ng-container>
+    
+    <ng-container *ngIf="show_diag">
     <div class="row">
         <div class="col col-sm-6">
             <div class="card mb-3">
@@ -75,4 +164,5 @@
             </div>
         </div>
     </div>
+</ng-container>
 </div>
