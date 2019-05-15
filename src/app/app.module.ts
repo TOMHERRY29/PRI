@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,6 +10,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
+import { TestDataComponent } from './test-data/test-data.component';
+
+
+const appRoutes: Routes = [
+    { path: 'test', component: TestDataComponent },
+ ];
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -34,9 +41,10 @@ export const createTranslateLoader = (http: HttpClient) => {
                 deps: [HttpClient]
             }
         }),
-        AppRoutingModule
+        AppRoutingModule,
+         RouterModule.forRoot(appRoutes)
     ],
-    declarations: [AppComponent],
+    declarations: [AppComponent, TestDataComponent],
     providers: [AuthGuard],
     bootstrap: [AppComponent]
 })
