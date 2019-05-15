@@ -1,12 +1,13 @@
 const mysql=require('mysql'); //importer le package mysql
 const express = require('express');
 var app = express();
-const bodyparser = require('body-parser');
+const bodyParser = require("body-parser");
 
-app.use(bodyparser.json()); //pour l'utilisation de json
+
 
 //Connexion à la base de données
 var mysqlConnection = mysql.createConnection({
+    //host:'10.181.126.163',
     host:'localhost',
     user:'root',
     password:'',
@@ -25,8 +26,23 @@ mysqlConnection.connect((err)=>{
 
 
 //l'applicatio ecoute le port 3000 à la recherche de connexions
-app.listen(3000, () => console.log('Le serveur express fonctionne sur le port 3000'));
+// app.listen(3000, () => console.log('Le serveur express fonctionne sur le port 3000'));
 
+app.use(bodyParser.json()); //pour l'utilisation de json
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+    );
+    next();
+  });
 
 //avoir la liste de TOUtes les entreprises
 app.get('/entreprises',(req,res)=>{
@@ -37,7 +53,31 @@ app.get('/entreprises',(req,res)=>{
         console.log(err);
     })
 });
+//récupérer tout les stagiaires
 
+  app.get('/stagiaire',(req,res)=>{
+    mysqlConnection.query('SELECT * FROM Stagiaire',(err,rows,fields) => {
+        if(!err){
+        //res.send(rows);//affichage des colonnes de la table si pas d'erreur
+        res.status(200).json({
+           // message: "Nodes fetched successfully!",
+            stagiaires: rows
+      
+          });
+        }
+        else
+        console.log(err);
+    })
+});
+
+/* app.get('/stagiaire',(req,res)=>{
+    mysqlConnection.query('SELECT * FROM Stagiaire',(err,rows,fields) => {
+        if(!err)
+        res.send(rows);//affichage des colonnes de la table si pas d'erreur
+        else
+        console.log(err);
+    })
+}); */
 //avoir les infos d'un seul etudiant en fonction de son ID
 app.get('/stagiaire/:id',(req,res) => {
     mysqlConnection.query('SELECT * FROM Stagiaire WHERE idStagiaire = ?', [req.params.id], (err, rows, fields) => {
@@ -96,3 +136,4 @@ app.put('/stagiaire', (req, res) => {
 
 
 
+module.exports = app;

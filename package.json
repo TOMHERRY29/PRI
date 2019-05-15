@@ -10,7 +10,8 @@
         "test": "ng test",
         "test-ci": "TEST_CI=true ng test",
         "lint": "ng lint",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "start:server": "nodemon server.js"
     },
     "private": true,
     "dependencies": {
@@ -33,7 +34,9 @@
         "jquery": "^2.1.4",
         "mysql": "^2.16.0",
         "ng2-charts": "^1.6.0",
+        "nodemon": "^1.18.10",
         "popper.js": "^1.14.3",
+        "request-debug": "^0.2.0",
         "rxjs": "^6.1.0",
         "yarn": "^1.6.0",
         "zone.js": "^0.8.26"
