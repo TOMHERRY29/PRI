@@ -47,6 +47,7 @@ app.use((req, res, next) => {
 exports.mysqlConnection = mysqlConnection;
 exports.app = app;
 
+app.route('/stages',require('./routes/stages'));
 app.route('/stagiaires',require('./routes/stagiaires'));
 app.route('/villes',require('./routes/villes'));
 app.route('/entreprises',require('./routes/entreprises'));
