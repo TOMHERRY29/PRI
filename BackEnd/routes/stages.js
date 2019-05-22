@@ -5,7 +5,7 @@ var app = require('../index.js').app; //importer app
 //récupérer tout les stages
 
 app.get('/stages',(req,res)=>{
-    mysqlConnection.query('select stage.idStage,stage.sujet,stage.addr,stage.soutenanceSemaine,tuteur.Nom,tuteur.Prenom,stagiaire.nom,stagiaire.prenom,semestre.libelle,ville.nomVille,pays.nomPays,entreprise.nomEntreprise from stage,tuteur,stagiaire,semestre,ville,pays,entreprise where stage.idTuteur=tuteur.idTuteur and stage.idSemestre=semestre.idSemestre and stage.idEntreprise=entreprise.idEntreprise and stagiaire.idStagiaire=stage.idStagiaire and stage.idVille=ville.idVille and ville.idPays = pays.idPays;',(err,rows,fields) => {
+    mysqlConnection.query('select stage.idStage,stage.sujet as sujetStage,stage.addr as addrStage,stage.soutenanceSemaine,tuteur.Nom as nomTuteur,tuteur.Prenom as prenomTuteur,stagiaire.nom as nomStagiaire,stagiaire.prenom as prenomStagiaire ,semestre.libelle as libelleSemestre,ville.nomVille,pays.nomPays,entreprise.nomEntreprise from stage,tuteur,stagiaire,semestre,ville,pays,entreprise where stage.idTuteur=tuteur.idTuteur and stage.idSemestre=semestre.idSemestre and stage.idEntreprise=entreprise.idEntreprise and stagiaire.idStagiaire=stage.idStagiaire and stage.idVille=ville.idVille and ville.idPays = pays.idPays;',(err,rows,fields) => {
         if(!err){
         //res.send(rows);//affichage des colonnes de la table si pas d'erreur
         res.status(200).json({
