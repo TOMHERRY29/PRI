@@ -47,9 +47,14 @@ app.use((req, res, next) => {
 exports.mysqlConnection = mysqlConnection;
 exports.app = app;
 
-app.route('/entreprise',require('./routes/entreprise'));
-//app.use(routes)
-//app.use('/entreprises',require('./routes/entreprise'));
+app.route('/stagiaires',require('./routes/stagiaires'));
+app.route('/villes',require('./routes/villes'));
+app.route('/entreprises',require('./routes/entreprises'));
+app.route('/pays',require('./routes/pays'));
+app.route('/periodes',require('./routes/periodes'));
+app.route('/piecesjointes',require('./routes/piecesjointes'));
+app.route('/semestres',require('./routes/semestres'));
+
 
 
 

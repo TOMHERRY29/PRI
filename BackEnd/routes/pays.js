@@ -53,27 +53,8 @@ app.put('/pays', (req, res) => {
 //Ajouter un pays
 app.post('/pays', (req, res) => {
     let stud = req.body;
-    var sql = "SET @idPeriode = ?;SET @nomPays = ?; \
-    CALL paysAjoutOuModification(@idPays,@dateDebut,@dateFin,@idStage);";
-    mysqlConnection.query(sql, [stud.idPeriode, stud.dateDebut, stud.dateFin, stud.idStage], (err, rows, fields) => {
-        if (!err)
-            rows.forEach(element => {
-                if(element.constructor == Array){                   
-                   // res.send('stagiaire inseré id : '+element[0].idStagiaire);
-                   res.send('Pays inseré id' );
-                }
-            });
-        else
-            console.log(err);
-    })
-});
-
-
-//Mettre à jour un pays
-app.put('/pays', (req, res) => {
-    let stud = req.body;
     var sql = "SET @idPays = ?;SET @nomPays = ?; \
-    CALL entrepriseAjoutOuModification(@idPays,@nomPays);";
+    CALL paysAjoutOuModification(@idPays,@nomPays);";
     mysqlConnection.query(sql, [stud.idEntreprise, stud.nomEntreprise], (err, rows, fields) => {
         if (!err)
             rows.forEach(element => {

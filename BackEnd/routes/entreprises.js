@@ -4,7 +4,7 @@ var app = require('../index.js').app; //importer app
 
 /***********  ENTREPRISE ***********/
 //avoir la liste de TOUtes les entreprises
-app.get('/entreprise',(req,res)=>{
+app.get('/entreprises',(req,res)=>{
     mysqlConnection.query('SELECT * FROM Entreprise',(err,rows,fields) => {
         if(!err)
         res.send(rows);//affichage des colonnes de la table si pas d'erreur
@@ -14,7 +14,7 @@ app.get('/entreprise',(req,res)=>{
 });
 
 //avoir les infos d'une seul entreprise en fonction de son ID
-app.get('/entreprise/:id',(req,res) => {
+app.get('/entreprises/:id',(req,res) => {
     mysqlConnection.query('SELECT * FROM entreprise WHERE idEntreprise = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
         res.send(rows);
@@ -24,7 +24,7 @@ app.get('/entreprise/:id',(req,res) => {
 });
 
 //suppression d'un entreprise
-app.delete('/entreprise/:id',(req,res) => {
+app.delete('/entreprises/:id',(req,res) => {
     mysqlConnection.query('DELETE FROM entreprise WHERE idEntreprise = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
         res.send('Suppression reussie');
@@ -34,7 +34,7 @@ app.delete('/entreprise/:id',(req,res) => {
 });
 
 //Ajouter une entreprise
-app.post('/entreprise', (req, res) => {
+app.post('/entreprises', (req, res) => {
     let stud = req.body;
     var sql = "SET @idEntreprise = ?;SET @nomEntreprise = ?; \
     CALL entrepriseAjoutOuModification(@idEntreprise,@nomEntreprise);";
@@ -53,7 +53,7 @@ app.post('/entreprise', (req, res) => {
 
 
 //Mettre à jour une entreprise
-app.put('/entreprise', (req, res) => {
+app.put('/entreprises', (req, res) => {
     let stud = req.body;
     var sql = "SET @idEntreprise = ?;SET @nomEntreprise = ?; \
     CALL entrepriseAjoutOuModification(@idEntreprise,@nomEntreprise);";

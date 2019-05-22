@@ -2,7 +2,7 @@ const mysqlConnection=require('../index.js').mysqlConnection; //importer mysqlCo
 var app = require('../index.js').app; //importer app
 /***********  PERIODE ***********/
 //avoir la liste de TOUtes les pays
-app.get('/periode',(req,res)=>{
+app.get('/periodes',(req,res)=>{
     mysqlConnection.query('SELECT * FROM periode',(err,rows,fields) => {
         if(!err)
         res.send(rows);//affichage des colonnes de la table si pas d'erreur
@@ -12,7 +12,7 @@ app.get('/periode',(req,res)=>{
 });
 
 //avoir les infos d'une seul periode en fonction de son ID
-app.get('/periode/:id',(req,res) => {
+app.get('/periodes/:id',(req,res) => {
     mysqlConnection.query('SELECT * FROM periode WHERE idPeriode = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
         res.send(rows);
@@ -22,7 +22,7 @@ app.get('/periode/:id',(req,res) => {
 });
 
 //Ajouter une période
-app.post('/periode', (req, res) => {
+app.post('/periodes', (req, res) => {
     let stud = req.body;
     var sql = "SET @idPays = ?;SET @nomPays = ?; \
     CALL periodeAjoutOuModification(@idPays,@nomPays);";
@@ -40,7 +40,7 @@ app.post('/periode', (req, res) => {
 });
 
 //Mettre à jour une période
-app.put('/periode', (req, res) => {
+app.put('/periodes', (req, res) => {
     let stud = req.body;
     var sql = "SET @idPays = ?;SET @nomPays = ?; \
     CALL periodeAjoutOuModification(@idPays,@nomPays);";
@@ -58,7 +58,7 @@ app.put('/periode', (req, res) => {
 });
 
 //suppression d'une periode
-app.delete('/periode/:id',(req,res) => {
+app.delete('/periodes/:id',(req,res) => {
     mysqlConnection.query('DELETE FROM periode WHERE idPeriode = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
         res.send('Suppression reussie');

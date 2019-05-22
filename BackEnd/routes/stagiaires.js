@@ -3,22 +3,6 @@ var app = require('../index.js').app; //importer app
 
 /***********  STAGIARE ***********/
 //récupérer tout les stagiaires
-
-app.get('/stagiaire',(req,res)=>{
-    mysqlConnection.query('SELECT * FROM Stagiaire',(err,rows,fields) => {
-        if(!err){
-        //res.send(rows);//affichage des colonnes de la table si pas d'erreur
-        res.status(200).json({
-           // message: "Nodes fetched successfully!",
-            stagiaires: rows
-      
-          });
-        }
-        else
-        console.log(err);
-    })
-});
-//avoir la liste de TOUtes les stagiares
 app.get('/stagiaires',(req,res)=>{
     mysqlConnection.query('SELECT * FROM stagiaire',(err,rows,fields) => {
         if(!err)
@@ -29,7 +13,7 @@ app.get('/stagiaires',(req,res)=>{
 });
 
 //avoir les infos d'un seul stagiaire en fonction de son ID
-app.get('/stagiaire/:id',(req,res) => {
+app.get('/stagiaires/:id',(req,res) => {
     mysqlConnection.query('SELECT * FROM Stagiaire WHERE idStagiaire = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
         res.send(rows);
@@ -39,7 +23,7 @@ app.get('/stagiaire/:id',(req,res) => {
 });
 
 //suppression d'un stagiaire
-app.delete('/stagiaire/:id',(req,res) => {
+app.delete('/stagiaires/:id',(req,res) => {
     mysqlConnection.query('DELETE FROM Stagiaire WHERE idStagiaire = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
         res.send('Suppression reussie');
@@ -49,10 +33,10 @@ app.delete('/stagiaire/:id',(req,res) => {
 });
 
 //Ajouter un stagiaire
-app.post('/stagiaire', (req, res) => {
+app.post('/stagiaires', (req, res) => {
     let stud = req.body;
     var sql = "SET @idStagiaire = ?;SET @Nom = ?;SET @Prenom = ?; \
-    CALL StagiaireAjoutOuModification(@idStagiaire,@Nom,@Prenom);";
+    CALL stagiaireAjoutOuModification(@idStagiaire,@Nom,@Prenom);";
     mysqlConnection.query(sql, [stud.idStagiaire, stud.Nom, stud.Prenom], (err, rows, fields) => {
         if (!err)
             rows.forEach(element => {
@@ -68,10 +52,10 @@ app.post('/stagiaire', (req, res) => {
 
 
 //Mettre à jour un etudiant
-app.put('/stagiaire', (req, res) => {
+app.put('/stagiaires', (req, res) => {
     let stud = req.body;
     var sql = "SET @idStagiaire = ?;SET @Nom = ?;SET @Prenom = ?; \
-    CALL StagiaireAjoutOuModification(@idStagiaire,@Nom,@Prenom);";
+    CALL stagiaireAjoutOuModification(@idStagiaire,@Nom,@Prenom);";
     mysqlConnection.query(sql, [stud.idStagiaire, stud.Nom, stud.Prenom], (err, rows, fields) => {
         if (!err)
             rows.forEach(element => {
