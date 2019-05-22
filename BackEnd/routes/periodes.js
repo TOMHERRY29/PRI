@@ -1,23 +1,31 @@
-const mysqlConnection=require('../index.js').mysqlConnection; //importer mysqlConnection
+const mysqlConnection = require('../index.js').mysqlConnection; //importer mysqlConnection
 var app = require('../index.js').app; //importer app
 /***********  PERIODE ***********/
 //avoir la liste de TOUtes les pays
-app.get('/periodes',(req,res)=>{
-    mysqlConnection.query('SELECT * FROM periode',(err,rows,fields) => {
-        if(!err)
-        res.send(rows);//affichage des colonnes de la table si pas d'erreur
-        else
-        console.log(err);
+
+
+
+app.get('/periodes', (req, res) => {
+    mysqlConnection.query('SELECT * FROM periode', (err, rows, fields) => {
+        if (!err) {
+            //res.send(rows);//affichage des colonnes de la table si pas d'erreur
+            res.status(200).json({
+                // message: "Nodes fetched successfully!",
+                periodes: rows
+
+            });
+        } else
+            console.log(err);
     })
 });
 
 //avoir les infos d'une seul periode en fonction de son ID
-app.get('/periodes/:id',(req,res) => {
+app.get('/periodes/:id', (req, res) => {
     mysqlConnection.query('SELECT * FROM periode WHERE idPeriode = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
-        res.send(rows);
+            res.send(rows);
         else
-        console.log(err);
+            console.log(err);
     })
 });
 
@@ -29,9 +37,9 @@ app.post('/periodes', (req, res) => {
     mysqlConnection.query(sql, [stud.idEntreprise, stud.nomEntreprise], (err, rows, fields) => {
         if (!err)
             rows.forEach(element => {
-                if(element.constructor == Array){                   
-                   // res.send('stagiaire inseré id : '+element[0].idStagiaire);
-                   res.send('Pays inseré id' );
+                if (element.constructor == Array) {
+                    // res.send('stagiaire inseré id : '+element[0].idStagiaire);
+                    res.send('Pays inseré id');
                 }
             });
         else
@@ -47,9 +55,9 @@ app.put('/periodes', (req, res) => {
     mysqlConnection.query(sql, [stud.idEntreprise, stud.nomEntreprise], (err, rows, fields) => {
         if (!err)
             rows.forEach(element => {
-                if(element.constructor == Array){                   
-                   // res.send('stagiaire inseré id : '+element[0].idStagiaire);
-                   res.send('Pays inseré id' );
+                if (element.constructor == Array) {
+                    // res.send('stagiaire inseré id : '+element[0].idStagiaire);
+                    res.send('Pays inseré id');
                 }
             });
         else
@@ -58,11 +66,11 @@ app.put('/periodes', (req, res) => {
 });
 
 //suppression d'une periode
-app.delete('/periodes/:id',(req,res) => {
+app.delete('/periodes/:id', (req, res) => {
     mysqlConnection.query('DELETE FROM periode WHERE idPeriode = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
-        res.send('Suppression reussie');
+            res.send('Suppression reussie');
         else
-        console.log(err);
+            console.log(err);
     })
 });

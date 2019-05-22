@@ -3,12 +3,19 @@ import { routerTransition } from '../../router.animations';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
-
 import { StagiairesService } from '../../services/stagiaires.service';
 import { Stagiaire } from '../../models/stagiaire.model';
 import { EntreprisesService } from '../../services/entreprises.service';
 import { Entreprise } from '../../models/entreprise.model';
+import {StagesService} from '../../services/stages.service';
 import { StageGlobal } from '../../models/stageGlobal.model';
+
+import {PeriodesService} from '../../services/periodes.service';
+import { Periode } from '../../models/periode.model';
+
+import {PiecesjointesService} from '../../services/piecesjointes.service';
+import { Piece } from '../../models/piecejointe.model';
+
 
 
 
@@ -32,64 +39,26 @@ export class DashboardComponent implements OnInit {
     entreprises: Entreprise[] = [];
     _entreprise: Entreprise = null;
     private entrepriseSub: Subscription;
+
+    private periodeSub: Subscription;
+    private pieceSub: Subscription;
+    periodes: Periode[] = [];
+    pieces: Piece[] = [];
+
+
+
+
     // editForm: FormGroup;
 
 
     // Récupérer ici toutes les informations sur les stages
-    /*  stages = [
-
-         {
-             prenom: 'eazea',
-             nom: 'aeae',
-             ville: 'Paris',
-             pays: "France",
-             semestre: "S10",
-             spec: "Informatique",
-             entreprise: "Arinfo",
-             pdf: "https://nuxeo.enib.fr/nuxeo/nxdoc/default/5a424b06-a846-49ad-9106-b29d6b285f1f/view_documents"
-         },
-         {
-             prenom: 'test',
-             nom: 'afaf',
-             ville: "Paris",
-             pays: "France",
-             semestre: "S10",
-             spec: "Informatique",
-             entreprise: "Arinfo"
-         },
-         {
-             prenom: 'test',
-             nom: 'afaf',
-             ville: "Paris",
-             pays: "France",
-             semestre: "S10",
-             spec: "Informatique",
-             entreprise: "Arinfo"
-         },
-         {
-             prenom: 'blabla',
-             nom: 'fdp',
-             ville: "Paris",
-             pays: "France",
-             semestre: "S10",
-             spec: "Informatique",
-             entreprise: "Arinfo"
-         },
-         {
-             prenom: 'heeeeeeey',
-             nom: 'afaf',
-             ville: "Paris",
-             pays: "France",
-             semestre: "S10",
-             spec: "Informatique",
-             entreprise: "Arinfo"
-         },
-     ];
-  */
     constructor(public stagiairesService: StagiairesService,
         private _router: Router,
         private route: ActivatedRoute,
-        public entreprisesService: EntreprisesService) {
+        public entreprisesService: EntreprisesService,
+        public stagesService: StagesService,
+        public periodeService: PeriodesService,
+        public pieceService: PiecesjointesService) {
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg',
@@ -141,12 +110,31 @@ export class DashboardComponent implements OnInit {
         setTimeout(() => console.log('test stagiaire', this.stagiaires), 1000);
 
   // ****************Get all Stages ********************* */
-        this.stagiairesService.getStage();
-        this.stageSub = this.stagiairesService.getStageUpdateListener()
+        this.stagesService.getStage();
+        this.stageSub = this.stagesService.getStageUpdateListener()
             .subscribe((stages: StageGlobal[]) => {
                 this.stages = stages;
             });
         setTimeout(() => console.log('*************stage**************', this.stages), 1000);
+
+// ****************Get all periode ********************* */
+this.periodeService.getPeriode();
+this.periodeSub = this.periodeService.getPeriodeUpdateListener()
+    .subscribe((periodes: Periode[]) => {
+        this.periodes = periodes;
+    });
+setTimeout(() => console.log('*************stage**************', this.periodes), 1000);
+
+
+this.stagiairesService.getStagiaireById('h6rafaa').subscribe(appli => {
+    console.log('test appli', appli);
+    this._satagiaire = {
+        idStagiaire: appli[0].idStagiaire,
+        Nom: appli[0].Nom,
+        Prenom: appli[0].Prenom
+    };
+
+});
 
 
         // ****************Get all Entreprise ********************* */

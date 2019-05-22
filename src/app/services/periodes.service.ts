@@ -18,7 +18,7 @@ export class PeriodesService {
   getPeriode() {
     this.http
       .get<{ periodes: any }>(
-        'http://localhost:3000/periode'
+        'http://localhost:3000/periodes'
       )
       .pipe(map((periodeData) => {
         return periodeData.periodes.map(periode => {
@@ -47,7 +47,7 @@ export class PeriodesService {
       dateDebut: string;
       dateFin: Date;
       idStage: string;
-    }>('http://localhost:3000/periode/' + id);
+    }>('http://localhost:3000/periodes/' + id);
   }
 
 
@@ -64,7 +64,7 @@ export class PeriodesService {
       idStage: idStage
     };
     this.http
-      .post<{ idPeriode: string }>('http://localhost:3000/periode', periode)
+      .post<{ idPeriode: string }>('http://localhost:3000/periodes', periode)
       .subscribe(responseData => {
         const id = responseData.idPeriode;
         periode.idPeriode = id;
@@ -85,7 +85,7 @@ export class PeriodesService {
       idStage: idStage
     };
     this.http
-      .put('http://localhost:3000/periode/' + idPeriode, periode)
+      .put('http://localhost:3000/periodes/' + idPeriode, periode)
       .subscribe(response => {
         const updatedPeriodes = [...this.periodes];
         const oldPeriodesIndex = updatedPeriodes.findIndex(p => p.idPeriode === periode.idPeriode);
@@ -96,7 +96,7 @@ export class PeriodesService {
   }
 
   deletePeriode(idPeriode: string) {
-    this.http.delete('http://localhost:3000/periode/' + idPeriode)
+    this.http.delete('http://localhost:3000/periodes/' + idPeriode)
       .subscribe(() => {
         const updatedPeriodes = this.periodes.filter(periode => periode.idPeriode !== idPeriode);
         this.periodes = updatedPeriodes;
