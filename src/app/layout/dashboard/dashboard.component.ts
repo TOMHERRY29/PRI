@@ -8,7 +8,7 @@ import { StagiairesService } from '../../services/stagiaires.service';
 import { Stagiaire } from '../../models/stagiaire.model';
 import { EntreprisesService } from '../../services/entreprises.service';
 import { Entreprise } from '../../models/entreprise.model';
-import { Stage } from '../../models/stage.model';
+import { StageGlobal } from '../../models/stageGlobal.model';
 
 
 
@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
     // ************My modifs***************** */
     stagiaires: Stagiaire[] = [];
-    stages: Stage[] = [] ;
+    stages: StageGlobal[] = [] ;
     idStagiaire: 'm6hichri';
     _satagiaire: Stagiaire;
     private stagiaireSub: Subscription;
@@ -143,7 +143,7 @@ export class DashboardComponent implements OnInit {
   // ****************Get all Stages ********************* */
         this.stagiairesService.getStage();
         this.stageSub = this.stagiairesService.getStageUpdateListener()
-            .subscribe((stages: Stage[]) => {
+            .subscribe((stages: StageGlobal[]) => {
                 this.stages = stages;
             });
         setTimeout(() => console.log('*************stage**************', this.stages), 1000);

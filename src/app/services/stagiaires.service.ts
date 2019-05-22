@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Stagiaire } from '../models/stagiaire.model';
-import { Stage } from '../models/stage.model';
+import { StageGlobal } from '../models/stageGlobal.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,10 @@ import { Stage } from '../models/stage.model';
 export class StagiairesService {
 
   private stagiaires: Stagiaire[] = [];
-  private stages: Stage[] = [];
+  private stages: StageGlobal[] = [];
 
   private stagiairesUpdated = new Subject<Stagiaire[]>();
-  private stagesUpdated = new Subject<Stage[]>();
+  private stagesUpdated = new Subject<StageGlobal[]>();
   private stagiaireStatusListener = new Subject<boolean>();
   constructor(private http: HttpClient) { }
 
@@ -27,15 +27,17 @@ export class StagiairesService {
         return stageData.stages.map(stage => {
           return {
             idStage: stage.idStage,
-            dateFin: stage.dateFin,
-            sujet: stage.sujet,
-            addr: stage.addr,
+            sujetStage: stage.sujetStage,
+            addrStage: stage.addrStage,
             soutenanceSemaine: stage.soutenanceSemaine,
-            idTuteur: stage.idTuteur,
-            idStagiaire: stage.idStagiaire,
-            idSemestre: stage.idSemestre,
-            idVille: stage.idVille,
-            idEntreprise: stage.idEntreprise
+            nomTuteur: stage.nomTuteur,
+            prenomTuteur: stage.prenomTuteur,
+            nomStagiaire: stage.nomStagiaire,
+            prenomStagiaire: stage.prenomStagiaire,
+            libelleSemestre: stage.libelleSemestre,
+            nomVille: stage.nomVille,
+            nomPays: stage.nomPays,
+            nomEntreprise: stage.nomEntreprise
           };
         });
       }))
@@ -54,7 +56,7 @@ export class StagiairesService {
   getStagiaire() {
     this.http
       .get<{ stagiaires: any }>(
-        'http://localhost:3000/stagiaire'
+        'http://localhost:3000/stagiaires'
       )
       .pipe(map((stagiaireData) => {
         return stagiaireData.stagiaires.map(stagiaire => {
@@ -81,7 +83,7 @@ export class StagiairesService {
       idStagiaire: string;
       Nom: string;
       Prenom: string;
-    }>('http://localhost:3000/stagiaire/' + id);
+    }>('http://localhost:3000/stagiaires/' + id);
   }
 
 
@@ -96,7 +98,7 @@ export class StagiairesService {
       Prenom: Prenom
     };
     this.http
-      .post<{ idStagiaire: string }>('http://localhost:3000/stagiaire', stagiaire)
+      .post<{ idStagiaire: string }>('http://localhost:3000/stagiaires', stagiaire)
       .subscribe(responseData => {
         const id = responseData.idStagiaire;
         stagiaire.idStagiaire = id;
@@ -114,7 +116,7 @@ export class StagiairesService {
       Prenom: Prenom
     };
     this.http
-      .put('http://localhost:3000/stagiaire/' + idStagiaire, stagiaire)
+      .put('http://localhost:3000/stagiaires/' + idStagiaire, stagiaire)
       .subscribe(response => {
         const updatedStagiaires = [...this.stagiaires];
         const oldStagiairesIndex = updatedStagiaires.findIndex(p => p.idStagiaire === stagiaire.idStagiaire);
@@ -125,7 +127,7 @@ export class StagiairesService {
   }
 
   deleteStagiaire(idStagiaire: string) {
-    this.http.delete('http://localhost:3000/stagiaire/' + idStagiaire)
+    this.http.delete('http://localhost:3000/stagiaires/' + idStagiaire)
       .subscribe(() => {
         const updatedStagiaires = this.stagiaires.filter(stagiaire => stagiaire.idStagiaire !== idStagiaire);
         this.stagiaires = updatedStagiaires;
