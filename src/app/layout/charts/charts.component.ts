@@ -16,12 +16,11 @@ export class ChartsComponent implements OnInit {
     public buttonName2:any = 'Diagrammes';
 
     //Récupérer ici toutes les informations sur les stages
-    stages = [
+    eleves = [
 
         {
-          
-          prenom: 'eazea',
           nom: 'aeae',
+          prenom: 'eazea',
           semestre: "S10",
           trouve: "OUI",
           entreprise: "Arinfo",
@@ -30,8 +29,8 @@ export class ChartsComponent implements OnInit {
         },
         {
           
-            prenom: 'test',
-            nom: 'afaf',
+            nom: 'test',
+            prenom: 'afaf',
             semestre: "S8",
             trouve: "NON",
             entreprise: "",
@@ -40,8 +39,8 @@ export class ChartsComponent implements OnInit {
           },
           {
           
-            prenom: 'test',
-            nom: 'afaf',
+            nom: 'test',
+            prenom: 'afaf',
             semestre: "IS2",
             trouve: "OUI",
             entreprise: "SDMO",
@@ -50,6 +49,8 @@ export class ChartsComponent implements OnInit {
           },
     
       ];
+
+      elevesFiltered = this.eleves;
     // bar chart
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
@@ -212,4 +213,55 @@ export class ChartsComponent implements OnInit {
     toggle_diag() {
         this.show_diag = !this.show_diag;
       }
+
+      onKey() {
+        this.filtreName();
+      }
+    
+   // requete: string = (<HTMLInputElement>document.getElementById("prenomInput")).value;
+    filtreName() {
+
+        
+        var requete = (<HTMLInputElement>document.getElementById("nomInput")).value;
+        var requete2 = (<HTMLInputElement>document.getElementById("prenomInput")).value;
+        var requete3 = (<HTMLInputElement>document.getElementById("myBrowserSemestre")).value;
+        var requete4 = (<HTMLInputElement>document.getElementById("myBrowserFind")).value;
+        var requete5 = (<HTMLInputElement>document.getElementById("myBrowserEntreprise")).value;
+        var requete6 = (<HTMLInputElement>document.getElementById("myBrowserTutor")).value;
+
+        this.elevesFiltered = [];
+
+        if(requete != '' || requete2 != '' 
+        || requete3 != '' || requete4 != ''
+        || requete5 != '' || requete6 != '')
+        {
+            for(let i = 0; i < this.eleves.length; i++)
+            {    
+                if(this.eleves[i].nom == requete){
+                    this.elevesFiltered.push(this.eleves[i]);
+                }
+                if(this.eleves[i].prenom == requete2){
+                    this.elevesFiltered.push(this.eleves[i]);
+                }
+                if(this.eleves[i].semestre == requete3){
+                    this.elevesFiltered.push(this.eleves[i]);
+                }
+                if(this.eleves[i].trouve== requete4){
+                    this.elevesFiltered.push(this.eleves[i]);
+                }
+                if(this.eleves[i].entreprise== requete5){
+                    this.elevesFiltered.push(this.eleves[i]);
+                }
+                if(this.eleves[i].tuteur== requete6){
+                    this.elevesFiltered.push(this.eleves[i]);
+                }
+            }
+        }
+
+        else{
+            this.elevesFiltered = this.eleves;
+        }
+
+    }
+
 }

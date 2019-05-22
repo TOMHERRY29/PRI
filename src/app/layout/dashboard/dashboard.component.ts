@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
           
           prenom: 'eazea',
           nom: 'aeae',
-          ville: "Paris",
+          ville: "Lyon",
           pays: "France",
           semestre: "S10",
           spec: "Informatique",
@@ -40,9 +40,9 @@ export class DashboardComponent implements OnInit {
           
             prenom: 'test',
             nom: 'afaf',
-            ville: "Paris",
+            ville: "Marseille",
             pays: "France",
-            semestre: "S10",
+            semestre: "S09",
             spec: "Informatique",
             entreprise: "Arinfo",
             visible: 1
@@ -54,8 +54,8 @@ export class DashboardComponent implements OnInit {
             nom: 'afaf',
             ville: "Paris",
             pays: "France",
-            semestre: "S10",
-            spec: "Informatique",
+            semestre: "S08",
+            spec: "Electronique",
             entreprise: "Arinfo",
             visible: 1
       
@@ -64,8 +64,8 @@ export class DashboardComponent implements OnInit {
           
             prenom: 'blabla',
             nom: 'fdp',
-            ville: "Paris",
-            pays: "France",
+            ville: "Londres",
+            pays: "Angleterre",
             semestre: "S10",
             spec: "Informatique",
             entreprise: "Arinfo",
@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
             pays: "France",
             semestre: "S10",
             spec: "Informatique",
-            entreprise: "Arinfo",
+            entreprise: "Sopra Steria",
             visible: 1
       
           },
@@ -147,14 +147,41 @@ export class DashboardComponent implements OnInit {
     filtreName() {
 
         var requete = (<HTMLInputElement>document.getElementById("prenomInput")).value;
+        var requete2 = (<HTMLInputElement>document.getElementById("nomInput")).value;
+        var requete3 = (<HTMLInputElement>document.getElementById("myBrowser")).value;
+        var requete4 = (<HTMLInputElement>document.getElementById("myBrowserPays")).value;
+        var requete5 = (<HTMLInputElement>document.getElementById("myBrowserSemestre")).value;
+        var requete6 = (<HTMLInputElement>document.getElementById("myBrowserSpeciality")).value;
+        var requete7 = (<HTMLInputElement>document.getElementById("myBrowserEntreprise")).value;
 
         this.stagesFiltered = [];
 
-        if(requete != '')
+        if(requete != '' || requete2 != '' 
+        || requete3 != '' || requete4 != ''
+        || requete5 != '' || requete6 != ''
+        || requete7 != '')
         {
             for(let i = 0; i < this.stages.length; i++)
             {    
                 if(this.stages[i].prenom == requete){
+                    this.stagesFiltered.push(this.stages[i]);
+                }
+                if(this.stages[i].nom == requete2){
+                    this.stagesFiltered.push(this.stages[i]);
+                }
+                if(this.stages[i].ville == requete3){
+                    this.stagesFiltered.push(this.stages[i]);
+                }
+                if(this.stages[i].pays== requete4){
+                    this.stagesFiltered.push(this.stages[i]);
+                }
+                if(this.stages[i].semestre== requete5){
+                    this.stagesFiltered.push(this.stages[i]);
+                }
+                if(this.stages[i].spec== requete6){
+                    this.stagesFiltered.push(this.stages[i]);
+                }
+                if(this.stages[i].entreprise== requete7){
                     this.stagesFiltered.push(this.stages[i]);
                 }
             }

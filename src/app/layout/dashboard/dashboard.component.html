@@ -1,9 +1,10 @@
 <div [@routerTransition]>
-    
+
     <div class="row">
         <div class="col col-xl-12 col-lg-12">
-            
+
             <div class="card mb-3">
+<<<<<<< Updated upstream
 
                     <div>
                             <p>
@@ -107,7 +108,95 @@
                             <td> {{stage.spec}}</td>
                             <td> {{stage.entreprise}}</td>
                             <td><a href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td>
+=======
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div>
+                                    <input id="prenomInput" name="prenomInput" class="searchInput form-control" list="listPrenom"
+                                        placeholder="Prénom" (keyup.enter)="onKey($event)">
+                                    <datalist id="listPrenom">
+                                        <option *ngFor="let stage of stages">{{stage.prenom}}</option>
+                                    </datalist>
+                                </div>
+                            </th>
+                            <th>
+                                <div>
+                                    <input id="nomInput" name="nomInput" class="searchInput form-control" list="listNom"
+                                        placeholder="Nom" (keyup.enter)="onKey($event)">
+                                    <datalist id="listNom">
+                                        <option *ngFor="let stage of stages">{{stage.nom}}</option>
+                                    </datalist>
+                                </div>
+
+                            </th>
+                            <th>
+                                <div>
+                                    <input class="form-control" list="recherche_ville" name="myBrowser" id="myBrowser"
+                                        placeholder="Ville" (keyup.enter)="onKey($event)" />
+                                    <datalist id="recherche_ville">
+                                        <option *ngFor="let stage of stages">{{stage.ville}}</option>
+                                    </datalist>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <div>
+                                        <input id="myBrowserPays" class="form-control" list="recherche_pays" name="myBrowserPays"
+                                            placeholder="Pays" (keyup.enter)="onKey($event)" />
+                                        <datalist id="recherche_pays">
+                                            <option *ngFor="let stage of stages">{{stage.pays}}</option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <div>
+                                        <input class="form-control" list="recherche_semestre" id="myBrowserSemestre"
+                                            name="myBrowserSemestre" placeholder="Semestre" (keyup.enter)="onKey($event)" />
+                                        <datalist id="recherche_semestre">
+                                            <option *ngFor="let stage of stages">{{stage.semestre}}</option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <div>
+                                        <input class="form-control" list="recherche_spécialité" id="myBrowserSpeciality"
+                                            name="myBrowserSpeciality" placeholder="Spécialité" (keyup.enter)="onKey($event)" />
+                                        <datalist id="recherche_spécialité">
+                                            <option *ngFor="let stage of stages">{{stage.spec}}</option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <div>
+                                        <input class="form-control" list="recherche_entreprise" id="myBrowserEntreprise"
+                                            name="myBrowser" placeholder="Entreprise" (keyup.enter)="onKey($event)" />
+                                        <datalist id="recherche_entreprise">
+                                            <option *ngFor="let stage of stages">{{stage.entreprise}}</option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </th>
+>>>>>>> Stashed changes
                         </tr>
+                    </thead>
+                    <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered">
+                        <td> {{stage.prenom}}</td>
+                        <td> {{stage.nom}}</td>
+                        <td> {{stage.ville}}</td>
+                        <td> {{stage.pays}}</td>
+                        <td> {{stage.semestre}}</td>
+                        <td> {{stage.spec}}</td>
+                        <td> {{stage.entreprise}}</td>
+                        <td><a href={{stage.pdf}}><img src="../../../assets/images/pdf.png" /></a></td>
+                    </tr>
                 </table>
             </div>
         </div>
