@@ -10,7 +10,7 @@ app.get('/stages',(req,res)=>{
         //res.send(rows);//affichage des colonnes de la table si pas d'erreur
         res.status(200).json({
            // message: "Nodes fetched successfully!",
-            stagiaires: rows
+            stages: rows
       
           });
         }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Stagiaire } from '../models/stagiaire.model';
+import { Stage } from '../models/stage.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,45 @@ import { Stagiaire } from '../models/stagiaire.model';
 export class StagiairesService {
 
   private stagiaires: Stagiaire[] = [];
+  private stages: Stage[] = [];
 
   private stagiairesUpdated = new Subject<Stagiaire[]>();
+  private stagesUpdated = new Subject<Stage[]>();
   private stagiaireStatusListener = new Subject<boolean>();
   constructor(private http: HttpClient) { }
+
+  getStage() {
+    this.http
+      .get<{ stages: any }>(
+        'http://localhost:3000/stages'
+      )
+      .pipe(map((stageData) => {
+        return stageData.stages.map(stage => {
+          return {
+            idStage: stage.idStage,
+            dateFin: stage.dateFin,
+            sujet: stage.sujet,
+            addr: stage.addr,
+            soutenanceSemaine: stage.soutenanceSemaine,
+            idTuteur: stage.idTuteur,
+            idStagiaire: stage.idStagiaire,
+            idSemestre: stage.idSemestre,
+            idVille: stage.idVille,
+            idEntreprise: stage.idEntreprise
+          };
+        });
+      }))
+      .subscribe(transformedStages => {
+        console.log('get stagiaire', transformedStages);
+        this.stages = transformedStages;
+        this.stagesUpdated.next([...this.stages]);
+      });
+
+  }
+
+  getStageUpdateListener() {
+    return this.stagesUpdated.asObservable();
+  }
 
   getStagiaire() {
     this.http
@@ -69,14 +105,14 @@ export class StagiairesService {
       });
   }
 
-  updateStagiaire( idStagiaire: string,
+  updateStagiaire(idStagiaire: string,
     Nom: string,
     Prenom: string) {
-      const stagiaire: Stagiaire = {
-        idStagiaire: idStagiaire,
-        Nom: Nom,
-        Prenom: Prenom
-      };
+    const stagiaire: Stagiaire = {
+      idStagiaire: idStagiaire,
+      Nom: Nom,
+      Prenom: Prenom
+    };
     this.http
       .put('http://localhost:3000/stagiaire/' + idStagiaire, stagiaire)
       .subscribe(response => {

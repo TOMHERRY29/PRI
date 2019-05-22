@@ -5,10 +5,10 @@ const bodyParser = require("body-parser");
 
 //Connexion à la base de données
 var mysqlConnection = mysql.createConnection({
-    //host:'10.181.126.163',
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host:'192.168.43.188',
+    //host: 'localhost',
+    user: 'stage',
+    password: 'mouna@94',
     database: 'gst',
     multipleStatements: true //pour avoir plusieurs instructions dans une seule chaîne
 

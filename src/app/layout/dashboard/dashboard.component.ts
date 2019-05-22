@@ -8,7 +8,7 @@ import { StagiairesService } from '../../services/stagiaires.service';
 import { Stagiaire } from '../../models/stagiaire.model';
 import { EntreprisesService } from '../../services/entreprises.service';
 import { Entreprise } from '../../models/entreprise.model';
-
+import { Stage } from '../../models/stage.model';
 
 
 
@@ -24,10 +24,11 @@ export class DashboardComponent implements OnInit {
 
     // ************My modifs***************** */
     stagiaires: Stagiaire[] = [];
+    stages: Stage[] = [] ;
     idStagiaire: 'm6hichri';
     _satagiaire: Stagiaire;
     private stagiaireSub: Subscription;
-
+    private stageSub: Subscription;
     entreprises: Entreprise[] = [];
     _entreprise: Entreprise = null;
     private entrepriseSub: Subscription;
@@ -138,6 +139,14 @@ export class DashboardComponent implements OnInit {
                 this.stagiaires = stagiaires;
             });
         setTimeout(() => console.log('test stagiaire', this.stagiaires), 1000);
+
+  // ****************Get all Stages ********************* */
+        this.stagiairesService.getStage();
+        this.stageSub = this.stagiairesService.getStageUpdateListener()
+            .subscribe((stages: Stage[]) => {
+                this.stages = stages;
+            });
+        setTimeout(() => console.log('*************stage**************', this.stages), 1000);
 
 
         // ****************Get all Entreprise ********************* */
