@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
     value : string = "";
     searchText;
 
-    //var nomRequest = document.getElementById('nomInput').value;
 
     //Récupérer ici toutes les informations sur les stages
     stages = [
@@ -73,7 +72,6 @@ export class DashboardComponent implements OnInit {
             visible: 1
       
           },
-
           {
           
             prenom: 'heeeeeeey',
@@ -178,6 +176,7 @@ export class DashboardComponent implements OnInit {
             return false;
         }
     }
+    
 
  }   
 

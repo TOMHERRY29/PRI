@@ -4,22 +4,23 @@
         <div class="col col-xl-12 col-lg-12">
             
             <div class="card mb-3">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th> 
-                            <div>
+
+                    <div>
+                            <p>
+                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Filtres
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseExample">
                                 <input id="prenomInput" 
-                                    name = "prenomInput"
-                                    class="searchInput form-control"
-                                    list="listPrenom" placeholder="Prénom" (keyup.enter)="onKey($event)">
-                                    <datalist id="listPrenom">
-                                        <option *ngFor="let stage of stages">{{stage.prenom}}</option>
-                                    </datalist>
+                                name = "prenomInput"
+                                class="searchInput form-control"
+                                list="listPrenom" placeholder="Prénom" (keyup.enter)="onKey($event)">
+                                <datalist id="listPrenom">
+                                    <option *ngFor="let stage of stages">{{stage.prenom}}</option>
+                                </datalist>
                             </div>
-                        </th>
-                        <th>
-                            <div>
+                            <div class="collapse" id="collapseExample">
                                 <input id="nomInput" 
                                 name = "nomInput"
                                 class="searchInput form-control"
@@ -29,70 +30,72 @@
                                     <option *ngFor="let stage of stages">{{stage.nom}}</option>
                                 </datalist>
                             </div>
- 
-                        </th>
-                        <th>
-                                <div>
-                                    <input class="form-control" list="recherche_ville" name="myBrowser" placeholder="Ville" />
-                                    <datalist id="recherche_ville">
-                                        <option>Paris</option>
-                                        <option>Lyon</option>
-                                        <option>Brest</option>
-                                        <option>Nantes</option>
-                                        <option>Rennes</option>
-                                        <option>Marseille</option>
-                                    </datalist>
-                                </div>
-                            </th>
-                            <th>
-                                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                                        <div>
-                                            <input class="form-control" list="recherche_pays" name="myBrowser" placeholder="Pays" />
-                                            <datalist id="recherche_pays">
-                                                <option>France</option>
-                                                <option>Espagne</option>
-                                                <option>Italie</option>
-                                            </datalist>
-                                        </div>
-                                    </div>
-                                </th>
-                                <th>
-                                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <div>
-                                                <input class="form-control" list="recherche_semestre" name="myBrowser" placeholder="Semestre" />
-                                                <datalist id="recherche_semestre">
-                                                    <option>S2</option>
-                                                    <option>S4</option>
-                                                    <option>S8</option>
-                                                    <option>S10</option>
-                                                </datalist>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th>
-                                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <div>
-                                                    <input class="form-control" list="recherche_spécialité" name="myBrowser" placeholder="Spécialité" />
-                                                    <datalist id="recherche_spécialité">
-                                                        <option>Informatique</option>
-                                                        <option>Mécatronique</option>
-                                                        <option>Electronique</option>
-                                                    </datalist>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <th>
-                                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                    <div>
-                                                        <input class="form-control" list="recherche_pays" name="myBrowser" placeholder="Entreprise" />
-                                                        <datalist id="recherche_pays">
-                                                            <option>Sopra Steria</option>
-                                                            <option>Capgemini</option>
-                                                            <option>SFR</option>
-                                                        </datalist>
-                                                    </div>
-                                                </div>
-                                            </th>
+                            <div class="collapse" id="collapseExample">
+                                <input id="villeInput" 
+                                name = "villeInput"
+                                class="searchInput form-control"
+                                list="listVille"
+                                placeholder="Ville">
+                                <datalist id="listVille">
+                                    <option *ngFor="let stage of stages">{{stage.ville}}</option>
+                                </datalist>
+                            </div>
+
+                            <div class="collapse" id="collapseExample">
+                                <input id="paysInput" 
+                                name = "paysInput"
+                                class="searchInput form-control"
+                                list="listPays"
+                                placeholder="Pays">
+                                <datalist id="listPays">
+                                    <option *ngFor="let stage of stages">{{stage.pays}}</option>
+                                </datalist>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <input id="semestreInput" 
+                                name = "semestreInput"
+                                class="searchInput form-control"
+                                list="listSemestre"
+                                placeholder="Semestre">
+                                <datalist id="listSemestre">
+                                    <option *ngFor="let stage of stages">{{stage.semestre}}</option>
+                                </datalist>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <input id="specialiteInput" 
+                                name = "specialiteInput"
+                                class="searchInput form-control"
+                                list="listSpecialite"
+                                placeholder="Specialité">
+                                <datalist id="listSpecialite">
+                                    <option *ngFor="let stage of stages">{{stage.spec}}</option>
+                                </datalist>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <input id="entrepriseInput" 
+                                name = "entrepriseInput"
+                                class="searchInput form-control"
+                                list="listEntreprise"
+                                placeholder="Entreprise">
+                                <datalist id="listEntreprise">
+                                    <option *ngFor="let stage of stages">{{stage.entreprise}}</option>
+                                </datalist>
+                            </div>
+                                
+                        </div>
+
+                <table class="table">      
+                            
+                    <thead>
+                    <tr>   
+                        <th>Prénom</th>
+                        <th>Nom</th> 
+                        <th>Ville</th>
+                        <th>Pays</th>
+                        <th>Semestre</th>
+                        <th>Spécialité</th> 
+                        <th>Entreprise</th>
+                        <th>Fiche de synthèse</th>
                     </tr>
                     </thead>
                         <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered">
