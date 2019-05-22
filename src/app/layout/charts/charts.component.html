@@ -1,211 +1,183 @@
 <div [@routerTransition]>
     <app-page-header [heading]="'Charts'" [icon]="'fa-bar-chart-o'"></app-page-header>
 
-    <button (click)="toggle()" id="bt">
-            {{buttonName}}
+    <button type="button" class="btn btn-secondary margin_button" (click)="toggle()" id="bt">
+        {{buttonName}}
     </button>
-    <button (click)="toggle_diag()" id="bt2">
-            {{buttonName2}}
+    <button type="button" class="btn btn-secondary margin_button" (click)="toggle_diag()" id="bt2">
+        {{buttonName2}}
     </button>
 
     <ng-container *ngIf="show">
-    <div class="row">
-        <div class="col col-xl-12 col-lg-12">
-            
-            <div class="card mb-3">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th> 
-                            <div>
-                                   <input id="searchInput" 
-                                    class="searchInput form-control" 
-                                    v-model="filterText"
-                                    placeholder="Nom">
-                            </div>
-                        </th>
-                        <th>
-                            <div>
-                                <input id="searchInput" 
-                                 class="searchInput form-control" 
-                                 v-model="filterText"
-                                 placeholder="Prénom">
-                            </div>
-                        </th>
-                        <th>
-                                <div class="btn-group mr-2 tail" role="group" aria-label="First group">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12">
+
+                <div class="card mb-3">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
                                     <div>
-                                        <input class="form-control" list="recherche_semestre" name="myBrowser" placeholder="Semestre" />
-                                        <datalist id="recherche_semestre">
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
-                                            <option>S2</option>
-                                            <option>S4</option>
-                                            <option>S8</option>
-                                            <option>S10</option>
+                                        <input id="nomInput" name="nomInput" class="searchInput form-control" list="liste_nom"
+                                            placeholder="Nom" (keyup.enter)="onKey($event)">
+                                        <datalist id="liste_nom">
+                                            <option *ngFor="let eleve of eleves">{{eleve.nom}}</option>
                                         </datalist>
                                     </div>
-                                </div>
-                            </th>
-                            <th>
+                                </th>
+                                <th>
+                                    <div>
+                                        <input id="prenomInput" name="prenomInput" class="searchInput form-control" list="listPrenom"
+                                            placeholder="Prénom" (keyup.enter)="onKey($event)">
+                                        <datalist id="listPrenom">
+                                            <option *ngFor="let eleve of eleves">{{eleve.prenom}}</option>
+                                        </datalist>
+                                    </div>
+                                </th>
+                                <th>
                                     <div class="btn-group mr-2" role="group" aria-label="First group">
                                         <div>
-                                            <input class="form-control" list="selection_choix" name="myBrowser" placeholder="Stage trouvé" />
-                                            <datalist id="selection_choix">
-                                                <option>Oui</option>
-                                                <option>Non</option>
+                                            <input class="form-control" list="recherche_semestre" id="myBrowserSemestre"
+                                                name="myBrowserSemestre" placeholder="Semestre" (keyup.enter)="onKey($event)" />
+                                            <datalist id="recherche_semestre">
+                                                <option *ngFor="let eleve of eleves">{{eleve.semestre}}</option>
                                             </datalist>
                                         </div>
                                     </div>
                                 </th>
                                 <th>
-                                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <div>
-                                                <input class="form-control" list="recherche_entreprise" name="myBrowser" placeholder="Entreprise" />
-                                                <datalist id="recherche_entreprise">
-                                                        <option>Sopra Steria</option>
-                                                        <option>Capgemini</option>
-                                                        <option>SFR</option>
-                                                </datalist>
-                                            </div>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <div>
+                                            <input class="form-control" list="selection_choix" id="myBrowserFind"
+                                                name="myBrowserFind" placeholder="Stage trouvé" (keyup.enter)="onKey($event)" />
+                                            <datalist id="selection_choix">
+                                                <option *ngFor="let eleve of eleves">{{eleve.trouve}}</option>
+                                            </datalist>
                                         </div>
-                                    </th>
-                                    <th>
-                                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                                                <div>
-                                                    <input class="form-control" list="recherche_tuteur" name="myBrowser" placeholder="Entreprise" />
-                                                    <datalist id="recherche_tuteur">
-                                                            <option>NEDELEC Alexis</option>
-                                                            <option>OUSSIN Caroline</option>
-                                                    </datalist>
-                                                </div>
-                                            </div>
-                                        </th>
-                    </tr>
-                    </thead>
-                        <tr class="table" *ngFor="let stage of stages">
-                            <td> {{stage.prenom}}</td>
-                            <td> {{stage.nom}}</td>
-                            <td> {{stage.semestre}}</td>
-                            <td> {{stage.trouve}}</td>
-                            <td> {{stage.entreprise}}</td>
-                            <td> {{stage.tuteur}}</td>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <div>
+                                            <input class="form-control" list="recherche_entreprise" id="myBrowserEntreprise"
+                                                name="myBrowserEntreprise" placeholder="Entreprise" (keyup.enter)="onKey($event)" />
+                                            <datalist id="recherche_entreprise">
+                                                <option *ngFor="let eleve of eleves">{{eleve.entreprise}}</option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <div>
+                                            <input class="form-control" list="recherche_tuteur" id="myBrowserTutor"
+                                                name="myBrowserTutor" placeholder="Tuteur" (keyup.enter)="onKey($event)" />
+                                            <datalist id="recherche_tuteur">
+                                                <option *ngFor="let eleve of eleves">{{eleve.tuteur}}</option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tr class="table" *ngFor="let eleve of elevesFiltered">
+                            <td> {{eleve.nom}}</td>
+                            <td> {{eleve.prenom}}</td>
+                            <td> {{eleve.semestre}}</td>
+                            <td> {{eleve.trouve}}</td>
+                            <td> {{eleve.entreprise}}</td>
+                            <td> {{eleve.tuteur}}</td>
                         </tr>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
     </ng-container>
-    
+
     <ng-container *ngIf="show_diag">
-    <div class="row">
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Bar Chart
+        <div class="row">
+            <div class="col col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Bar Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                            [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-info btn-sm" (click)="randomize()">Update</button>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-info btn-sm" (click)="randomize()">Update</button>
+            </div>
+            <div class="col col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Doughnut Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Doughnut Chart
+        <div class="row">
+            <div class="col col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Radar Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart height="150px" [datasets]="radarChartData" [labels]="radarChartLabels"
+                            [chartType]="radarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
+            </div>
+            <div class="col col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Pie Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Radar Chart
+        <div class="row">
+            <div class="col col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Polar Area Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart height="130px" [data]="polarAreaChartData" [labels]="polarAreaChartLabels"
+                            [legend]="polarAreaLegend" [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <canvas baseChart height="150px" [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
+            </div>
+            <div class="col col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Line Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                            [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Pie Chart
-                </div>
-                <div class="card-body">
-                    <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Polar Area Chart
-                </div>
-                <div class="card-body">
-                    <canvas baseChart height="130px" [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Line Chart
-                </div>
-                <div class="card-body">
-                    <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</ng-container>
+    </ng-container>
 </div>

@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
           
           prenom: 'eazea',
           nom: 'aeae',
-          ville: "Paris",
+          ville: "Lyon",
           pays: "France",
           semestre: "S10",
           spec: "Informatique",
@@ -40,9 +40,9 @@ export class DashboardComponent implements OnInit {
           
             prenom: 'test',
             nom: 'afaf',
-            ville: "Paris",
+            ville: "Marseille",
             pays: "France",
-            semestre: "S10",
+            semestre: "S09",
             spec: "Informatique",
             entreprise: "Arinfo",
             visible: 1
@@ -54,8 +54,8 @@ export class DashboardComponent implements OnInit {
             nom: 'afaf',
             ville: "Paris",
             pays: "France",
-            semestre: "S10",
-            spec: "Informatique",
+            semestre: "S08",
+            spec: "Electronique",
             entreprise: "Arinfo",
             visible: 1
       
@@ -64,8 +64,8 @@ export class DashboardComponent implements OnInit {
           
             prenom: 'blabla',
             nom: 'fdp',
-            ville: "Paris",
-            pays: "France",
+            ville: "Londres",
+            pays: "Angleterre",
             semestre: "S10",
             spec: "Informatique",
             entreprise: "Arinfo",
@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
             pays: "France",
             semestre: "S10",
             spec: "Informatique",
-            entreprise: "Arinfo",
+            entreprise: "Sopra Steria",
             visible: 1
       
           },
@@ -120,10 +120,6 @@ export class DashboardComponent implements OnInit {
         this.alerts.splice(index, 1);
     }    
 
-    onKey() {
-        this.filtreName();
-      }
-
     hideShow() {
 
 
@@ -140,25 +136,24 @@ export class DashboardComponent implements OnInit {
     
     filtreName() {
 
-        var requete = (<HTMLInputElement>document.getElementById("prenomInput")).value;
-
-        this.stagesFiltered = [];
-
-        if(requete != '')
-        {
-            for(let i = 0; i < this.stages.length; i++)
-            {    
-                if(this.stages[i].prenom == requete){
-                    this.stagesFiltered.push(this.stages[i]);
-                }
-            }
-        }
-
-        else{
-            this.stagesFiltered = this.stages;
-        }
+        (<HTMLInputElement>document.getElementById('input')).addEventListener('keyup', function(e) {
+            var recherche = this.value.toLowerCase();
+            var documents = document.querySelectorAll('.table');
+           
+            Array.prototype.forEach.call(documents, function(document) {
+              // On a bien trouvé les termes de recherche.
+              if (document.innerHTML.toLowerCase().indexOf(recherche) > -1) {
+                document.style.display = "";
+              } else {
+                  
+                document.style.display = "none";
+              }
+            });
+          });
 
     }
+
+
 
     isVisible(visible) {
         if(visible == 1)

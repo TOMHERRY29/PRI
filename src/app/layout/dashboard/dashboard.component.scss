@@ -1,18 +1,30 @@
+.pdf{
+    height: 50%;
+}
+
 .form-control{
     font-size: 1.3rem;
     margin-right: 5px;
+    margin-bottom: 10px;
     width:10%;
-    float:left;
 }
 
-.form-control-extended{
-    font-size: 1.3rem;
-    margin-right: 5px;
-    width:10%;
-    float:left;
+#myBrowser{
     display:none;
 }
 
-#input{
+#myBrowserPays{
+    display:none;
+}
+
+#myBrowserSemestre{
+    display:none;
+}
+
+#myBrowserSpeciality{
+    display:none;
+}
+
+#myBrowserEntreprise{
     display:none;
 }

@@ -1,116 +1,34 @@
 <div [@routerTransition]>
-    
 
-        <div>
-                <div>
-                        <input id="prenomInput" 
-                        name = "prenomInput"
-                        class="searchInput form-control"
-                        list="listPrenom" placeholder="Prénom" (keyup.enter)="onKey($event)">
-                        <datalist id="listPrenom">
-                            <option *ngFor="let stage of stages">{{stage.prenom}}</option>
-                        </datalist>
-                    </div>
-                    <div>
-                        <input id="nomInput" 
-                        name = "nomInput"
-                        class="searchInput form-control"
-                        list="listNom"
-                        placeholder="Nom">
-                        <datalist id="listNom">
-                            <option *ngFor="let stage of stages">{{stage.nom}}</option>
-                        </datalist>
-                    </div>
+    <div>
+        <input id="input" name = "recherche" class="searchInput form-control" list="recherche" placeholder="Recherche" (keyup)="filtreName($event)">
+    </div>           
 
+    <div>
+        <div class="col col-xl-12 col-lg-12" style="padding:0px">
 
-                <div>
-                    <input id="input" 
-                    name = "input"
-                    class="searchInput form-control"
-                    list="listVille"
-                    placeholder="Ville">
-                    <datalist id="listVille">
-                        <option *ngFor="let stage of stages">{{stage.ville}}</option>
-                    </datalist>
-                </div>
-
-                <div>
-                    <input id="input" 
-                    name = "input"
-                    class="searchInput form-control"
-                    list="listPays"
-                    placeholder="Pays">
-                    <datalist id="listPays">
-                        <option *ngFor="let stage of stages">{{stage.pays}}</option>
-                    </datalist>
-                </div>
-                <div>
-                    <input id="input" 
-                    name = "input"
-                    class="searchInput form-control"
-                    list="listSemestre"
-                    placeholder="Semestre">
-                    <datalist id="listSemestre">
-                        <option *ngFor="let stage of stages">{{stage.semestre}}</option>
-                    </datalist>
-                </div>
-                <div>
-                    <input id="input" 
-                    name = "input"
-                    class="searchInput form-control"
-                    list="listSpecialite"
-                    placeholder="Specialité">
-                    <datalist id="listSpecialite">
-                        <option *ngFor="let stage of stages">{{stage.spec}}</option>
-                    </datalist>
-                </div>
-                <div>
-                    <input id="input" 
-                    name = "input"
-                    class="searchInput form-control"
-                    list="listEntreprise"
-                    placeholder="Entreprise">
-                    <datalist id="listEntreprise">
-                        <option *ngFor="let stage of stages">{{stage.entreprise}}</option>
-                    </datalist>
-                </div>
-                
-                <p>
-                    <button id="Filtres" class="btn btn-primary" (click)="hideShow()">
-                        Filtres + 
-                    </button>
-                </p>
-            </div>
-
-    <div class="row">
-        <div class="col col-xl-12 col-lg-12">
-            
             <div class="card mb-3">
-
-                <table class="table">      
-                            
-                    <thead>
-                    <tr>   
-                        <th>Prénom</th>
-                        <th>Nom</th> 
-                        <th>Ville</th>
-                        <th>Pays</th>
-                        <th>Semestre</th>
-                        <th>Spécialité</th> 
-                        <th>Entreprise</th>
-                        <th>Fiche de synthèse</th>
+                <table class="table table-hover">
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Ville</th>
+                    <th>Pays</th>
+                    <th>Semestre</th>
+                    <th>Spécialité</th>
+                    <th>Entreprise</th>
+                </tr>
+                    <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered">
+                        <td class="tableau"> {{stage.prenom}}</td>
+                        <td class="tableau"> {{stage.nom}}</td>
+                        <td class="tableau"> {{stage.ville}}</td>
+                        <td class="tableau"> {{stage.pays}}</td>
+                        <td class="tableau"> {{stage.semestre}}</td>
+                        <td class="tableau"> {{stage.spec}}</td>
+                        <td class="tableau"> {{stage.entreprise}}</td>
+                        <td class="tableau" style="display:none"> {{stage.visible}}</td>
+                        <td class="tableau"><a class="pdf" href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td>
                     </tr>
-                    </thead>
-                        <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered">
-                            <td> {{stage.prenom}}</td>
-                            <td> {{stage.nom}}</td>
-                            <td> {{stage.ville}}</td>
-                            <td> {{stage.pays}}</td>
-                            <td> {{stage.semestre}}</td>
-                            <td> {{stage.spec}}</td>
-                            <td> {{stage.entreprise}}</td>
-                            <td><a href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td>
-                        </tr>
                 </table>
             </div>
         </div>

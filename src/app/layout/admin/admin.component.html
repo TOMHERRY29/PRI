@@ -1,0 +1,89 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Admin'" [icon]="'fa fa-fw fa-gear'"></app-page-header>
+
+  <button type="button" class="btn btn-secondary margin_button" (click)="toggle()" id="bt">
+    {{buttonName}}
+  </button>
+  <button type="button" class="btn btn-secondary margin_button" (click)="toggle_stat()" id="bt2">
+    {{buttonName2}}
+  </button>
+  <button type="button" class="btn btn-secondary margin_button" (click)="toggle_camp()" id="bt3">
+    {{buttonName3}}
+  </button>
+
+
+  <ng-container *ngIf="show">
+    <div class="container margin_table">
+      <div class="col-md-9">
+        <h3>Tableau des stages</h3>
+        <form method="POST" action="#" enctype="multipart/form-data">
+          <!-- COMPONENT START -->
+          <div class="form-group">
+            <div class="input-group input-file" name="Fichier1">
+              <input type="text" class="form-control" placeholder='Sélectionner un fichier...' />
+              <span class="input-group-btn">
+                <button class="btn btn-default btn-choose padding_button" type="button">Choisir</button>
+              </span>
+            </div>
+          </div>
+          <!-- COMPONENT END -->
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right" disabled>Confirmer</button>
+            <button type="reset" class="btn btn-danger">Supprimer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+      </div>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="inputGroupFile01"
+          aria-describedby="inputGroupFileAddon01">
+        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+      </div>
+    </div> -->
+  </ng-container>
+
+  <ng-container *ngIf="show_stat">
+    <div class="row">
+      <div class="col col-sm-6">
+        <div class="card mb-3">
+          <div class="card-header">
+            Suivi des stages
+          </div>
+          <div class="card-body">
+            <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+              (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col col-sm-6">
+        <div class="card mb-3">
+          <div class="card-header">
+            Nombre de stagiaires par professeur
+          </div>
+          <div class="card-body">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-info btn-sm" (click)="randomize()">Mettre à jour</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+
+
+  <ng-container *ngIf="show_camp">
+
+  </ng-container>
+
+
+
+</div>

@@ -4,55 +4,49 @@
         <div class="col col-xl-12 col-lg-12">
 
             <div class="card mb-3">
-                <table class="table">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
                                     <div>
-                                        <input class="form-control" list="recherche_pays" name="myBrowser" placeholder="Entreprise" />
-                                        <datalist id="recherche_pays">
-                                            <option>Sopra Steria</option>
-                                            <option>Capgemini</option>
-                                            <option>SFR</option>
-                                        </datalist>
+                                        <input id="nomInput" name="nomInput" class="searchInput form-control" list="listNom"
+                                        placeholder="Nom" (keyup.enter)="onKey($event)">
+                                    <datalist id="listNom">
+                                        <option *ngFor="let entreprise of entreprises">{{entreprise.nom}}</option>
+                                    </datalist>
                                     </div>
                                 </div>
                             </th>
                             <th>
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
                                     <div>
-                                        <input class="form-control" list="recherche_pays" name="myBrowser" placeholder="Pays" />
+                                        <input id="myBrowserPays" class="form-control" list="recherche_pays" name="myBrowserPays"
+                                            placeholder="Pays" (keyup.enter)="onKey($event)" />
                                         <datalist id="recherche_pays">
-                                            <option>France</option>
-                                            <option>Espagne</option>
-                                            <option>Italie</option>
+                                            <option *ngFor="let entreprise of entreprises">{{entreprise.pays}}</option>
                                         </datalist>
                                     </div>
                                 </div>
                             </th>
                             <th>
                                 <div>
-                                    <input class="form-control" list="recherche_ville" name="myBrowser" placeholder="Ville" />
+                                    <input class="form-control" list="recherche_ville" name="myBrowser" id="myBrowser"
+                                        placeholder="Ville" (keyup.enter)="onKey($event)" />
                                     <datalist id="recherche_ville">
-                                        <option>Paris</option>
-                                        <option>Lyon</option>
-                                        <option>Brest</option>
-                                        <option>Nantes</option>
-                                        <option>Rennes</option>
-                                        <option>Marseille</option>
+                                        <option *ngFor="let entreprise of entreprises">{{entreprise.ville}}</option>
                                     </datalist>
                                 </div>
                             </th>
-            </tr>
-            </thead>
-            <tr class="table" *ngFor="let entreprises of entreprises">
-                <td> {{entreprises.nom}}</td>
-                <td> {{entreprises.pays}}</td>
-                <td> {{entreprises.ville}}</td>
-            </tr>
-            </table>
+                        </tr>
+                    </thead>
+                    <tr class="table" *ngFor="let entreprise of entrepriseFiltered">
+                        <td> {{entreprise.nom}}</td>
+                        <td> {{entreprise.pays}}</td>
+                        <td> {{entreprise.ville}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </div>
