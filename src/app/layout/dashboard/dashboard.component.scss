@@ -1,3 +1,18 @@
 .form-control{
     font-size: 1.3rem;
+    margin-right: 5px;
+    width:10%;
+    float:left;
+}
+
+.form-control-extended{
+    font-size: 1.3rem;
+    margin-right: 5px;
+    width:10%;
+    float:left;
+    display:none;
+}
+
+#input{
+    display:none;
 }

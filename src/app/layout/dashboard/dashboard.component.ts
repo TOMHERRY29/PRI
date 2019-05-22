@@ -111,25 +111,6 @@ export class DashboardComponent implements OnInit {
                     'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
             }
         );
-
-        this.alerts.push(
-            {
-                id: 1,
-                type: 'success',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'warning',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            }
-        );
     }
 
     ngOnInit() {}
@@ -142,8 +123,21 @@ export class DashboardComponent implements OnInit {
     onKey() {
         this.filtreName();
       }
+
+    hideShow() {
+
+
+        var divs = document.getElementsByName("input");
+        for(var i=0, len=divs.length;i < len; i++){
+            if (divs[i].style.display === "none") {
+                divs[i].style.display = "block";
+              } else {
+                divs[i].style.display = "none";
+              }
+        }
+
+      }
     
-   // requete: string = (<HTMLInputElement>document.getElementById("prenomInput")).value;
     filtreName() {
 
         var requete = (<HTMLInputElement>document.getElementById("prenomInput")).value;
