@@ -19,34 +19,40 @@ export class ChartsComponent implements OnInit {
     eleves = [
 
         {
-          nom: 'aeae',
+          
           prenom: 'eazea',
+          nom: 'aeae',
           semestre: "S10",
-          trouve: "OUI",
+          spec: "Informatique",
+          stageTrouve: "OUI",
           entreprise: "Arinfo",
-          tuteur: "LE MAGUERESSE T."
+          tuteur : "T. LE MAGUERESSE",
+          visible: 1
     
         },
         {
           
-            nom: 'test',
-            prenom: 'afaf',
-            semestre: "S8",
-            trouve: "NON",
+            prenom: 'aaaa',
+            nom: 'Coucou',
+            semestre: "S10",
+            spec: "Informatique",
+            stageTrouve: "OUI",
+            entreprise: "Sopra Steria",
+            tuteur : "T. LE MAGUERESSE",
+            visible: 1
+      
+          },
+        {
+            prenom: 'test',
+            nom: 'dupont',
+            semestre: "S10",
+            spec: "",
+            stageTrouve: "NON",
             entreprise: "",
-            tuteur: ""
-      
-          },
-          {
-          
-            nom: 'test',
-            prenom: 'afaf',
-            semestre: "IS2",
-            trouve: "OUI",
-            entreprise: "SDMO",
-            tuteur: "ANSQUER C."
-      
-          },
+            tuteur : "",
+            visible: 1
+    
+        },
     
       ];
 
@@ -214,54 +220,52 @@ export class ChartsComponent implements OnInit {
         this.show_diag = !this.show_diag;
       }
 
-      onKey() {
-        this.filtreName();
+      hideShow() {
+
+        var divs = document.getElementsByName("input");
+        for(var i=0, len=divs.length;i < len; i++){
+            if (divs[i].style.display === "none") {
+                divs[i].style.display = "block";
+              } else {
+                divs[i].style.display = "none";
+              }
+        }
+
       }
     
-   // requete: string = (<HTMLInputElement>document.getElementById("prenomInput")).value;
     filtreName() {
 
-        
-        var requete = (<HTMLInputElement>document.getElementById("nomInput")).value;
-        var requete2 = (<HTMLInputElement>document.getElementById("prenomInput")).value;
-        var requete3 = (<HTMLInputElement>document.getElementById("myBrowserSemestre")).value;
-        var requete4 = (<HTMLInputElement>document.getElementById("myBrowserFind")).value;
-        var requete5 = (<HTMLInputElement>document.getElementById("myBrowserEntreprise")).value;
-        var requete6 = (<HTMLInputElement>document.getElementById("myBrowserTutor")).value;
+        (<HTMLInputElement>document.getElementById('input')).addEventListener('keyup', function(e) {
+            var recherche = this.value.toLowerCase();
+            var documents = document.querySelectorAll('.table');
+           
+            Array.prototype.forEach.call(documents, function(document) {
+              // On a bien trouvé les termes de recherche.
+              if (document.innerHTML.toLowerCase().indexOf(recherche) > -1) {
+                document.style.display = "";
+              } else {
+                  
+                document.style.display = "none";
+              }
+            });
+          });
 
-        this.elevesFiltered = [];
+    }
 
-        if(requete != '' || requete2 != '' 
-        || requete3 != '' || requete4 != ''
-        || requete5 != '' || requete6 != '')
+
+
+    isVisible(visible) {
+        if(visible == 1)
         {
-            for(let i = 0; i < this.eleves.length; i++)
-            {    
-                if(this.eleves[i].nom == requete){
-                    this.elevesFiltered.push(this.eleves[i]);
-                }
-                if(this.eleves[i].prenom == requete2){
-                    this.elevesFiltered.push(this.eleves[i]);
-                }
-                if(this.eleves[i].semestre == requete3){
-                    this.elevesFiltered.push(this.eleves[i]);
-                }
-                if(this.eleves[i].trouve== requete4){
-                    this.elevesFiltered.push(this.eleves[i]);
-                }
-                if(this.eleves[i].entreprise== requete5){
-                    this.elevesFiltered.push(this.eleves[i]);
-                }
-                if(this.eleves[i].tuteur== requete6){
-                    this.elevesFiltered.push(this.eleves[i]);
-                }
-            }
+            return true;
         }
 
         else{
-            this.elevesFiltered = this.eleves;
+            return false;
         }
+    }  
+    
+   // requete: string = (<HTMLInputElement>document.getElementById("prenomInput")).value;
 
-    }
 
 }

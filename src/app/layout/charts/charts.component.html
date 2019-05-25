@@ -9,84 +9,34 @@
     </button>
 
     <ng-container *ngIf="show">
-        <div class="row">
-            <div class="col col-xl-12 col-lg-12">
-
+        <div>
+            <input id="input" name = "recherche" class="searchInput form-control" list="recherche" placeholder="Recherche" (keyup)="filtreName($event)">
+        </div>           
+    
+        <div>
+            <div class="col col-xl-12 col-lg-12" style="padding:0px">
+    
                 <div class="card mb-3">
                     <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <div>
-                                        <input id="nomInput" name="nomInput" class="searchInput form-control" list="liste_nom"
-                                            placeholder="Nom" (keyup.enter)="onKey($event)">
-                                        <datalist id="liste_nom">
-                                            <option *ngFor="let eleve of eleves">{{eleve.nom}}</option>
-                                        </datalist>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div>
-                                        <input id="prenomInput" name="prenomInput" class="searchInput form-control" list="listPrenom"
-                                            placeholder="Prénom" (keyup.enter)="onKey($event)">
-                                        <datalist id="listPrenom">
-                                            <option *ngFor="let eleve of eleves">{{eleve.prenom}}</option>
-                                        </datalist>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                                        <div>
-                                            <input class="form-control" list="recherche_semestre" id="myBrowserSemestre"
-                                                name="myBrowserSemestre" placeholder="Semestre" (keyup.enter)="onKey($event)" />
-                                            <datalist id="recherche_semestre">
-                                                <option *ngFor="let eleve of eleves">{{eleve.semestre}}</option>
-                                            </datalist>
-                                        </div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                                        <div>
-                                            <input class="form-control" list="selection_choix" id="myBrowserFind"
-                                                name="myBrowserFind" placeholder="Stage trouvé" (keyup.enter)="onKey($event)" />
-                                            <datalist id="selection_choix">
-                                                <option *ngFor="let eleve of eleves">{{eleve.trouve}}</option>
-                                            </datalist>
-                                        </div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                                        <div>
-                                            <input class="form-control" list="recherche_entreprise" id="myBrowserEntreprise"
-                                                name="myBrowserEntreprise" placeholder="Entreprise" (keyup.enter)="onKey($event)" />
-                                            <datalist id="recherche_entreprise">
-                                                <option *ngFor="let eleve of eleves">{{eleve.entreprise}}</option>
-                                            </datalist>
-                                        </div>
-                                    </div>
-                                </th>
-                                <th>
-                                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                                        <div>
-                                            <input class="form-control" list="recherche_tuteur" id="myBrowserTutor"
-                                                name="myBrowserTutor" placeholder="Tuteur" (keyup.enter)="onKey($event)" />
-                                            <datalist id="recherche_tuteur">
-                                                <option *ngFor="let eleve of eleves">{{eleve.tuteur}}</option>
-                                            </datalist>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tr class="table" *ngFor="let eleve of elevesFiltered">
-                            <td> {{eleve.nom}}</td>
-                            <td> {{eleve.prenom}}</td>
-                            <td> {{eleve.semestre}}</td>
-                            <td> {{eleve.trouve}}</td>
-                            <td> {{eleve.entreprise}}</td>
-                            <td> {{eleve.tuteur}}</td>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Semestre</th>
+                        <th>Spécialité</th>
+                        <th>Entreprise</th>
+                        <th>Tuteur</th>
+                        <th>StageTrouve</th>
+                    </tr>
+                        <tr class="table" id="displayTable" *ngFor="let eleve of elevesFiltered">
+                            <td class="tableau"> {{eleve.prenom}}</td>
+                            <td class="tableau"> {{eleve.nom}}</td>
+                            <td class="tableau"> {{eleve.semestre}}</td>
+                            <td class="tableau"> {{eleve.spec}}</td>
+                            <td class="tableau"> {{eleve.entreprise}}</td>
+                            <td class="tableau"> {{eleve.tuteur}}</td>
+                            <td class="tableau"> {{eleve.stageTrouve}}</td>
+                            <td class="tableau" style="display:none"> {{eleve.visible}}</td>
+                            <!-- <td class="tableau"><a class="pdf" href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td> -->
                         </tr>
                     </table>
                 </div>

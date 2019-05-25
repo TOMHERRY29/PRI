@@ -1,49 +1,24 @@
 <div [@routerTransition]>
 
-    <div class="row">
-        <div class="col col-xl-12 col-lg-12">
+    <div>
+        <input id="input" name = "recherche" class="searchInput form-control" list="recherche" placeholder="Recherche" (keyup)="filtreName($event)">
+    </div>           
+
+    <div>
+        <div class="col col-xl-12 col-lg-12" style="padding:0px">
 
             <div class="card mb-3">
                 <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <div>
-                                        <input id="nomInput" name="nomInput" class="searchInput form-control" list="listNom"
-                                        placeholder="Nom" (keyup.enter)="onKey($event)">
-                                    <datalist id="listNom">
-                                        <option *ngFor="let entreprise of entreprises">{{entreprise.nom}}</option>
-                                    </datalist>
-                                    </div>
-                                </div>
-                            </th>
-                            <th>
-                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <div>
-                                        <input id="myBrowserPays" class="form-control" list="recherche_pays" name="myBrowserPays"
-                                            placeholder="Pays" (keyup.enter)="onKey($event)" />
-                                        <datalist id="recherche_pays">
-                                            <option *ngFor="let entreprise of entreprises">{{entreprise.pays}}</option>
-                                        </datalist>
-                                    </div>
-                                </div>
-                            </th>
-                            <th>
-                                <div>
-                                    <input class="form-control" list="recherche_ville" name="myBrowser" id="myBrowser"
-                                        placeholder="Ville" (keyup.enter)="onKey($event)" />
-                                    <datalist id="recherche_ville">
-                                        <option *ngFor="let entreprise of entreprises">{{entreprise.ville}}</option>
-                                    </datalist>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tr class="table" *ngFor="let entreprise of entrepriseFiltered">
-                        <td> {{entreprise.nom}}</td>
-                        <td> {{entreprise.pays}}</td>
-                        <td> {{entreprise.ville}}</td>
+                <tr>
+                    <th>Nom</th>
+                    <th>Pays</th>
+                    <th>Ville</th>
+
+                </tr>
+                    <tr class="table" id="displayTable" *ngFor="let entreprise of entrepriseFiltered">
+                        <td class="tableau"> {{entreprise.nom}}</td>
+                        <td class="tableau"> {{entreprise.pays}}</td>
+                        <td class="tableau"> {{entreprise.ville}}</td>
                     </tr>
                 </table>
             </div>

@@ -41,41 +41,24 @@ entreprises = [
     constructor() {}
 
     ngOnInit() {}
-
-    onKey() {
-        this.filtreName();
-      }
     
    // requete: string = (<HTMLInputElement>document.getElementById("prenomInput")).value;
-    filtreName() {
+   filtreName() {
 
-        var requete = (<HTMLInputElement>document.getElementById("nomInput")).value;
-        var requete2 = (<HTMLInputElement>document.getElementById("myBrowserPays")).value;
-        var requete3 = (<HTMLInputElement>document.getElementById("myBrowser")).value;
+    (<HTMLInputElement>document.getElementById('input')).addEventListener('keyup', function(e) {
+        var recherche = this.value.toLowerCase();
+        var documents = document.querySelectorAll('.table');
+       
+        Array.prototype.forEach.call(documents, function(document) {
+          // On a bien trouvé les termes de recherche.
+          if (document.innerHTML.toLowerCase().indexOf(recherche) > -1) {
+            document.style.display = "";
+          } else {
+              
+            document.style.display = "none";
+          }
+        });
+      });
 
-        this.entrepriseFiltered = [];
-
-        if(requete != '' || requete2 != '' 
-        || requete3 != '')
-        {
-            for(let i = 0; i < this.entreprises.length; i++)
-            {    
-                
-                if(this.entreprises[i].nom == requete){
-                    this.entrepriseFiltered.push(this.entreprises[i]);
-                }
-                if(this.entreprises[i].pays == requete2){
-                    this.entrepriseFiltered.push(this.entreprises[i]);
-                }
-                if(this.entreprises[i].ville== requete3){
-                    this.entrepriseFiltered.push(this.entreprises[i]);
-                }
-            }
-        }
-
-        else{
-            this.entrepriseFiltered = this.entreprises;
-        }
-
-    }
+}
 }
