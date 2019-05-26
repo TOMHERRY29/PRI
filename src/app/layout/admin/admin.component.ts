@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, VERSION } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { $ } from 'protractor';
+import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -19,6 +20,16 @@ export class AdminComponent implements OnInit {
   public buttonName:any = 'Documents';
   public buttonName2:any = 'Statistiques';
   public buttonName3:any = 'Campagnes';
+
+  
+  percentDone: number;
+  bytesDone: number;
+  totalBytes: number;
+  uploadSuccess: boolean;
+  files_uploaded: number = 0;
+  inProgress: boolean;
+  activate_table: boolean;
+  file_list:File[];
 
 
    // bar chart
@@ -169,7 +180,7 @@ public randomize(): void {
 
 
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -196,8 +207,74 @@ public openFileDialog():void {
 
 
   reset() {
-    this.form.nativeElement.reset()
+    this.form.nativeElement.reset();
+    this.activate_table = false;
+    this.files_uploaded = 0;
   }
 
+  upload(files: File[]){
+    this.uploadAndProgress(files);
+    this.inProgress = true;
+  }
+
+  basicUpload(files: File[]){
+    var formData = new FormData();
+    Array.from(files).forEach(f => formData.append('file', f))
+    this.http.post('https://file.io', formData)
+      .subscribe(event => {  
+        console.log('done')
+      })
+  }
+  
+  basicUploadSingle(file: File){    
+    this.http.post('https://file.io', file)
+      .subscribe(event => {  
+        console.log('done')
+      })
+  }
+  
+  uploadAndProgress(files: File[]){
+    console.log(files)
+    var formData = new FormData();
+    Array.from(files).forEach(f => formData.append('file',f))
+    this.file_list = files;
+    this.http.post('https://file.io', formData, {reportProgress: true, observe: 'events'})
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.totalBytes = event.total;
+          this.percentDone = Math.round(100 * event.loaded / this.totalBytes);
+          this.bytesDone = event.loaded;
+        } else if (event instanceof HttpResponse) {
+          this.uploadSuccess = true;
+          setTimeout(() => this.updateProgress(), 3000);
+        }
+    });
+  }
+
+  uploadAndProgressSingle(file: File){    
+    this.http.post('https://file.io', file, {reportProgress: true, observe: 'events'})
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.totalBytes = event.total;
+          this.percentDone = Math.round(100 * event.loaded / this.totalBytes);
+          this.bytesDone = event.loaded;
+        } else if (event instanceof HttpResponse) {
+          this.uploadSuccess = true;
+          setTimeout(() => this.updateProgress(), 3000);
+        }
+    });
+  }
+
+  updateProgress(){
+    this.inProgress = false;
+    this.files_uploaded = this.files_uploaded+1;
+    this.percentDone = null;
+    this.uploadSuccess = false;
+    this.totalBytes = null;
+    this.bytesDone = null;
+    if(this.files_uploaded > 0){
+        this.activate_table=true;
+      }
+  }
 
 }
