@@ -46,10 +46,10 @@ export class ChartsComponent implements OnInit {
             prenom: 'test',
             nom: 'dupont',
             semestre: "S10",
-            spec: "",
+            spec: "Electronique",
             stageTrouve: "NON",
-            entreprise: "",
-            tuteur : "",
+            entreprise: "Atos",
+            tuteur : "C. CALVES",
             visible: 1
     
         },

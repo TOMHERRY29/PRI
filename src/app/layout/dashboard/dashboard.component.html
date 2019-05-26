@@ -1,23 +1,28 @@
 <div [@routerTransition]>
 
-    <div>
-        <input id="input" name = "recherche" class="searchInput form-control" list="recherche" placeholder="Recherche" (keyup)="filtreName($event)">
-    </div>           
+        <form class="form-inline md-form form-sm active-jaune active-jaune-2 mt-2 mb-4 max-width">
+                <i class="fa fa-fw fa-search fa-2x"></i>&nbsp;
+                <input id="input" name="recherche" class="searchInput form-control form-control-sm ml-3 w-75" type="text"
+                    placeholder="Rechercher" aria-label="Search" list="recherche" (keyup)="filtreName($event)">
+            </form>
 
     <div>
-        <div class="col col-xl-12 col-lg-12" style="padding:0px">
+        <div class="col col-xl-9 col-lg-12" style="padding:0px">
 
             <div class="card mb-3">
                 <table class="table table-hover">
-                <tr>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Ville</th>
-                    <th>Pays</th>
-                    <th>Semestre</th>
-                    <th>Spécialité</th>
-                    <th>Entreprise</th>
-                </tr>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>Ville</th>
+                            <th>Pays</th>
+                            <th>Semestre</th>
+                            <th>Spécialité</th>
+                            <th>Entreprise</th>
+                            <th>Fiche de synthèse</th>
+                        </tr>
+                    </thead>
                     <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered">
                         <td class="tableau"> {{stage.prenom}}</td>
                         <td class="tableau"> {{stage.nom}}</td>
@@ -27,7 +32,7 @@
                         <td class="tableau"> {{stage.spec}}</td>
                         <td class="tableau"> {{stage.entreprise}}</td>
                         <td class="tableau" style="display:none"> {{stage.visible}}</td>
-                        <td class="tableau"><a class="pdf" href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td>
+                        <td class="tableau"><a class="pdf" href={{stage.pdf}}><img src="../../../assets/images/pdf.png" /></a></td>
                     </tr>
                 </table>
             </div>

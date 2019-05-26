@@ -11,3 +11,20 @@
     width:10%;
 }
 
+.active-jaune-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #f1d013;
+    box-shadow: 0 1px 0 0 #f1d013;
+}
+.active-jaune input[type=text] {
+    border-bottom: 1px solid #f1d013;
+    box-shadow: 0 1px 0 0 #f1d013;
+}
+
+.active-jaune .fa, .active-jaune-2 .fa {
+    color: #f1d013;
+}
+
+
+.max-width{
+    max-width: 500px;
+}

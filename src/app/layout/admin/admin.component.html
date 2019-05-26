@@ -1,4 +1,84 @@
-<div [@routerTransition]>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- Ignite UI Required Combined CSS Files -->
+    <link href="http://cdn-na.infragistics.com/igniteui/2019.1/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet" />
+    <link href="http://cdn-na.infragistics.com/igniteui/2019.1/latest/css/structure/infragistics.css" rel="stylesheet" />
+
+    <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <!-- Ignite UI Required Combined JavaScript Files -->
+    <script src="http://cdn-na.infragistics.com/igniteui/2019.1/latest/js/infragistics.core.js"></script>
+    <script src="http://cdn-na.infragistics.com/igniteui/2019.1/latest/js/infragistics.lob.js"></script>
+
+    <style type="text/css">
+        .container-info, .error-info {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .error-info {
+            color: #FF0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="igUpload"></div>
+    <div class="container-info">
+        <label>
+            Average Speed:
+            <span id="speed">0</span>
+            KB/S
+        </label>
+    </div>
+    <div class="container-info">
+        <label>
+            Uploaded Files:
+            <span id="uploadedFiles">0</span>
+        </label>
+    </div>
+    <div class="container-info">
+        <label>
+            Uploaded:
+            <span id="uploaded">0</span>
+            KB
+        </label>
+    </div>
+    <div class="container-info">
+        <label>
+            To be uploaded:
+            <span id="toUpload">0</span>
+            KB
+        </label>
+    </div>
+    <div class="container-info">
+        <label>
+            Time Elapsed:
+            <span id="timeElapsed">0</span>
+            sec
+        </label>
+    </div>
+    <div class="container-info">
+        <label>
+            Time Left:
+            <span id="timeLeft">0</span>
+            sec
+        </label>
+    </div>
+    <div id="error" class="error-info">
+        You cannot upload files larger than 1 MB
+    </div>
+    <input type="hidden" id="hdnStartTimer" value="false" /> 
+
+    <script src="https://www.igniteui.com/TypeScriptSamples/file-upload/typescript.js"></script>
+</body>
+</html>
+
+
+<!-- <div [@routerTransition]>
   <app-page-header [heading]="'Admin'" [icon]="'fa fa-fw fa-gear'"></app-page-header>
 
   <button type="button" class="btn btn-secondary margin_button" (click)="toggle()" id="bt">
@@ -10,30 +90,47 @@
   <button type="button" class="btn btn-secondary margin_button" (click)="toggle_camp()" id="bt3">
     {{buttonName3}}
   </button>
+  <br>
+  <hr class="style18">
 
 
   <ng-container *ngIf="show">
     <div class="container margin_table">
       <div class="col-md-9">
         <h3>Tableau des stages</h3>
-        <form method="POST" action="#" enctype="multipart/form-data">
+        <form method="POST" action="#" enctype="multipart/form-data"> -->
           <!-- COMPONENT START -->
-          <div class="form-group">
-            <div class="input-group input-file" name="Fichier1">
-              <input type="text" class="form-control" placeholder='Sélectionner un fichier...' />
+          <!-- <div class="form-group"> -->
+            <!-- <div class="input-group input-file" name="Fichier1">
+              <input ng2FileSelect type="file" class="form-control" onchange="$('#upload-file-info').html(this.files[0].name)"
+              placeholder='Sélectionner un fichier...' hidden #fileInput/>
+              <input id="upload-file-info" type="text" class="form-control" placeholder='Sélectionner un fichier...'/>
               <span class="input-group-btn">
-                <button class="btn btn-default btn-choose padding_button" type="button">Choisir</button>
+              <button class="btn btn-default btn-choose padding_button" type="button" (click)="openFileDialog();">Choisir</button>
               </span>
-            </div>
-          </div>
+              <span class='label label-info' id="upload-file-info"></span>
+            </div> -->
+            <!-- <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <form class="custom-file">
+                    <input name="filename" type="file" class="custom-file-input" id="customFileLang" lang="fr" class="form-control-file">
+                    <label class="custom-file-label" for="customFileLang">Sélectionner le fichier </label>
+                </form>
+              </div>
+                <form #form>
+                    <input type="file" class="form-control-file" placeholder="File Name" name="filename">
+                  </form>
+          </div> -->
           <!-- COMPONENT END -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <button type="submit" class="btn btn-primary pull-right" disabled>Confirmer</button>
-            <button type="reset" class="btn btn-danger">Supprimer</button>
+            <button type="reset" class="btn btn-danger" (click)="reset()">Supprimer</button>
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
     <!-- <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -44,7 +141,7 @@
         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
       </div>
     </div> -->
-  </ng-container>
+  <!-- </ng-container>
 
   <ng-container *ngIf="show_stat">
     <div class="row">
@@ -86,4 +183,4 @@
 
 
 
-</div>
+</div> -->

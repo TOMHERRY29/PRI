@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-admin',
@@ -7,8 +8,11 @@ import { routerTransition } from '../../router.animations';
   styleUrls: ['./admin.component.scss'],
   animations: [routerTransition()]
 })
+
 export class AdminComponent implements OnInit {
-  
+
+    @ViewChild('fileInput') fileInput:ElementRef;
+
   public show:boolean = true;
   public show_stat:boolean = false;
   public show_camp:boolean = false;
@@ -183,6 +187,17 @@ public randomize(): void {
     this.show_camp = !this.show_camp;
 }
 
+public openFileDialog():void {
+    let event = new MouseEvent('click', {bubbles: false});
+    this.fileInput.nativeElement.dispatchEvent(event);
+  }
+
+  @ViewChild('form') form;
+
+
+  reset() {
+    this.form.nativeElement.reset()
+  }
 
 
 }
