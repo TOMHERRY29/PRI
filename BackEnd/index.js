@@ -1,30 +1,19 @@
-const mysql = require('mysql'); //importer le package mysql
+/* const mysql = require('mysql'); //importer le package mysql
 const express = require('express');
 var app = express();
 const bodyParser = require("body-parser");
+const stagiaireRoutes = require('./routes/testStagiaires');
 
-//Connexion à la base de données
-var mysqlConnection = mysql.createConnection({
-    host:'192.168.43.188',
-    //host: 'localhost',
-    user: 'stage',
-    password: 'mouna@94',
-    database: 'gst',
-    multipleStatements: true //pour avoir plusieurs instructions dans une seule chaîne
+const mysqlConnection = require('./connexion');
 
-});
-
-//gestion des erreurs
-mysqlConnection.connect((err) => {
+ 
+ mysqlConnection.connect((err) => {
     if (!err)
         console.log('Connexion a la BDD reussie');
     else
         console.log('Connexion a la BDD echouee' + JSON.stringify(err, undefined, 2));
 });
 
-
-//l'applicatio ecoute le port 3000 à la recherche de connexions
-//app.listen(3000, () => console.log('Le serveur express fonctionne sur le port 3000'));
 
 app.use(bodyParser.json()); //pour l'utilisation de json
 app.use(bodyParser.urlencoded({
@@ -50,7 +39,7 @@ exports.mysqlConnection = mysqlConnection;
 exports.app = app;
 
 app.route('/stages',require('./routes/stages'));
-app.route('/stagiaires',require('./routes/stagiaires'));
+app.route('/stagiaires',require('./routes/stagiaires')); 
 app.route('/villes',require('./routes/villes'));
 app.route('/entreprises',require('./routes/entreprises'));
 app.route('/pays',require('./routes/pays'));
@@ -59,8 +48,47 @@ app.route('/piecesjointes',require('./routes/piecesjointes'));
 app.route('/semestres',require('./routes/semestres'));
 
 
+// app.use('/stagiaires',stagiaireRoutes);
+
 
 
 
 
 module.exports = app;
+ */
+
+
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json())
+ 
+const cors = require('cors')
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
+
+ 
+const db = require('./db.config.js');
+  
+// force: true will drop the table if it already exists
+db.sequelize.sync({force: true}).then(() => {
+  console.log('Drop and Resync with { force: true }');
+});
+ 
+require('./routes/testStagiaires.js')(app);
+ 
+// Create a Server
+var server = app.listen(3000, function () {
+ 
+  var host = server.address().address
+  var port = server.address().port
+ 
+  console.log("App listening at http://%s:%s", host, port)
+})
+
+
+
+

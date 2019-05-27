@@ -52,7 +52,7 @@ app.post('/stages', (req, res) => {
                 }
             });
         else
-            console.log(err);
+            console.log('errrrrrrrrrrrrrrrrrrrrrr',err);
     })
 });
 

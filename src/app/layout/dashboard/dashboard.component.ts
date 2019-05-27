@@ -7,13 +7,13 @@ import { StagiairesService } from '../../services/stagiaires.service';
 import { Stagiaire } from '../../models/stagiaire.model';
 import { EntreprisesService } from '../../services/entreprises.service';
 import { Entreprise } from '../../models/entreprise.model';
-import {StagesService} from '../../services/stages.service';
+import { StagesService } from '../../services/stages.service';
 import { StageGlobal } from '../../models/stageGlobal.model';
-
-import {PeriodesService} from '../../services/periodes.service';
+import { Stage } from '../../models/stage.model';
+import { PeriodesService } from '../../services/periodes.service';
 import { Periode } from '../../models/periode.model';
 
-import {PiecesjointesService} from '../../services/piecesjointes.service';
+import { PiecesjointesService } from '../../services/piecesjointes.service';
 import { Piece } from '../../models/piecejointe.model';
 
 
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
 
     // ************My modifs***************** */
     stagiaires: Stagiaire[] = [];
-    stages: StageGlobal[] = [] ;
+    stages: StageGlobal[] = [];
     idStagiaire: 'm6hichri';
     _satagiaire: Stagiaire;
     private stagiaireSub: Subscription;
@@ -99,7 +99,27 @@ export class DashboardComponent implements OnInit {
         );
     }
 
+    private dataStages = new Array();
+    private idStage ;
+    private nomTuteur = '';
+    private prenomTuteur = '';
+
     ngOnInit() {
+
+        /*  this.stagesService.getJSON().subscribe(data => {
+             this.dataStages = data;
+             // console.log(' dashbord dataaaaaaaaaaaaaaaaaaaaaaaaaa', this.dataStages);
+         }); */
+        this.stagesService.getJSON().subscribe((stages: Stage[]) => {
+            this.dataStages = stages;
+            console.log(' dashbord data 1 ', this.dataStages);
+        });
+
+        setTimeout(() => this.dataJson(), 1000);
+
+
+
+
 
         // ****************Get all Stagiaire ********************* */
         this.stagiairesService.getStagiaire();
@@ -107,45 +127,25 @@ export class DashboardComponent implements OnInit {
             .subscribe((stagiaires: Stagiaire[]) => {
                 this.stagiaires = stagiaires;
             });
-        setTimeout(() => console.log('test stagiaire', this.stagiaires), 1000);
+        // setTimeout(() => console.log('test stagiaire', this.stagiaires), 1000);
 
-  // ****************Get all Stages ********************* */
+        // ****************Get all Stages ********************* */
         this.stagesService.getStage();
         this.stageSub = this.stagesService.getStageUpdateListener()
             .subscribe((stages: StageGlobal[]) => {
                 this.stages = stages;
             });
-        setTimeout(() => console.log('*************stage**************', this.stages), 1000);
+        // setTimeout(() => console.log('*************stage**************', this.stages), 1000);
 
-// ****************Get all periode ********************* */
-this.periodeService.getPeriode();
-this.periodeSub = this.periodeService.getPeriodeUpdateListener()
-    .subscribe((periodes: Periode[]) => {
-        this.periodes = periodes;
-    });
-setTimeout(() => console.log('*************stage**************', this.periodes), 1000);
-
-
-this.stagiairesService.getStagiaireById('h6rafaa').subscribe(appli => {
-    console.log('test appli', appli);
-    this._satagiaire = {
-        idStagiaire: appli[0].idStagiaire,
-        Nom: appli[0].Nom,
-        Prenom: appli[0].Prenom
-    };
-
-});
-
-
-        // ****************Get all Entreprise ********************* */
-        this.entreprisesService.getEntreprises();
-        this.entrepriseSub = this.entreprisesService.getStagiaireUpdateListener()
-            .subscribe((entreprises: Entreprise[]) => {
-                this.entreprises = entreprises;
+        // ****************Get all periode ********************* */
+        this.periodeService.getPeriode();
+        this.periodeSub = this.periodeService.getPeriodeUpdateListener()
+            .subscribe((periodes: Periode[]) => {
+                this.periodes = periodes;
             });
-        setTimeout(() => console.log('test entreprises', this.entreprises), 1000);
+        // setTimeout(() => console.log('*************stage**************', this.periodes), 1000);
 
-        // **************Get by id ************** */
+
         this.stagiairesService.getStagiaireById('h6rafaa').subscribe(appli => {
             console.log('test appli', appli);
             this._satagiaire = {
@@ -155,25 +155,50 @@ this.stagiairesService.getStagiaireById('h6rafaa').subscribe(appli => {
             };
 
         });
-        setTimeout(() => console.log('getStagiaireById 2:', this._satagiaire), 5000);
-        /*   this.route.paramMap.subscribe((paramMap: ParamMap) => {
-              if (paramMap.has('idStagiaire')) {
-                this.idStagiaire = paramMap.get('idStagiaire');
-                this.stagiairesService.getStagiaireById(this.idStagiaire).subscribe(appli => {
-                  this._satagiaire = {
-                    idStagiaire: appli.idStagiaire,
-                    Nom: appli.Nom,
-                    Prenom: appli.Nom,
-                  };
-                  console.log('getStagiaireById :', this._satagiaire);
-                });
-              } else {
-                this.idStagiaire = null;
-                console.log('the are a problem');
-              }
-            }); */
+
+
+        // ****************Get all Entreprise ********************* */
+        this.entreprisesService.getEntreprises();
+        this.entrepriseSub = this.entreprisesService.getStagiaireUpdateListener()
+            .subscribe((entreprises: Entreprise[]) => {
+                this.entreprises = entreprises;
+            });
+        // setTimeout(() => console.log('test entreprises', this.entreprises), 1000);
+
+        // **************Get by id ************** */
+        this.stagiairesService.getStagiaireById('h6rafaa').subscribe(appli => {
+            // console.log('test appli', appli);
+            this._satagiaire = {
+                idStagiaire: appli[0].idStagiaire,
+                Nom: appli[0].Nom,
+                Prenom: appli[0].Prenom
+            };
+
+        });
+        // setTimeout(() => console.log('getStagiaireById 2:', this._satagiaire), 5000);
     }
 
+    private dataJson(): void {
+
+        for (let i = 0; i < this.dataStages.length; i++) {
+            this.idStage = '';
+            console.log('name**********', i);
+            console.log(this.dataStages[i].nomStagiaire);
+            this.stagesService.addStage(
+                this.idStage,
+                this.dataStages[i].sujetStage,
+                this.dataStages[i].addrStage,
+                this.dataStages[i].soutenanceSemaine,
+                this.nomTuteur,
+                this.prenomTuteur,
+                this.dataStages[i].nomStagiaire,
+                this.dataStages[i].prenomStagiaire,
+                this.dataStages[i].libelleSemestre,
+                this.dataStages[i].nomVille,
+                this.dataStages[i].nomPays,
+                this.dataStages[i].nomEntreprise);
+        }
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

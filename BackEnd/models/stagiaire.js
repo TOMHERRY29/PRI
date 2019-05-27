@@ -1,11 +1,53 @@
-const StagiaireModel = (sequelize, Sequelize) => {
-    const {INTEGER, STRING, FLOAT, BOOLEAN, DATE} = Sequelize
-    const Stagiaire = sequelize.define('User', {
-        UserId: {type: INTEGER, primaryKey: true, autoIncrement: true},
-        Username: {type: STRING, primaryKey: true, allowNull: false},
-        Password: STRING
-    })
-    return User
+module.exports = (sequelize, Sequelize) => {
+    const Stagiaire = sequelize.define('stagiaire', {
+        idStagiaire: {
+            type: Sequelize.STRING,
+            primaryKey: true
+        },
+        Nom: {
+            type: Sequelize.STRING
+        },
+        Prenom: {
+            type: Sequelize.STRING
+        },
+        test: {
+            type: Sequelize.STRING
+        }
+    });
+
+    return Stagiaire;
 }
 
-module.exports = UserModel
+
+
+
+
+/* const Sequelize = require('sequelize');
+const db = require('../connexion');
+
+
+const StagiaireModel = db.define('Stagiaire', {
+    idStagiaire: {
+        type: Sequelize.STRING
+    },
+    Nom: {
+        type: Sequelize.STRING
+    },
+    Prenom: {
+        type: Sequelize.STRING
+    },
+})
+
+
+ */
+/* const StagiaireModel = (sequelize, Sequelize) => {
+    const {INTEGER, STRING, FLOAT, BOOLEAN, DATE} = Sequelize
+    const Stagiaire = sequelize.define('Stagiaire', {
+        idStagiaire: {type: STRING, primaryKey: true},
+        Nom:STRING,
+        Prenom: STRING        
+    })
+    return Stagiaire
+} */
+
+/* module.exports = StagiaireModel */

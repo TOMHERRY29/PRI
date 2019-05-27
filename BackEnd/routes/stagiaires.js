@@ -42,11 +42,11 @@ app.post('/stagiaires', (req, res) => {
             rows.forEach(element => {
                 if(element.constructor == Array){                   
                    // res.send('stagiaire inseré id : '+element[0].idStagiaire);
-                   res.send('stagiaire inseré id' );
+                   res.send('++++++++++++++++++++++stagiaire inseré id' );
                 }
             });
         else
-            console.log(err);
+            console.log('**********************',err);
     })
 });
 

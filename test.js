@@ -1,3 +1,68 @@
+const Sequelize = require('sequelize');
+const db = require('../config/database');
+
+const Gig = db.define('gig', {
+  title: {
+    type: Sequelize.STRING
+  },
+  technologies: {
+    type: Sequelize.STRING
+  },
+  description: {
+    type: Sequelize.STRING
+  },
+  budget: {
+    type: Sequelize.STRING
+  },
+  contact_email: {
+    type: Sequelize.STRING
+  }
+})
+
+module.exports = Gig;
+
+
+
+
+
+
+const express = require('express');
+const router = express.Router();
+const db = require('../config/database');
+const Gig = require('../models/Gig');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
+
+
+// Add a gig
+router.post('/add', (req, res) => {
+    let { title, technologies, budget, description, contact_email } = req.body;
+    let errors = [];
+  
+ 
+  
+  
+      // Make lowercase and remove space after comma
+      //technologies = technologies.toLowerCase().replace(/, /g, ',');
+  
+      // Insert into table
+      Gig.create({
+        title,
+        technologies,
+        description,
+        budget,
+        contact_email
+      })
+        .then(gig => res.redirect('/gigs'))
+        .catch(err => console.log(err));
+    }
+  });
+  
+  
+
+
+//********************************************************************************* */
 var express= require("express");
 var bodyParser = require("body-parser");
 var mysql = require("mysql");

@@ -10,3 +10,17 @@ export interface Stage {
     idVille: string;
     idEntreprise: string;
 }
+
+/* export interface Stage {
+    nomStagiaire: string;
+    prenomStagiaire: string;
+    libelleSemestre: string;
+    addrStage: string;
+    nomEntreprise: string;
+    nomVille: string;
+    nomPays: string;
+    sujetStage: string;
+    soutenanceSemaine: Number;
+}
+ */
+
