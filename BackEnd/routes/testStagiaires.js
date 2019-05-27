@@ -9,11 +9,14 @@ module.exports = function (app) {
     const stagiaires = require('../controllers/stagaires.js');
     const pays = require('../controllers/paysC');
     const ville = require('../controllers/villeC');
-
+    const importStagesC = require('../controllers/importsStagesC');
 
     app.post("/stagiaires", stagiaires.create);
+    app.get("/stagiaires", stagiaires.get);
     app.post("/pays", pays.create);
     app.post("/ville", ville.create);
+    app.post("/importStages",importStagesC.create);
+    app.get("/importStages",importStagesC.get);
 }
 
 // router.post("", function (req, res) {

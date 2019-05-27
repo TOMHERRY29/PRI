@@ -1,12 +1,14 @@
 
 const db = require('../db.config.js');
-const Stagiaires = db.stagiaires;
+const pays = db.pays;
 
 
 exports.create = (req, res) => {  
     console.log("insert");
+    pays.findAll().then( (result) => res.json(result) )
+    console.log(result);
     // Save Book to MySQL database
-    Stagiaires.create({  
+    pays.create({  
         idStagiaire: req.body.idStagiaire,
         Nom: req.body.Nom,
         Prenom: req.body.Prenom,
@@ -19,14 +21,31 @@ exports.create = (req, res) => {
       res.status(500).send("Error -> " + err);
     })
   };
-
+/* 
   exports.get = (req, res) => {  
-    Stagiaires.findAll().then( (result) => res.json(result) )
-    console.log("Stagiares")
-    console.log(res); 
+     pays.findAll().then( (result) => res.json(result)  )
+    console.log("pays")
     //res.send(result);
   };
+ */
 
+  exports.get=(req, res, next) => {
+      var document
+    pays.findAll().then(documents => {
+      res.status(200).json(documents);
+      //console.log("documents :",documents);
+      var i=0;
+      for( document in documents){
+        console.log("pays :",documents[i].dataValues);
+        i++;
+      }
+      if(i == 0)
+        
+        
+  
+    }); 
+     console.log("document  :",document)
+  };
 
 
 
