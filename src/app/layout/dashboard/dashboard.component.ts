@@ -30,7 +30,6 @@ export class DashboardComponent implements OnInit {
           ville: "Lyon",
           pays: "France",
           semestre: "S10",
-          spec: "Informatique",
           entreprise: "Arinfo",
           pdf: "https://nuxeo.enib.fr/nuxeo/nxdoc/default/5a424b06-a846-49ad-9106-b29d6b285f1f/view_documents",
           visible: 1
@@ -43,7 +42,6 @@ export class DashboardComponent implements OnInit {
             ville: "Marseille",
             pays: "France",
             semestre: "S09",
-            spec: "Informatique",
             entreprise: "Arinfo",
             visible: 1
       
@@ -55,7 +53,6 @@ export class DashboardComponent implements OnInit {
             ville: "Paris",
             pays: "France",
             semestre: "S08",
-            spec: "Electronique",
             entreprise: "Arinfo",
             visible: 1
       
@@ -67,7 +64,6 @@ export class DashboardComponent implements OnInit {
             ville: "Londres",
             pays: "Angleterre",
             semestre: "S10",
-            spec: "Informatique",
             entreprise: "Arinfo",
             visible: 1
       
@@ -79,7 +75,6 @@ export class DashboardComponent implements OnInit {
             ville: "Paris",
             pays: "France",
             semestre: "S10",
-            spec: "Informatique",
             entreprise: "Sopra Steria",
             visible: 1
       

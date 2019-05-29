@@ -17,13 +17,16 @@
   <ng-container *ngIf="show">
     <div class="col-md-9">
       <form #form>
-        <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)" />
+        <div *ngIf="files_uploaded === 0">
+          <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)" />
 
-        <div class="progress mt-3" style="height:40px;">
-          <div id="trainingProgressBar" class="progress-bar 
+          <div class="progress mt-3" style="height:40px;">
+            <div id="trainingProgressBar" class="progress-bar 
                 progress-bar-success progress-bar-striped bg-warning active"
-            role="progressbar" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="percentDone" [style.width.%]="percentDone">
-            {{percentDone}}
+              role="progressbar" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="percentDone"
+              [style.width.%]="percentDone">
+              {{percentDone}}
+            </div>
           </div>
         </div>
 
