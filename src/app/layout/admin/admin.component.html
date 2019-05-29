@@ -18,7 +18,9 @@
     <div class="col-md-9">
       <form #form>
         <div *ngIf="files_uploaded === 0">
-          <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)" />
+          <input type="file" class="form-control-file mt-3" placeholder="File Name" 
+          name="filename" (change)="upload($event.target.files)"
+          accept ="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
 
           <div class="progress mt-3" style="height:40px;">
             <div id="trainingProgressBar" class="progress-bar 
@@ -43,7 +45,7 @@
       </ng-container>
       <div class="container-info">
         <label>
-          Fichier(s) téléchargé(s):
+          Fichier téléchargé:
           <span id="uploadedFiles">{{files_uploaded}}</span>
         </label>
       </div>
@@ -61,7 +63,7 @@
               <tr class="table" id="displayTable" *ngFor="let file of file_list">
                 <td class="tableau"> {{file.name}}</td>
                 <td class="tableau"> {{file.size| number:'3.'}} Ko</td>
-                <td class="tableau"> {{file.lastModifiedDate}}</td>
+                <td class="tableau"> {{file.lastModifiedDate | date:'medium'}}</td>
               </tr>
             </table>
           </div>
