@@ -1,14 +1,16 @@
 export interface Stage {
     idStage: string;
-    dateFin: string;
-    sujet: string;
-    addr: string;
+    sujetStage: string;
+    addrStage: string;
     soutenanceSemaine: Number;
-    idTuteur: string;
-    idStagiaire: string;
-    idSemestre: string;
-    idVille: string;
-    idEntreprise: string;
+    nomTuteur: string;
+    prenomTuteur: string;
+    nomStagiaire: string;
+    prenomStagiaire: string;
+    libelleSemestre: string;
+    nomVille: string;
+    nomPays: string;
+    nomEntreprise: string;
 }
 
 /* export interface Stage {

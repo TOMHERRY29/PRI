@@ -35,6 +35,7 @@ export class StagiairesService {
         this.stagiaires = transformedStagiaires;
         this.stagiairesUpdated.next([...this.stagiaires]);
       });
+      console.log('stagiaire services',  this.stagiaires);
 
   }
   getStagiaireUpdateListener() {

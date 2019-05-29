@@ -5,19 +5,50 @@ const router = express.Router();
 const mysqlConnection = require('../connexion');
  */
 module.exports = function (app) {
-
+    
+/* import controlleur */
     const stagiaires = require('../controllers/stagaires.js');
     const pays = require('../controllers/paysC');
     const ville = require('../controllers/villeC');
     const importStagesC = require('../controllers/importsStagesC');
+    const globalStage = require('../controllers/globalStageC');
+
 
     app.post("/stagiaires", stagiaires.create);
     app.get("/stagiaires", stagiaires.get);
+    
     app.post("/pays", pays.create);
     app.post("/ville", ville.create);
-    app.post("/importStages",importStagesC.create);
-    app.get("/importStages",importStagesC.get);
+
+    app.post("/importStages", importStagesC.create);
+    app.get("/importStages", importStagesC.get);
+
+/* get & post de globalStage */
+    app.post("/globalStage", globalStage.create);
+    app.get("/globalStage", globalStage.get);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // router.post("", function (req, res) {
 

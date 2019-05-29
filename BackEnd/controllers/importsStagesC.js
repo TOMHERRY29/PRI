@@ -39,10 +39,6 @@ exports.create = (req, res) => {
         console.log("pays :",documents[i].dataValues);
         i++;
       }
-      if(i == 0)
-        
-        
-  
     }); 
      console.log("document  :",document)
   };

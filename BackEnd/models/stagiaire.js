@@ -1,16 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
     const Stagiaire = sequelize.define('stagiaire', {
-        idStagiaire: {
-            type: Sequelize.STRING,
-            primaryKey: true
-        },
         Nom: {
             type: Sequelize.STRING
         },
         Prenom: {
-            type: Sequelize.STRING
-        },
-        test: {
             type: Sequelize.STRING
         }
     });

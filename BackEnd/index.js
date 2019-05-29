@@ -62,6 +62,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json())
+
+//const stagiairesRoutes = require("./routes/stagiaires");
  
 const cors = require('cors')
 const corsOptions = {
@@ -74,11 +76,12 @@ app.use(cors(corsOptions))
 const db = require('./db.config.js');
   
 // force: true will drop the table if it already exists
-db.sequelize.sync({force: false}).then(() => {
+db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
 });
  
-require('./routes/testStagiaires.js')(app);
+require('./routes/allRoutes.js')(app);
+
  
 // Create a Server
 var server = app.listen(3000, function () {
