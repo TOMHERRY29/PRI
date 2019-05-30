@@ -76,13 +76,14 @@
                         </div></th>
                     </tr>
                     </thead>
-                        <tr class="table" *ngFor="let stage of stages">
+                        <tr class="table" *ngFor="let stage of stagesG">
                            
                             <td> {{stage.nomStagiaire}}</td>
                             <td> {{stage.prenomStagiaire}}</td>
                             <td> {{stage.nomVille}}</td>
                             <td> {{stage.nomPays}}</td>
                             <td> {{stage.libelleSemestre}}</td>
+                            <td> {{stage.nomEntreprise}}</td>
                             <td> </td>
                             <div *ngFor="let entreprise of entreprises">
                             <td> {{entreprise.nomEntreprise}}</td></div>

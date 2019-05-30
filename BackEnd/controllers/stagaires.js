@@ -1,9 +1,8 @@
-
 const db = require('../db.config.js');
 const Stagiaires = db.stagiaires;
 
 
-exports.create = (req, res) => {  
+/* exports.create = (req, res) => {  
     console.log("insert");
     // Save Book to MySQL database
     Stagiaires.create({  
@@ -12,23 +11,60 @@ exports.create = (req, res) => {
         Prenom: req.body.Prenom,
         test: req.body.test
       
-    }).then(stagiaire => {
-      // Send created book to client
-      res.send(stagiaire);
-    }).catch(err => {
-      res.status(500).send("Error -> " + err);
-    })
-  };
+    });
+    Stagiaires.save().then(createdNode => {
+        // recup data all redady stocked in the db
+        res.status(201).json({
+          ...createdNode,
+          idStage: createdNode.id
+        });
+        console.log("test 1")
+      });
+      console.log("test 2")
+  }; */
 
-  exports.get = (req, res) => {  
+
+
+
+exports.create = (req, res) => {
+    console.log("insert");
+    // Save Book to MySQL database
+    Stagiaires.create({
+        idStagiaire: req.body.idStagiaire,
+        Nom: req.body.Nom,
+        Prenom: req.body.Prenom
+
+    }).then(stagiaire => {
+        // Send created book to client
+        res.send(stagiaire);
+    }).catch(err => {
+        res.status(500).send("Error -> " + err);
+    })
+};
+
+/*   exports.get = (req, res) => {  
     Stagiaires.findAll().then( (result) => res.json(result) )
     console.log("Stagiares")
     console.log(res); 
     //res.send(result);
-  };
+  }; */
+exports.get = (req, res, next) => {
+    Stagiaires.findAll().then(documents => {
+        res.status(200).json({
+            message: "Nodes fetched successfully!",
+            stagiaires:documents});
+        //console.log("documents :",documents);
+    
+    });
 
-
-
+};
+/*   exports.get=(req, res, next) => {
+    var document
+    Stagiaires.findAll().then(documents => {
+    res.status(200).json(documents);
+  }); 
+   console.log("document  :",document)
+}; */
 
 
 

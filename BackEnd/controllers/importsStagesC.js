@@ -157,9 +157,12 @@ exports.create = async (req, res) => {
         console.log("pays :",documents[i].dataValues);
         i++;
       }
+<<<<<<< HEAD
       if(i == 0) {
 
       }
+=======
+>>>>>>> fe317177492a0b100ebe8ca62ed701b8636aa397
     }); 
      console.log("document  :",document)
   };

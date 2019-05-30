@@ -30,7 +30,7 @@ export class ObjetExcelService {
     return this.http.get('../../assets/data.json');
   }
 
-
+/*
   addStage(
     idStage: string,
     sujetStage: string,
@@ -67,7 +67,7 @@ export class ObjetExcelService {
         this.stagesUpdated.next([...this.stages]);
       });
   }
-
+ */
 
 
 }

@@ -3,18 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StageGlobal } from '../models/stageGlobal.model';
-import { Stage } from '../models/stage.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StagesService {
+export class GlobalStageService {
 
-  private stages: Stage[] = [];
+
+  private stages: StageGlobal[] = [];
   // private stagesP: Stage[] = [];
   dataStages = new Array();
-  private stagesUpdated = new Subject<Stage[]>();
+  private stagesUpdated = new Subject<StageGlobal[]>();
   // private stagesUpdatedP = new Subject<Stage[]>();
   constructor(private http: HttpClient) {
 
@@ -30,38 +30,34 @@ export class StagesService {
   }
 
 
-  addStage(
-    idStage: string,
-    sujetStage: string,
-    addrStage: string,
-    soutenanceSemaine: Number,
-    nomTuteur: string,
-    prenomTuteur: string,
+  addStageG(
     nomStagiaire: string,
     prenomStagiaire: string,
     libelleSemestre: string,
+    addrStage: string,
+    nomEntreprise: string,
     nomVille: string,
     nomPays: string,
-    nomEntreprise: string,
+    sujetStage: string,
+    soutenanceSemaine: Number,
   ) {
-    const stage: Stage = {
-      idStage: idStage,
-      sujetStage: sujetStage,
-      addrStage: addrStage,
-      soutenanceSemaine: soutenanceSemaine,
-      nomTuteur: nomTuteur,
-      prenomTuteur: prenomTuteur,
+    const stage: StageGlobal = {
+      id: null,
       nomStagiaire: nomStagiaire,
       prenomStagiaire: prenomStagiaire,
       libelleSemestre: libelleSemestre,
+      addrStage: addrStage,
+      nomEntreprise: nomEntreprise,
       nomVille: nomVille,
       nomPays: nomPays,
-      nomEntreprise: nomEntreprise,
+      sujetStage: sujetStage,
+      soutenanceSemaine: soutenanceSemaine,
     };
     this.http
-      .post<{ idStage: string }>('http://localhost:3000/stages', stage)
+      .post<{ idStage: string }>('http://localhost:3000/globalStage', stage)
       .subscribe(responseData => {
         const id = responseData.idStage;
+        stage.id = id;
         this.stages.push(stage);
         this.stagesUpdated.next([...this.stages]);
       });
@@ -70,34 +66,33 @@ export class StagesService {
 
 
 
-  getStage() {
+  getStageG() {
     this.http
       .get<{ stages: any }>(
-        'http://localhost:3000/stages'
+        'http://localhost:3000/globalStage'
       )
       .pipe(map((stageData) => {
         return stageData.stages.map(stage => {
           return {
-            idStage: stage.idStage,
-            sujetStage: stage.sujetStage,
-            addrStage: stage.addrStage,
-            soutenanceSemaine: stage.soutenanceSemaine,
-            nomTuteur: stage.nomTuteur,
-            prenomTuteur: stage.prenomTuteur,
             nomStagiaire: stage.nomStagiaire,
             prenomStagiaire: stage.prenomStagiaire,
             libelleSemestre: stage.libelleSemestre,
+            addrStage: stage.addrStage,
+            nomEntreprise: stage.nomEntreprise,
             nomVille: stage.nomVille,
             nomPays: stage.nomPays,
-            nomEntreprise: stage.nomEntreprise
+            sujetStage: stage.sujetStage,
+            soutenanceSemaine: stage.soutenanceSemaine,
+            id: stage.id,
           };
         });
       }))
       .subscribe(transformedStages => {
         this.stages = transformedStages;
         this.stagesUpdated.next([...this.stages]);
+        console.log('transformedStages', transformedStages);
       });
-
+    console.log('this.stages 2', this.stages);
   }
 
   getStageUpdateListener() {
