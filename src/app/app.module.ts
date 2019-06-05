@@ -8,13 +8,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-<<<<<<< HEAD
-import { SearchPipe } from './layout/components/search/search.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material';
-=======
 import { SearchPipe } from './layout/components/search/search.module';
->>>>>>> be276bdbcec31834ecbdef740c057336560a805c
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
