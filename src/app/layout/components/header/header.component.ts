@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
+0
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -28,7 +28,9 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+
+    ngOnInit() {
+    }
 
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');

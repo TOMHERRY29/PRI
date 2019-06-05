@@ -10,7 +10,9 @@ import { NgForm } from '@angular/forms';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
-    constructor(public router: Router) {}
+    constructor(public router: Router) {
+    }
+
 
     ngOnInit() {}
 
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
         //export default mail_log;
         localStorage.setItem('isLoggedin', 'true');
         console.log(localStorage.getItem('isLoggedin'));
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/layout/dashboard']);
     }
+    
 }

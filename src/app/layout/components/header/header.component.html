@@ -114,20 +114,18 @@
                 </div>
             </li>-->
             <!-- Partie correspondant à l'affichage sur la page principale -->
-            <div *ngIf="!mail_adress; else elseBlock">
                 <li class="nav-item dropdown" ngbDropdown>
-                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle [routerLink]="['/login']">
+                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle [routerLink]="['']">
                         <i class="fa fa-user"></i> Déconnexion <b class="caret"></b>
                     </a>
                 </li>
-            </div>
-            <ng-template #elseBlock>
+            <!-- <ng-template #elseBlock>
                 <li class="nav-item dropdown" ngbDropdown>
                     <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle [routerLink]="['/login']">
                         <i class="fa fa-user"></i> Hello <b class="caret"></b>
                     </a>
                 </li>
-            </ng-template>
+            </ng-template> -->
             <!--<div *ngIf="!isLoggedin">
                 <li class="nav-item dropdown" ngbDropdown>
                     <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle [routerLink]="['/login']">
