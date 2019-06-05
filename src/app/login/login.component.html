@@ -2,20 +2,21 @@
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-            <h1>SB Admin BS4 Angular5</h1>
-            <form role="form">
+            <h1>Portail de Gestion des Stages et Alternances</h1>
+            <form role="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
+                        <input type="email" name="email" class="form-control input-underline input-lg" ng-model="mail_enib" placeholder="Email" ngModel required>
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+                        <input type="password" class="form-control input-underline input-lg" ng-model="password_enib" placeholder="Mot de Passe">
                     </div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
+                <!--<a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin($scope)"> Log in </a>-->
+                <button class="btn btn-secondary " type="submit" [disabled]="f.invalid">Log in</button>
+                <!--&nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>-->
             </form>
         </div>
     </div>

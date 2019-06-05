@@ -116,9 +116,39 @@
                     </a>
                 </div>
             </li>-->
-            <li class="nav-item dropdown" ngbDropdown>
+            <!-- Partie correspondant à l'affichage sur la page principale -->
+            <div *ngIf="!mail_adress; else elseBlock">
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle [routerLink]="['/login']">
+                        <i class="fa fa-user"></i> Déconnexion <b class="caret"></b>
+                    </a>
+                </li>
+            </div>
+            <ng-template #elseBlock>
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle [routerLink]="['/login']">
+                        <i class="fa fa-user"></i> Hello <b class="caret"></b>
+                    </a>
+                </li>
+            </ng-template>
+            <!--<div *ngIf="!isLoggedin">
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle [routerLink]="['/login']">
+                        <i class="fa fa-user"></i> Connexion <b class="caret"></b>
+                    </a>
+                </li>
+            </div>
+            <div *ngIf="isLoggedin">
+                    <li class="nav-item dropdown" ngbDropdown>
+                        <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle [routerLink]="['/login']">
+                            <i class="fa fa-user"></i> Hello <b class="caret"></b>
+                        </a>
+                    </li>
+                </div>-->
+            
+            <!--<li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                    <i class="fa fa-user"></i> John Smith <b class="caret"></b>
+                    <i class="fa fa-user"></i> Connexion <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu>
                     <a class="dropdown-item" href="javascript:void(0)">
@@ -134,7 +164,7 @@
                         <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
                     </a>
                 </div>
-            </li>
+            </li>-->
         </ul>
     </div>
 </nav>

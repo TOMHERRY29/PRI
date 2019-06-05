@@ -1,10 +1,12 @@
+<html>
+<body>
 <div [@routerTransition]>
 
         <form class="form-inline md-form form-sm active-jaune active-jaune-2 mt-2 mb-4 max-width">
                 <i class="fa fa-fw fa-search fa-2x"></i>&nbsp;
                 <input id="input" name="recherche" class="searchInput form-control form-control-sm ml-3 w-75" type="text"
                     placeholder="Rechercher" aria-label="Search" list="recherche" (keyup)="filtreName($event)">
-            </form>
+        </form>
 
     <div>
         <div class="col col-xl-9 col-lg-12" style="padding:0px">
@@ -37,3 +39,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>
