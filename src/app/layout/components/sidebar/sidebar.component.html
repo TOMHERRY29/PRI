@@ -1,24 +1,24 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
         <a routerLink="/layout/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+            <i class="fa fa-fw fa-briefcase"></i>&nbsp;
             <span>{{ 'Dashboard' | translate }}</span>
         </a>
         <a [routerLink]="['/layout/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
+            <i class="fa fa-fw fa-address-book"></i>&nbsp;
             <span>{{ 'Charts' | translate }}</span>
         </a>
         <a [routerLink]="['/layout/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'Tables' | translate }}</span>
         </a>
+        <a [routerLink]="['/layout/campagne']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-plus-square"></i>&nbsp;
+            <span>{{ 'Campagne' | translate }}</span>
+        </a>
         <a [routerLink]="['/layout/admin']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-gear"></i>&nbsp;
-            <span>{{ 'Adminstration' | translate }}</span>
-        </a>
-        <a [routerLink]="['/layout/campagne']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-gear"></i>&nbsp;
-            <span>{{ 'Campagne' | translate }}</span>
+            <span>{{ 'Administration' | translate }}</span>
         </a>
 
         <div class="header-fields">
