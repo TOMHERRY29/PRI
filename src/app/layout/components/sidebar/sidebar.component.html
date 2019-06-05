@@ -12,11 +12,11 @@
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'Tables' | translate }}</span>
         </a>
-        <a [routerLink]="['/layout/campagne']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/layout/campagne']" [routerLinkActive]="['router-link-active']" class="list-group-item" *ngIf = "statusCampagne()">
             <i class="fa fa-fw fa-plus-square"></i>&nbsp;
             <span>{{ 'Campagne' | translate }}</span>
         </a>
-        <a [routerLink]="['/layout/admin']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/layout/admin']" [routerLinkActive]="['router-link-active']" class="list-group-item" *ngIf = "statusAdministration()">
             <i class="fa fa-fw fa-gear"></i>&nbsp;
             <span>{{ 'Administration' | translate }}</span>
         </a>

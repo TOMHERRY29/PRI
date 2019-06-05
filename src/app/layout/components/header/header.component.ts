@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
     private mail: String;
+    private type: String;
 
     constructor(private translate: TranslateService, public router: Router, private loginService: LoginService) {
 
@@ -34,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
         this.mail = this.loginService.mail_adress;
-        console.log(this.mail);
+        this.type = this.loginService.type;
     }
 
     isToggled(): boolean {

@@ -19,21 +19,19 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
     }
 
-    //public mail_adress: NgForm["value"];
-
-    onLoggedin($scope) {
-        console.log($scope.mail_enib);
-        localStorage.setItem('isLoggedin', 'true');
-        console.log(localStorage.setItem('isLoggedin', 'true'));
-    }
-
     onSubmit(form: NgForm) {
         console.log(form.value);
         this.loginService.mail_adress = form.value;
         //export default mail_log;
-        localStorage.setItem('isLoggedin', 'true');
-        console.log(localStorage.getItem('isLoggedin'));
-        this.router.navigate(['/layout/dashboard']);
+        var compte = this.loginService.getCompte(this.loginService.mail_adress);
+        if(compte != null)
+        {
+            console.log(compte);
+            localStorage.setItem('isLoggedin', 'true');
+    
+            this.router.navigate(['/layout/dashboard']);
+        }
+
     }
     
 }
