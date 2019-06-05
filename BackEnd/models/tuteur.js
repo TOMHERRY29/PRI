@@ -1,9 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
     const Tuteur = sequelize.define('tuteur', {
-        Nom: {
+        NomTuteur: {
             type: Sequelize.STRING
         },
-        Prenom: {
+        PrenomTuteur: {
             type: Sequelize.STRING
         }
     });

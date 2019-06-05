@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const Semestre = sequelize.define('semestre', {
-        libelle: {
+        libelleSemestre: {
             type: Sequelize.STRING
         },
         

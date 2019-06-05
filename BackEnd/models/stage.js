@@ -1,12 +1,15 @@
 module.exports = (sequelize, Sequelize) => {
     const Stage = sequelize.define('stage', {
-        sujet: {
+        sujetStage : {
             type: Sequelize.STRING
         },
-        addr: {
+        addrStage : {
             type: Sequelize.STRING
         },
         soutenanceSemaine : {
+            type: Sequelize.STRING
+        },
+        periodesStage : {
             type: Sequelize.STRING
         }
     });
