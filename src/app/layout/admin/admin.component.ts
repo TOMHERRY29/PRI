@@ -210,6 +210,7 @@ public openFileDialog():void {
     this.form.nativeElement.reset();
     this.activate_table = false;
     this.files_uploaded = 0;
+    this.uploadSuccess = false;
   }
 
   upload(files: File[]){
@@ -236,7 +237,7 @@ public openFileDialog():void {
   uploadAndProgress(files: File[]){
     console.log(files)
     var formData = new FormData();
-    Array.from(files).forEach(f => formData.append('file',f))
+    Array.from(files).forEach(f => formData.append('file',f));
     this.file_list = files;
     this.http.post('https://file.io', formData, {reportProgress: true, observe: 'events'})
       .subscribe(event => {
@@ -266,10 +267,10 @@ public openFileDialog():void {
   }
 
   updateProgress(){
+    this.uploadSuccess = false;
     this.inProgress = false;
     this.files_uploaded = this.files_uploaded+1;
     this.percentDone = null;
-    this.uploadSuccess = false;
     this.totalBytes = null;
     this.bytesDone = null;
     if(this.files_uploaded > 0){

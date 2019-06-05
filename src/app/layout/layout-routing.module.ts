@@ -12,6 +12,7 @@ const routes: Routes = [
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
             { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
+            { path: 'campagne', loadChildren: './campagne/campagne.module#CampagneModule' },
             { path: 'forms', loadChildren: './form/form.module#FormModule' },
             { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },

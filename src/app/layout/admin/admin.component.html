@@ -17,13 +17,17 @@
   <ng-container *ngIf="show">
     <div class="col-md-9">
       <form #form>
-        <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)" />
+        <div *ngIf="files_uploaded === 0">
+          <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
 
-        <div class="progress mt-3" style="height:40px;">
-          <div id="trainingProgressBar" class="progress-bar 
+          <div class="progress mt-3" style="height:40px;">
+            <div id="trainingProgressBar" class="progress-bar 
                 progress-bar-success progress-bar-striped bg-warning active"
-            role="progressbar" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="percentDone" [style.width.%]="percentDone">
-            {{percentDone}}
+              role="progressbar" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="percentDone"
+              [style.width.%]="percentDone">
+              {{percentDone}}
+            </div>
           </div>
         </div>
 
@@ -40,7 +44,7 @@
       </ng-container>
       <div class="container-info">
         <label>
-          Fichier(s) téléchargé(s):
+          Fichier téléchargé:
           <span id="uploadedFiles">{{files_uploaded}}</span>
         </label>
       </div>
@@ -58,7 +62,7 @@
               <tr class="table" id="displayTable" *ngFor="let file of file_list">
                 <td class="tableau"> {{file.name}}</td>
                 <td class="tableau"> {{file.size| number:'3.'}} Ko</td>
-                <td class="tableau"> {{file.lastModifiedDate}}</td>
+                <td class="tableau"> {{file.lastModifiedDate | date:'medium'}}</td>
               </tr>
             </table>
           </div>
@@ -69,50 +73,8 @@
         <button type="reset" class="btn btn-danger" (click)="reset()">Supprimer</button>
       </div>
     </div>
-
-
-
-
-
-
-    <!-- <div class="container margin_table">
-      <div class="col-md-9">
-        <h3>Tableau des stages</h3>
-        <form method="POST" action="#" enctype="multipart/form-data">-->
-    <!-- COMPONENT START -->
-    <!-- <div class="form-group">
-            <div class="input-group input-file" name="Fichier1">
-              <input ng2FileSelect type="file" class="form-control" onchange="$('#upload-file-info').html(this.files[0].name)"
-                placeholder='Sélectionner un fichier...' hidden #fileInput />
-              <input id="upload-file-info" type="text" class="form-control" placeholder='Sélectionner un fichier...' />
-              <span class="input-group-btn">
-                <button class="btn btn-default btn-choose padding_button" type="button" (click)="openFileDialog();">Choisir</button>
-              </span>
-              <span class='label label-info' id="upload-file-info"></span>
-            </div>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-              </div>
-              <form class="custom-file">
-                <input name="filename" type="file" class="custom-file-input" id="customFileLang" lang="fr" class="form-control-file">
-                <label class="custom-file-label" for="customFileLang">Sélectionner le fichier </label>
-              </form>
-            </div>
-          </div> -->
-    <!-- COMPONENT END -->
-    <!-- </form>
-      </div>
-    </div>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-      </div>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-      </div>
-    </div> -->
+    <br>
+    <hr class="style18">
   </ng-container>
 
   <ng-container *ngIf="show_stat">
@@ -145,11 +107,54 @@
         </div>
       </div>
     </div>
+    <br>
+    <hr class="style18">
   </ng-container>
 
 
 
   <ng-container *ngIf="show_camp">
+
+    <div _ngcontent-c3="" class="row col-md-9">
+      <div _ngcontent-c3="" class="col-md-6">
+        <div _ngcontent-c3="" class="card">
+          <div _ngcontent-c3="" class="card-header"> Campagne <small _ngcontent-c3="">Choix des semestres</small></div>
+          <div _ngcontent-c3="" class="card-body" style="width: 1000px;">
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <hr class="style18">
+
+    <div>
+      <div class="col col-xl-9 col-lg-12" style="padding:0px">
+
+        <div class="card mb-3">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Sujet</th>
+              </tr>
+            </thead>
+            <tr class="table" id="displayTable" *ngFor="let entreprise of entrepriseFiltered">
+              <td class="tableau"> {{entreprise.nom}}</td>
+              <td class="tableau"> {{entreprise.pays}}</td>
+              <td class="tableau"> {{entreprise.ville}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <hr class="style18">
+
 
   </ng-container>
 </div>

@@ -1,0 +1,56 @@
+<form #checkboxForm="ngForm" (submit)="editPartyRolesSubmit()">
+    <div *ngFor="let item of stagesFiltered">
+        <label>
+        <input type="checkbox" value="{{item.Id}}" [(ngModel)]="item.Checked" [name]="item.Name" [attr.disabled]="item.Id==1 ? true : null" />
+        <span innerHTML="{{item.Name}}"></span>
+    </label>
+    </div>
+    <input type="submit" value="Submit">
+</form>
+<!-- 
+<div [@routerTransition]>
+  <app-page-header [heading]="'Campagne'" [icon]="'fa fa-fw fa-gear'"></app-page-header>
+
+  <form class="form-inline md-form form-sm active-jaune active-jaune-2 mt-2 mb-4 max-width">
+    <i class="fa fa-fw fa-search fa-2x"></i>&nbsp;
+    <input id="input" name="recherche" class="searchInput form-control form-control-sm ml-3 w-75" type="text"
+      placeholder="Rechercher" aria-label="Search" list="recherche" (keyup)="filtreName($event)">
+  </form>
+
+  <div>
+    <div class="col col-xl-9 col-lg-12" style="padding:0px">
+        <form #checkboxForm="ngForm" (submit)="editPartyRolesSubmit()">
+      <div class="card mb-3" (submit)="editPartyRolesSubmit()" >
+          <table class="table table-hover table-bordered mb-0">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Sujet du stage</th>
+                <th scope="col">Sélectionner</th>
+                <th scope="col">Commentaire</th>
+              </tr>
+            </thead>
+            <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered; let i=index">
+              <td class="tableau"> {{stage.nom}}</td>
+              <td class="tableau"> {{stage.prenom}}</td>
+              <td class="tableau"> {{stage.sujet}}</td>
+              <td>
+                <div class="custom-control custom-checkbox tableau">
+                  <input type="checkbox" class="custom-control-input" id="{{i}}" value="{{stage.sujet}}" [(ngModel)]="stage.checked"
+                    (change)="onCheckboxChange(stage,$event)">
+                  <label class="custom-control-label" for="{{i}}"></label>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <input type="submit" value="Submit">
+      </div>
+    </form>
+
+    </div>
+  </div>
+
+
+</div> -->
