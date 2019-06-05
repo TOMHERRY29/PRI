@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import { SearchPipe } from './layout/components/search/search.module'
+import { SearchPipe } from './layout/components/search/search.module';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
