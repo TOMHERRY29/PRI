@@ -1,18 +1,18 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a routerLink="/layout/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
             <span>{{ 'Dashboard' | translate }}</span>
         </a>
-        <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/layout/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
             <span>{{ 'Charts' | translate }}</span>
         </a>
-        <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/layout/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'Tables' | translate }}</span>
         </a>
-        <a [routerLink]="['/admin']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/layout/admin']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-gear"></i>&nbsp;
             <span>{{ 'Admin' | translate }}</span>
         </a>
@@ -87,7 +87,7 @@
                             </a>
                         </li>
                         <li>
-                            <a [routerLink]="['/login']" (click)="onLoggedout()">
+                            <a [routerLink]="['']" (click)="onLoggedout()">
                                 <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
                             </a>
                         </li>

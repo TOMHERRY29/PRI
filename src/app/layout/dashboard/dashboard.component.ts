@@ -115,15 +115,15 @@ export class DashboardComponent implements OnInit {
 
         (<HTMLInputElement>document.getElementById('input')).addEventListener('keyup', function(e) {
             var recherche = this.value.toLowerCase();
-            var documents = document.querySelectorAll('.table');
+            var documents = document.querySelectorAll('.displayTable');
            
             Array.prototype.forEach.call(documents, function(document) {
               // On a bien trouvé les termes de recherche.
               if (document.innerHTML.toLowerCase().indexOf(recherche) > -1) {
                 document.style.display = "";
               } else {
-                  
-                document.style.display = "none";
+                
+                  document.style.display = "none";
               }
             });
           });
