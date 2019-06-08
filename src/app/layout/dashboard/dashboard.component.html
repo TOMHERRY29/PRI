@@ -18,19 +18,17 @@
                             <th>Ville</th>
                             <th>Pays</th>
                             <th>Semestre</th>
-                            <th>Spécialité</th>
                             <th>Entreprise</th>
                             <th>Fiche de synthèse</th>
                         </tr>
                     </thead>
-                    <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered">
-                        <td class="tableau"> {{stage.prenom}}</td>
-                        <td class="tableau"> {{stage.nom}}</td>
-                        <td class="tableau"> {{stage.ville}}</td>
-                        <td class="tableau"> {{stage.pays}}</td>
-                        <td class="tableau"> {{stage.semestre}}</td>
-                        <td class="tableau"> {{stage.spec}}</td>
-                        <td class="tableau"> {{stage.entreprise}}</td>
+                    <tr class="table" id="displayTable" *ngFor="let stage of stagesG">
+                        <td class="tableau"> {{stage.nomStagiaire}}</td>
+                        <td class="tableau"> {{stage.prenomStagiaire}}</td>
+                        <td class="tableau"> {{stage.nomVille}}</td>
+                        <td class="tableau"> {{stage.nomPays}}</td>
+                        <td class="tableau"> {{stage.libelleSemestre}}</td>
+                        <td class="tableau"> {{stage.nomEntreprise}}</td>
                         <td class="tableau" style="display:none"> {{stage.visible}}</td>
                         <td class="tableau"><a class="pdf" href={{stage.pdf}}><img src="../../../assets/images/pdf.png" /></a></td>
                     </tr>

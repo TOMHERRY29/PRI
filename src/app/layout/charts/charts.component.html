@@ -30,18 +30,16 @@
                                 <th>Prénom</th>
                                 <th>Nom</th>
                                 <th>Semestre</th>
-                                <th>Spécialité</th>
                                 <th>Entreprise</th>
                                 <th>Tuteur</th>
                                 <th>StageTrouve</th>
                             </tr>
                         </thead>
-                        <tr class="table" id="displayTable" *ngFor="let eleve of elevesFiltered">
-                            <td class="tableau"> {{eleve.prenom}}</td>
-                            <td class="tableau"> {{eleve.nom}}</td>
-                            <td class="tableau"> {{eleve.semestre}}</td>
-                            <td class="tableau"> {{eleve.spec}}</td>
-                            <td class="tableau"> {{eleve.entreprise}}</td>
+                        <tr class="table" id="displayTable" *ngFor="let eleve of stagesG">
+                            <td class="tableau"> {{eleve.prenomStagiaire}}</td>
+                            <td class="tableau"> {{eleve.nomStagiaire}}</td>
+                            <td class="tableau"> {{eleve.libelleSemestre}}</td>
+                            <td class="tableau"> {{eleve.nomEntreprise}}</td>
                             <td class="tableau"> {{eleve.tuteur}}</td>
                             <td class="tableau"> {{eleve.stageTrouve}}</td>
                             <td class="tableau" style="display:none"> {{eleve.visible}}</td>

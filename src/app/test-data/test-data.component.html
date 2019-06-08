@@ -1,0 +1,59 @@
+<p>
+  mounaaaaaaaaa!
+</p>
+
+  <button mat-raised-button color="warn" type="submit"(click)="dataJson()">
+    AjoutDataExcel
+  </button>
+
+
+
+<form (submit)="onAddNode(postForm)" #postForm="ngForm">
+ 
+    <input
+      type="text"
+      name="idStagiaire"
+      ngModel
+      required
+      placeholder="idStagiaire"
+      #idStagiaire="ngModel">
+      
+      <input
+      type="text"
+      name="Nom"
+      ngModel
+      required
+      placeholder="Nom"
+      #Nom="ngModel">
+     
+      <input
+      type="text"
+      name="Prenom"
+      ngModel
+      required
+      placeholder="Prenom"
+      #Prenom="ngModel">
+      <button
+      color="warn"
+      type="submit">Save  </button>
+  </form>
+ 
+
+ <!--  <div class="col-sm-8 col-sm-offset-2">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+      <div class="form-group">
+        <label for="Prenom">Prenom</label>
+        <input type="text" id="Prenom" class="form-control" formControlName="Prenom">
+      </div>
+      <div class="form-group">
+        <label for="Nom">Nom</label>
+        <input type="text" id="Nom" class="form-control" formControlName="Nom">
+      </div>
+      <div class="form-group">
+        <label for="idStagiaire">idStagiaire</label>
+        <input type="text" id="idStagiaire" class="form-control" formControlName="idStagiaire">
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+  </div> -->

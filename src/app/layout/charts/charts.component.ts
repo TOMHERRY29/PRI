@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
+import { GlobalStageService } from '../../services/global-stage.service';
+import { StageGlobal } from '../../models/stageGlobal.model';
+
 
 @Component({
     selector: 'app-charts',
@@ -14,6 +20,10 @@ export class ChartsComponent implements OnInit {
     public show_diag:boolean = false;
     public buttonName:any = 'Tableau';
     public buttonName2:any = 'Diagrammes';
+
+  /* stageGlobel */
+  private stageGSub: Subscription;
+  stagesG: StageGlobal[] = [];
 
     //Récupérer ici toutes les informations sur les stages
     eleves = [
@@ -208,9 +218,23 @@ export class ChartsComponent implements OnInit {
     }
     
 
-    constructor() {}
+    constructor(
+        private _router: Router,
+        private route: ActivatedRoute,
+        public globalStageService: GlobalStageService) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+  /* get global stage */
+  this.globalStageService.getStageG();
+  this.stageGSub = this.globalStageService.getStageUpdateListener()
+    .subscribe((stagesG: StageGlobal[]) => {
+      this.stagesG = stagesG;
+    });
+
+  setTimeout(() => console.log('get global stage', this.stagesG), 2000);
+
+
+    }
 
     toggle() {
         this.show = !this.show;

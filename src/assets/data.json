@@ -1,0 +1,147 @@
+[
+    {
+       "nomStagiaire":"ADAMS ",
+       "prenomStagiaire":"Kev",
+       "libelleSemestre":"S10P",
+       "addrStage":" Atos\r\r\n6 impasse Alice Guy \r\nB.P 43045\r\r\n31300 TOULOUSE Cedex 03\r",
+       "nomEntreprise":" Atos\r\r\n  \r",
+       "nomVille":"TOULOUSE",
+       "nomPays":"France",
+       "DATES STAGE":"Du 19/01/15 au 10/07/15",
+       "sujetStage":"Développement d'un outil de génération de mimics en Qt/Inskape.",
+       "soutenanceSemaine":"Semaine 24"
+    },
+    {
+       "nomStagiaire":"CABELLO",
+       "prenomStagiaire":"Camila",
+       "libelleSemestre":"S8P",
+       "addrStage":"AIRBUS Opérations SAS\r\n  Rue de l'Aviation\r\n BP 81925\r\n 44019 NANTES Cedex 01",
+       "nomEntreprise":"AIRBUS Opérations SAS\r\n ",
+       "nomVille":"NANTES",
+       "nomPays":"France",
+       "DATES STAGE":"Du 16/03/15 au 24/07/15\r\n&\r\ndu 10/08/15 au 28/08/15",
+       "sujetStage":"Stage Analyse Process Assemblage BA Entrée d'Air A380/A350.",
+       "soutenanceSemaine":"Semaine 36"
+    },
+    {
+       "nomStagiaire":"CAPEO ",
+       "prenomStagiaire":"Claudio",
+       "libelleSemestre":"S10A",
+       "addrStage":"Mobile Telecommunication Company Zain Kuwait\r\r\nZain Head Office Bldg Shuwaikh PO Box 22244 \r\r\n  SAFAT 13083\r\r\nKOWEIT",
+       "nomEntreprise":"Mobile Telecommunication Company  \r\n ",
+       "nomVille":"SAFAT",
+       "nomPays":"KOWEIT",
+       "DATES STAGE":"Du 01/09/2014\r\r\nau 29/01/2015",
+       "sujetStage":"The trainee will start in the Integrated Networks Operations Department. He will learn how Zain Kuwait's Core Networks and Core Mobile Network are working, then he will move on to the Integrated Networks Operations. This provides him with an overview of Zain Kuwait Network infrastructure, operations, and maintenance. He will also be exposed to major initiatives and projects implemented by Zain Kuwait at the current time.",
+       "soutenanceSemaine":"Semaine 3"
+    },
+    {
+       "nomStagiaire":"FREROT",
+       "prenomStagiaire":"Jérémy",
+       "libelleSemestre":"S10P",
+       "addrStage":" Claret Canada Inc\r\r\n1400 rue Joliot-Curie \r\r\n      BOUCHERVILLE, Qc, J4B 7L9\r\r\nCANADA",
+       "nomEntreprise":" Claret Canada Inc\r\r\n",
+       "nomVille":"BOUCHERVILLE",
+       "nomPays":"CANADA",
+       "DATES STAGE":"Du 09/02/15 au 26/06/15",
+       "sujetStage":"Concepteur mécanique / chargé de projet. Conception, dossier de fabrication, réquisition d'achat, suivi des commandes et de la fabrication, suivi d'assemblage et liaison avec les clients.",
+       "soutenanceSemaine":"Semaine 24"
+    },
+    {
+       "nomStagiaire":"GIRAC",
+       "prenomStagiaire":"Kendji",
+       "libelleSemestre":"S10A",
+       "addrStage":"ADNEOM BENELUX\r\r\nChaussée de Charleroi 112 \r\r\n 1060 SAINT-GILLES\r\r\nBELGIQUE",
+       "nomEntreprise":"ADNEOM BENELUX\r\r\n ",
+       "nomVille":"SAINT-GILLES",
+       "nomPays":"Belgique",
+       "DATES STAGE":"Du 27/07/2015\r\n au 08/01/2016",
+       "sujetStage":"Le développement web d'une application intranet.",
+       "soutenanceSemaine":"Semaine 24"
+    },
+    {
+       "nomStagiaire":"GUETTA",
+       "prenomStagiaire":"David",
+       "libelleSemestre":"S7",
+       "addrStage":" SEGULA MATRA TECHNOLOGIES\r\r\nRue de Nantes - Bâtiment 49 \r\nCase courrier RJ040\r\r\n35177 CHATRES DE BRETAGNE\r",
+       "nomEntreprise":" SEGULA MATRA TECHNOLOGIES\r\r\n ",
+       "nomVille":"CAHRTES DE BRETAGNE",
+       "nomPays":"France",
+       "DATES STAGE":"Du 02/02/15 au 24/07/15",
+       "sujetStage":"Définition, formalisation et implantation d'un outil d'aide à la programmation de robot.",
+       "soutenanceSemaine":"Semaine 24"
+    },
+    {
+       "nomStagiaire":"HARRIS",
+       "prenomStagiaire":"Calvin",
+       "libelleSemestre":"S10P",
+       "addrStage":"ORANGE Applications for Business\r\n9 boulevard Nicéphone Niepce\r\n  44300 NANTES",
+       "nomEntreprise":"ORANGE Applications for Business\r\n ",
+       "nomVille":"NANTES",
+       "nomPays":"France",
+       "DATES STAGE":"Du 16/03/15 au 28/08/15",
+       "sujetStage":"Participer à l'évolution d'un CMS packagé, sur étagère et orienté intranet open-source.",
+       "soutenanceSemaine":"Semaine 36"
+    },
+    {
+       "nomStagiaire":"MARS",
+       "prenomStagiaire":"Bruno",
+       "libelleSemestre":"S10P",
+       "addrStage":" ENENSYS TECHNOLOGIES  \r\r\n6 rue de la Carrière\r\n CS 37734\r\r\n35577 CESSON-SEVIGNE\r",
+       "nomEntreprise":" ENENSYS TECHNOLOGIES  \r\r\n ",
+       "nomVille":"CESSON-SEVIGNE",
+       "nomPays":"France",
+       "DATES STAGE":"Du 13/01/15 au 03/07/15",
+       "sujetStage":"Développement d'une application HTML5.",
+       "soutenanceSemaine":"Semaine 24"
+    },
+    {
+       "nomStagiaire":"PAYNE",
+       "prenomStagiaire":"Liam",
+       "libelleSemestre":"S10P",
+       "addrStage":" VIRTUALYS\r\r\n41 rue Yves Collet \r\r\n29220 BREST\r",
+       "nomEntreprise":" VIRTUALYS\r\r\n ",
+       "nomVille":"BREST",
+       "nomPays":"France",
+       "DATES STAGE":"Du 26/01/15 au 12/06/15",
+       "sujetStage":"Étude sur les différentes possibilités de déploiement de serveurs de données géographiques et des interfaces clientes pour une intégration générique dans différents types d'applications (2D / 3D).",
+       "soutenanceSemaine":"Semaine 24"
+    },
+    {
+       "nomStagiaire":"PUTH",
+       "prenomStagiaire":"Charlie",
+       "libelleSemestre":"S10P",
+       "addrStage":" Fl4re\r\r\n1420 Stafford Street \r\r\n      REDWOOD CITY CA 94063\r\r\nETATS-UNIS",
+       "nomEntreprise":" Fl4re\r\r\n",
+       "nomVille":"REDWOOD CITY",
+       "nomPays":"ETATS-UNIS",
+       "DATES STAGE":"Du 23/02/15 au 15/08/15",
+       "sujetStage":"Development of a game engine.",
+       "soutenanceSemaine":"Semaine 36"
+    },
+    {
+       "nomStagiaire":"SHEERAN",
+       "prenomStagiaire":"Ed",
+       "libelleSemestre":"S10P",
+       "addrStage":"ITADES - SOLVAY\r\n26 rue Etienne Dolet\r\n75009 PARIS",
+       "nomEntreprise":"ITADES - SOLVAY\r\n",
+       "nomVille":"PARIS",
+       "nomPays":"France",
+       "DATES STAGE":"Du 27/10/14 au 17/04/15",
+       "sujetStage":"Réalisation d'un outil back office (analyse, conception, développement, livraison et support). Participation progressive aux projets existants. Nouveaux projets selon disponibilité.",
+       "soutenanceSemaine":"Semaine 24"
+    },
+    {
+       "nomStagiaire":"SOLER",
+       "prenomStagiaire":"Alvaro",
+       "libelleSemestre":"S10P",
+       "addrStage":" THALES SYSTEMES AEROPORTES \r\r\n10 avenue de la 1ère\r\n DFL CS 93801\r\r\n29238 BREST Cedex 3\r",
+       "nomEntreprise":" THALES SYSTEMES AEROPORTES \r\r\n",
+       "nomVille":"BREST",
+       "nomPays":"France",
+       "DATES STAGE":"Du 12/01/15 au 29/05/15",
+       "sujetStage":"Réaliaation d'un outil de gestion de configuration systèmes.",
+       "soutenanceSemaine":"Semaine 24"
+    }
+ ]
+ 

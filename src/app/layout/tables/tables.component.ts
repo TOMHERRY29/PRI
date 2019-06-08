@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
+import { GlobalStageService } from '../../services/global-stage.service';
+import { StageGlobal } from '../../models/stageGlobal.model';
 
 @Component({
     selector: 'app-tables',
@@ -8,6 +13,12 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class TablesComponent implements OnInit {
+
+  /* stageGlobel */
+  private stageGSub: Subscription;
+  stagesG: StageGlobal[] = [];
+
+
 
 //Récupérer ici toutes les informations sur les entreprises
 entreprises = [
@@ -37,10 +48,19 @@ entreprises = [
     ];
 
     entrepriseFiltered = this.entreprises;
+    constructor(
+      private _router: Router,
+      private route: ActivatedRoute,
+      public globalStageService: GlobalStageService) { }
 
-    constructor() {}
+  ngOnInit() {
+/* get global stage */
+this.globalStageService.getStageG();
+this.stageGSub = this.globalStageService.getStageUpdateListener()
+  .subscribe((stagesG: StageGlobal[]) => {
+    this.stagesG = stagesG;
+  });
 
-    ngOnInit() {}
     
    // requete: string = (<HTMLInputElement>document.getElementById("prenomInput")).value;
    filtreName() {
