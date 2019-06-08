@@ -35,14 +35,14 @@
                                 <th>StageTrouve</th>
                             </tr>
                         </thead>
-                        <tr class="table" id="displayTable" *ngFor="let eleve of elevesFiltered">
-                            <td class="tableau"> {{eleve.prenom}}</td>
-                            <td class="tableau"> {{eleve.nom}}</td>
-                            <td class="tableau"> {{eleve.semestre}}</td>
-                            <td class="tableau"> {{eleve.entreprise}}</td>
-                            <td class="tableau"> {{eleve.tuteur}}</td>
-                            <td class="tableau"> {{eleve.stageTrouve}}</td>
-                            <td class="tableau" style="display:none"> {{eleve.visible}}</td>
+                        <tr class="table" id="displayTable" *ngFor="let stage of stagesG">
+                            <td class="tableau"> {{stage.PrenomStagiaire}}</td>
+                            <td class="tableau"> {{stage.NomStagiaire}}</td>
+                            <td class="tableau"> {{stage.libelleSemestre}}</td>
+                            <td class="tableau"> {{stage.nomEntreprise}}</td>
+                            <td class="tableau"> {{stage.NomTuteur}} {{stage.PrenomTuteur}}</td>
+                            <td class="tableau"> {{stage.stageTrouve}}</td>
+                            <td class="tableau" style="display:none"> {{stage.visible}}</td>
                             <!-- <td class="tableau"><a class="pdf" href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td> -->
                         </tr>
                     </table>

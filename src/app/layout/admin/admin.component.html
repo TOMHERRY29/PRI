@@ -1,3 +1,5 @@
+<script type="text/javascript" src="shim.min.js"></script>
+<script type="text/javascript" src="xlsx.full.min.js"></script>
 <div [@routerTransition]>
   <app-page-header [heading]="'Admin'" [icon]="'fa fa-fw fa-gear'"></app-page-header>
 
@@ -21,7 +23,7 @@
           <!-- <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)"
             accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" /> -->
 
-          <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)"
+          <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="xlstoJson($event)"
             accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
 
           <div class="progress mt-3" style="height:40px;">
@@ -72,7 +74,7 @@
         </div>
       </div>
       <div class="form-group mt-3" style="width:220px;">
-        <button type="submit" class="btn btn-primary pull-right">Confirmer</button>
+        <button type="submit" class="btn btn-primary pull-right" (click)="posthere()">Confirmer</button>
         <button type="reset" class="btn btn-danger" (click)="reset()">Supprimer</button>
       </div>
     </div>
@@ -187,4 +189,5 @@
 
 
   </ng-container>
+  <script lang="javascript" src="dist/xlsx.full.min.js"></script>
 </div>

@@ -18,10 +18,10 @@
                             <th scope="col">Ville</th>
                         </tr>
                     </thead>
-                    <tr class="table" id="displayTable" *ngFor="let entreprise of entrepriseFiltered">
-                        <td class="tableau"> {{entreprise.nom}}</td>
-                        <td class="tableau"> {{entreprise.pays}}</td>
-                        <td class="tableau"> {{entreprise.ville}}</td>
+                    <tr class="table" id="displayTable" *ngFor="let entreprise of stagesG">
+                        <td class="tableau"> {{entreprise.nomEntreprise}}</td>
+                        <td class="tableau"> {{entreprise.nomPays}}</td>
+                        <td class="tableau"> {{entreprise.nomVille}}</td>
                     </tr>
                 </table>
             </div>
