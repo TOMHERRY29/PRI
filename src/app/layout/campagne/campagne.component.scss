@@ -54,4 +54,19 @@
 .max-width{
     max-width: 500px;
 }
+
+.sizeModal{
+  width: max-content;
+  margin-right: 0px!important;
+  
+}
+
+html, body, .container {
+  height: 100%;
+  width: 100%;
+}
+textarea.form-control {
+  height: 100%;
+  width: 100%;
+}
   
