@@ -8,7 +8,7 @@
     <input type="submit" value="Submit">
 </form>
 
-<!-- <div [@routerTransition]>
+<div [@routerTransition]>
   <app-page-header [heading]="'Campagne'" [icon]="'fa fa-fw fa-gear'"></app-page-header>
 
   <form class="form-inline md-form form-sm active-jaune active-jaune-2 mt-2 mb-4 max-width">
@@ -43,7 +43,7 @@
                 </div>
               </td>
               <td>
-                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"></button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Commenter</button>
               </td>
             </tr>
           </table>
@@ -52,5 +52,30 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Commentaire</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group col-sm-9">
+                <label for="message-text" class="col-form-label">Expliquez votre choix :</label>
+                <textarea class="form-control sizeModal mr-0" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary">Valider</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div> -->
+</div>
