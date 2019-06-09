@@ -24,13 +24,13 @@
                             <th>Fiche de synthèse</th>
                         </tr>
                     </thead>
-                    <tr class="displayTable" id="displayTable" *ngFor="let stage of stagesFiltered">
-                        <td class="tableau"> {{stage.prenom}}</td>
-                        <td class="tableau"> {{stage.nom}}</td>
-                        <td class="tableau"> {{stage.ville}}</td>
-                        <td class="tableau"> {{stage.pays}}</td>
-                        <td class="tableau"> {{stage.semestre}}</td>
-                        <td class="tableau"> {{stage.entreprise}}</td>
+                    <tr class="displayTable" id="displayTable" *ngFor="let stage of stagesG">
+                        <td class="tableau"> {{stage.PrenomStagiaire}}</td>
+                        <td class="tableau"> {{stage.NomStagiaire}}</td>
+                        <td class="tableau"> {{stage.nomVille}}</td>
+                        <td class="tableau"> {{stage.nomPays}}</td>
+                        <td class="tableau"> {{stage.libelleSemestre}}</td>
+                        <td class="tableau"> {{stage.nomEntreprise}}</td>
                         <td class="tableau" style="display:none"> {{stage.visible}}</td>
                         <td class="tableau"><a class="pdf" href={{stage.pdf}}><img src="../../../assets/images/pdf.png" /></a></td>
                     </tr>

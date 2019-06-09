@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, VERSION } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { $ } from 'protractor';
-import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpEventType,HttpHeaders } from '@angular/common/http';
+var XLSX = require('xlsx');
+
 
 @Component({
   selector: 'app-admin',
@@ -9,7 +11,7 @@ import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
   styleUrls: ['./admin.component.scss'],
   animations: [routerTransition()]
 })
-
+ 
 export class AdminComponent implements OnInit {
 
     @ViewChild('fileInput') fileInput:ElementRef;
@@ -30,7 +32,7 @@ export class AdminComponent implements OnInit {
   inProgress: boolean;
   activate_table: boolean;
   file_list:File[];
-
+  evt:Event;
 
    // bar chart
    public barChartOptions: any = {
@@ -212,12 +214,101 @@ public openFileDialog():void {
     this.files_uploaded = 0;
     this.uploadSuccess = false;
   }
-
+  uploar(e){
+    this.upload(e.target.files);
+    this.xlstoJson(e);
+  }
   upload(files: File[]){
     this.uploadAndProgress(files);
     this.inProgress = true;
   }
+  xlstoJson(e){
+    this.upload(e.target.files);
+   // this.evt = e;
+    this.send(e);
+  }
+  posthere(){
+    console.log(FileReaderCopy.resultJson)
+    console.log('************');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        
+      })
+    };
+    this.http.post('http://localhost:3000/importStages', FileReaderCopy.resultJson,httpOptions)
+      .subscribe(event => {  
+        console.log('done')
+      })
+  }
 
+  async send(evt){
+    console.log("bien")
+    console.log(FileReaderCopy.resultJson);
+    console.log("*************")
+    //var f= this.file_list[0];
+    /*var reader = new FileReader();
+    console.log("bien 2")*/
+    
+    //var data = new Uint8Array(e.target.result);
+    //var workbook = XLSX.read(data, {type: 'array'});
+    var files = (<HTMLInputElement>evt.target).files;
+    
+    console.log("before for")
+    var json_object;
+    for (var i = 0;i < files.length; i++) {
+      console.log("after for")
+      var f = files[i];
+     
+      var reader = new FileReaderCopy();
+
+      // Closure to capture the file information.
+       reader.onload =  (function(theFile) {
+        return function(e) {
+          
+          var data = e.target.result;
+          var workbook = XLSX.read(data, {
+          type: 'binary'
+          });
+
+          
+          return workbook.SheetNames.forEach(function(sheetName) {
+          // Here is your object
+              var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+              json_object = JSON.stringify(XL_row_object);
+              //this.posthere(json_object);
+              //console.log(json_object);
+              FileReaderCopy.resultJson = json_object;
+              return json_object;
+              /* var fs = require('fs');
+
+              var obj = {
+              table: []
+              };*/
+
+              })
+              
+
+        };
+        /*this.posthere(js);
+        return js;*/
+      })(f);
+      
+      json_object = await reader.readAsBinaryString(f);
+      console.log('help')
+      console.log(FileReaderCopy.resultJson);
+      // Read in the image file as a data URL.
+      //reader.readAsDataURL(f);
+      
+
+          };
+
+    /* DO SOMETHING WITH workbook HERE */
+  
+  //reader.readAsArrayBuffer(f);
+
+    
+  }
   basicUpload(files: File[]){
     var formData = new FormData();
     Array.from(files).forEach(f => formData.append('file', f))
@@ -278,4 +369,9 @@ public openFileDialog():void {
       }
   }
 
+  
+
+}
+class FileReaderCopy extends FileReader{
+  public static resultJson:JSON;
 }

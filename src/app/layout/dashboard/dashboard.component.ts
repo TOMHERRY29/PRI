@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 
-
-
+import { GlobalStageService } from '../../services/global-stage.service';
+import { StageGlobal } from '../../models/stageGlobal.model';
+import { Subscription } from 'rxjs';
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -19,6 +20,12 @@ export class DashboardComponent implements OnInit {
     value : string = "";
     searchText;
 
+
+    
+
+    /* stageGlobel */
+    private stageGSub: Subscription;
+    stagesG: StageGlobal[] = [];
 
     //Récupérer ici toutes les informations sur les stages
     stages = [
@@ -84,8 +91,20 @@ export class DashboardComponent implements OnInit {
 
       stagesFiltered = this.stages;
 
+    constructor(public globalStageService: GlobalStageService){}
+    ngOnInit() {
+      
+        /* get global stage */
+        this.globalStageService.getStageG();
+        this.stageGSub = this.globalStageService.getStageUpdateListener()
+            .subscribe((stagesG: StageGlobal[]) => {
+                this.stagesG = stagesG;
+            });
 
-    ngOnInit() {}
+        setTimeout(() => console.log('get global stage', this.stagesG), 2000);
+
+
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

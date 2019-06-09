@@ -23,31 +23,38 @@ stages = [
       sujet: "Travaille en tant que développeur web-mobile.",
       checked:false,
       Name:"name",
-      Commentaire:""
+      Commentaire:"coucou"
 
-  }
-  // {
-    
-  //   nom: 'Sarah',
-  //   prenom: 'Lais',
-  //   sujet: "Travaille en tant que programmateur.",
-  //   checked:false
+  },
+  {
+    id:2,
+    nom: 'Sarah',
+    prenom: 'Lais',
+    sujet: "Travaille en tant que programmateur.",
+    checked:false,
+    Name:"name",
+    Commentaire:"une"
 
-  //   },
-  //   {
-    
-  //     nom: 'Thomas',
-  //     prenom: 'Lessi',
-  //     sujet: "Travaille en tant qu'ingénieur et en méthode agile.",
-  //     checked:false
+    },
+    {
+      id:3,
+      nom: 'Thomas',
+      prenom: 'Lessi',
+      sujet: "Travaille en tant qu'ingénieur et en méthode agile.",
+      checked:false,
+      Name:"name",
+      Commentaire:"aucun"
 
-  //   }
+    }
     
   ];
 
+  
   stagesFiltered = this.stages;
-
-  constructor() {}
+  commentaires= this.stages;
+  constructor() {
+   
+  }
 
   ngOnInit() {}
   
@@ -74,20 +81,41 @@ checkedList: any[] = [];
 
 onCheckboxChange(option, event) {
   if(event.target.checked) {
-    this.checkedList.push(option.sujet);
+    this.checkedList.push(option.id);
+    this.checkedList.push(option.Commentaire);
+    /* this.commentaires.push(option.Commentaire); */
   }
   else {
   for(var i=0 ; i < this.stagesFiltered.length; i++) {
-    if(this.checkedList[i] == option.sujet) {
+    if(this.checkedList[i] == option.id) {
       this.checkedList.splice(i,1);
+      this.checkedList.splice(i,2);
    }
  }
 }
+
 console.log(this.checkedList);
 }
 
+onCheckboxChangeCom(option, event) {
+  for(var i=0 ; i < this.stagesFiltered.length; i++) {
+    if(this.checkedList[i] == option.id) {
+    this.checkedList[i+1] = option.Commentaire;
+    }
+  }
+}
+
 editPartyRolesSubmit() {
-  console.log(this.stagesFiltered);
+  //console.log(this.stagesFiltered);
+}
+
+checkedEvnt(val) {
+  for(let i =0;i < this.stagesFiltered.length;i++){
+    this.stagesFiltered[i].checked = val;
+    this.stagesFiltered[i].Commentaire = "";
+  }
+  this.checkedList = [];
+  console.log(this.checkedList);
 }
 
 }

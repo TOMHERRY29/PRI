@@ -1,3 +1,5 @@
+<script type="text/javascript" src="shim.min.js"></script>
+<script type="text/javascript" src="xlsx.full.min.js"></script>
 <div [@routerTransition]>
   <app-page-header [heading]="'Admin'" [icon]="'fa fa-fw fa-gear'"></app-page-header>
 
@@ -18,7 +20,10 @@
     <div class="col-md-9">
       <form #form>
         <div *ngIf="files_uploaded === 0">
-          <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)"
+          <!-- <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="upload($event.target.files)"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" /> -->
+
+          <input type="file" class="form-control-file mt-3" placeholder="File Name" name="filename" (change)="xlstoJson($event)"
             accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
 
           <div class="progress mt-3" style="height:40px;">
@@ -69,7 +74,7 @@
         </div>
       </div>
       <div class="form-group mt-3" style="width:220px;">
-        <button type="submit" class="btn btn-primary pull-right">Confirmer</button>
+        <button type="submit" class="btn btn-primary pull-right" (click)="posthere()">Confirmer</button>
         <button type="reset" class="btn btn-danger" (click)="reset()">Supprimer</button>
       </div>
     </div>
@@ -101,9 +106,6 @@
               [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
             </canvas>
           </div>
-          <div class="card-footer">
-            <button class="btn btn-info btn-sm" (click)="randomize()">Mettre à jour</button>
-          </div>
         </div>
       </div>
     </div>
@@ -115,12 +117,42 @@
 
   <ng-container *ngIf="show_camp">
 
-    <div _ngcontent-c3="" class="row col-md-9">
-      <div _ngcontent-c3="" class="col-md-6">
+    <div _ngcontent-c3="" class="row col-md-10">
+      <div _ngcontent-c3="" class="col-md-10">
         <div _ngcontent-c3="" class="card">
-          <div _ngcontent-c3="" class="card-header"> Campagne <small _ngcontent-c3="">Choix des semestres</small></div>
+          <div _ngcontent-c3="" class="card-header"> <h5>Choix des semestres</h5></div>
           <div _ngcontent-c3="" class="card-body" style="width: 1000px;">
+                
+                <div class="btn-group" data-toggle="buttons">
+                  
+                  <label class="btn btn-success btn-lg">
+                    <input type="checkbox" autocomplete="off"> Semestre 2
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </label>
+            
+                  <label class="btn btn-warning btn-lg">
+                    <input type="checkbox" autocomplete="off"> Semestre 4
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </label>			
+                
+                  <label class="btn btn-info btn-lg">
+                    <input type="checkbox" autocomplete="off"> Semestre 8
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </label>			
+                
+                  <label class="btn btn-dark btn-lg">
+                    <input type="checkbox" autocomplete="off"> Semestre 10
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </label>			
+            
+                  <label class="btn btn-danger btn-lg">
+                    <input type="checkbox" autocomplete="off"> Contrat Pro
+                    <span class="glyphicon glyphicon-ok"></span>
+                  </label>		
+                
+                </div>
 
+                <button type="button" class="btn btn-primary pull-right btn-lg">Valider</button>
 
           </div>
         </div>
@@ -157,4 +189,5 @@
 
 
   </ng-container>
+  <script lang="javascript" src="dist/xlsx.full.min.js"></script>
 </div>

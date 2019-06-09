@@ -15,10 +15,10 @@
 
         <!-- Search form -->
         <form class="form-inline md-form form-sm active-jaune active-jaune-2 mt-2 mb-4 max-width">
-                <i class="fa fa-fw fa-search fa-2x"></i>&nbsp;
-                <input id="input" name="recherche" class="searchInput form-control form-control-sm ml-3 w-75" type="text"
-                    placeholder="Rechercher" aria-label="Search" list="recherche" (keyup)="filtreName($event)">
-            </form>
+            <i class="fa fa-fw fa-search fa-2x"></i>&nbsp;
+            <input id="input" name="recherche" class="searchInput form-control form-control-sm ml-3 w-75" type="text"
+                placeholder="Rechercher" aria-label="Search" list="recherche" (keyup)="filtreName($event)">
+        </form>
 
         <div>
             <div class="col col-xl-9 col-lg-12" style="padding:0px">
@@ -35,14 +35,14 @@
                                 <th>StageTrouve</th>
                             </tr>
                         </thead>
-                        <tr class="table" id="displayTable" *ngFor="let eleve of elevesFiltered">
-                            <td class="tableau"> {{eleve.prenom}}</td>
-                            <td class="tableau"> {{eleve.nom}}</td>
-                            <td class="tableau"> {{eleve.semestre}}</td>
-                            <td class="tableau"> {{eleve.entreprise}}</td>
-                            <td class="tableau"> {{eleve.tuteur}}</td>
-                            <td class="tableau"> {{eleve.stageTrouve}}</td>
-                            <td class="tableau" style="display:none"> {{eleve.visible}}</td>
+                        <tr class="table" id="displayTable" *ngFor="let stage of stagesG">
+                            <td class="tableau"> {{stage.PrenomStagiaire}}</td>
+                            <td class="tableau"> {{stage.NomStagiaire}}</td>
+                            <td class="tableau"> {{stage.libelleSemestre}}</td>
+                            <td class="tableau"> {{stage.nomEntreprise}}</td>
+                            <td class="tableau"> {{stage.NomTuteur}} {{stage.PrenomTuteur}}</td>
+                            <td class="tableau"> {{stage.stageTrouve}}</td>
+                            <td class="tableau" style="display:none"> {{stage.visible}}</td>
                             <!-- <td class="tableau"><a class="pdf" href={{stage.pdf}}><img src="../../../assets/images/pdf.png"/></a></td> -->
                         </tr>
                     </table>
@@ -54,91 +54,34 @@
     </ng-container>
 
     <ng-container *ngIf="show_diag">
-        <div class="row">
-            <div class="col col-sm-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Bar Chart
+            <div class="row">
+                <div class="col col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Enibiens dans le monde
+                        </div>
+                        <div class="card-body">
+                            <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                                [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-                            [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
-                            (chartClick)="chartClicked($event)">
-                        </canvas>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-info btn-sm" (click)="randomize()">Update</button>
+                </div>
+                <div class="col col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Nombre de stagiaires par pays
+                        </div>
+                        <div class="card-body">
+                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                                [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col col-sm-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Doughnut Chart
-                    </div>
-                    <div class="card-body">
-                        <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels"
-                            [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                        </canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col col-sm-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Radar Chart
-                    </div>
-                    <div class="card-body">
-                        <canvas baseChart height="150px" [datasets]="radarChartData" [labels]="radarChartLabels"
-                            [chartType]="radarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                        </canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-sm-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Pie Chart
-                    </div>
-                    <div class="card-body">
-                        <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-                            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                        </canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col col-sm-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Polar Area Chart
-                    </div>
-                    <div class="card-body">
-                        <canvas baseChart height="130px" [data]="polarAreaChartData" [labels]="polarAreaChartLabels"
-                            [legend]="polarAreaLegend" [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)"
-                            (chartClick)="chartClicked($event)">
-                        </canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-sm-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Line Chart
-                    </div>
-                    <div class="card-body">
-                        <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-                            [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
-                            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                        </canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <hr class="style18">
-    </ng-container>
+            <br>
+            <hr class="style18">
+        </ng-container>
 </div>
