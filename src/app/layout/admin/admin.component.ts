@@ -4,7 +4,6 @@ import { $ } from 'protractor';
 import { HttpClient, HttpResponse, HttpEventType,HttpHeaders } from '@angular/common/http';
 var XLSX = require('xlsx');
 
-
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -181,10 +180,12 @@ public randomize(): void {
 }
 
 
-
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    // this.boucle();
+    // console.log('je suis dans init')
+
   }
 
   toggle() {
@@ -206,7 +207,6 @@ public openFileDialog():void {
   }
 
   @ViewChild('form') form;
-
 
   reset() {
     this.form.nativeElement.reset();
@@ -369,9 +369,121 @@ public openFileDialog():void {
       }
   }
 
+  stages = [
+
+    {
+      
+        id:1,
+        nom: 'Jean',
+        prenom: 'Dupont',
+        sujet: "Travaille en tant que développeur web-mobile.",
+        Name:"name",
+        checked:false,
+        tuteur:[
+          {
+            nom:'LEMAGUERESSE',
+            prenom:'Thierry',
+            Commentaire:"Raison expérience",
+            checked:false
+          },
+          {
+            nom:'CALVES',
+            prenom:'Chantal',
+            Commentaire:"J'aime ce stage",
+            checked:false
+          }
+        ]
+  
+    },
+    {
+      id:2,
+      nom: 'Sarah',
+      prenom: 'Lais',
+      sujet: "Travaille en tant que programmateur.",
+      Name:"name",
+      checked:false,
+      tuteur:[
+        {
+          nom:'LEMAGUERESSE',
+          prenom:'Thierry',
+          Commentaire:"Raison expérience",
+          checked:false
+        },
+        {
+          nom:'OUSSIN',
+          prenom:'Caroline',
+          Commentaire:"Intéressant",
+          checked:false
+        }
+      ]
+  
+      },
+      {
+        id:3,
+        nom: 'Thomas',
+        prenom: 'Lessi',
+        sujet: "Travaille en tant qu'ingénieur et en méthode agile.",
+        Name:"name",
+        checked:false,
+        tuteur:[
+          {
+            nom:'OUSSIN',
+            prenom:'Caroline',
+            Commentaire:"Intéressant",
+            checked:false
+          },
+          {
+            nom:'CALVES',
+            prenom:'Chantal',
+            Commentaire:"J'aime ce stage",
+            checked:false
+          }
+        ]
+  
+      }
+      
+  ];
+  public isCollapsed = {};
+  stagesFiltered = this.stages;
+
+  
+
+  checkedList: any[] = [];
+
+  onCheckboxChange(option, event) {
+    if(event.target.checked) {
+      this.checkedList.push(option.nom);
+    }
+    else {
+    for(var i=0 ; i < this.stagesFiltered.length; i++) {
+      if(this.checkedList[i] == option.nom) {
+        this.checkedList.splice(i,1);
+     }
+   }
+  }
+  console.log(option);
+  console.log(this.checkedList);
+  }
+
+
+  public tuteursFiltered = new Array;
+
+  boucle(){
+
+    for(var i = 0; i < this.stagesFiltered.length;i++){
+    this.tuteursFiltered.push(this.stagesFiltered[i].tuteur);
+/*     this.tuteursFiltered.push(this.stagesFiltered[1].tuteur);
+    this.tuteursFiltered.push(this.stagesFiltered[2].tuteur); */
+   
+
+   }
+   console.log(this.tuteursFiltered);
+
+  }
   
 
 }
 class FileReaderCopy extends FileReader{
   public static resultJson:JSON;
 }
+

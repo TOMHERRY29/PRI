@@ -26,7 +26,8 @@ stages = [
       sujet: "Travaille en tant que développeur web-mobile.",
       checked:false,
       Name:"name",
-      Commentaire:"coucou"
+      Commentaire:"coucou",
+      isCollapsed:false
 
   },
   {
@@ -36,7 +37,8 @@ stages = [
     sujet: "Travaille en tant que programmateur.",
     checked:false,
     Name:"name",
-    Commentaire:"une"
+    Commentaire:"une",
+    isCollapsed:false
 
     },
     {
@@ -46,7 +48,8 @@ stages = [
       sujet: "Travaille en tant qu'ingénieur et en méthode agile.",
       checked:false,
       Name:"name",
-      Commentaire:"aucun"
+      Commentaire:"aucun",
+      isCollapsed:false
 
     }
     
@@ -54,7 +57,6 @@ stages = [
 
   
   stagesFiltered = this.stages;
-  commentaires= this.stages;
   constructor() {
    
   }
@@ -86,7 +88,6 @@ onCheckboxChange(option, event) {
   if(event.target.checked) {
     this.checkedList.push(option.id);
     this.checkedList.push(option.Commentaire);
-    /* this.commentaires.push(option.Commentaire); */
   }
   else {
   for(var i=0 ; i < this.stagesFiltered.length; i++) {

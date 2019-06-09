@@ -46,8 +46,9 @@
                 <!--Textarea with icon prefix-->
                 <div class="md-form" *ngIf="stage.checked">
                   <i class="fas fa-pencil-alt prefix"></i>
-                  <input type="text" id="{{i}}" value="{{stage.id}}"  class="md-textarea form-control" style="font-size: 15px; width: 100px;" 
-                  [(ngModel)]="stagesFiltered[i].Commentaire" (change)="onCheckboxChangeCom(stage,$event)" name="test">
+                  <textarea type="text" id="{{stagesFiltered[i].Commentaire}}" value="{{stage.id}}"  class="md-textarea form-control" style="font-size: 15px;" 
+                  [ngModel]="stagesFiltered[i].Commentaire" (change)="onCheckboxChangeCom(stage,$event)" name="test"
+                  (ngModelChange)="valueChange($event)"></textarea>
 <!--                   <label class="md-form" for="{{i}}"></label>
  -->                </div>
               </td>
