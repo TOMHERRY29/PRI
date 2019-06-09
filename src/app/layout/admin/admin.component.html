@@ -164,15 +164,21 @@
     <br>
     <hr class="style18">
 
-    <div class="bs-example">
+    <form class="form-inline md-form form-sm active-jaune active-jaune-2 mt-2 mb-4 max-width">
+      <i class="fa fa-fw fa-search fa-2x"></i>&nbsp;
+      <input id="input" name="recherche" class="searchInput form-control form-control-sm ml-3 w-75" type="text"
+        placeholder="Rechercher" aria-label="Search" list="recherche" (keyup)="filtreName($event)">
+    </form>
+
+    <div class="bs-example col col-xl-9 col-lg-12">
       <div class="panel-group" [attr.id]="'accordion_' + i" *ngFor="let stage of stagesFiltered; let i = index;">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a class="list-group-item list-group-item-action" data-toggle="collapse" [attr.data-parent]="'#accordion_' + i"
-                [attr.href]="'#collapseOne_' + i">
-                <h4 class="font-weight-bold">{{stage.nom}} {{stage.prenom}}</h4>
-                {{stage.sujet}}
+              <a class="list-group-item list-group-item-action list-group-item-secondary search-filter" data-toggle="collapse"
+                [attr.data-parent]="'#accordion_' + i" [attr.href]="'#collapseOne_' + i">
+                <h5 class="font-weight-bold">{{stage.nom}} {{stage.prenom}}</h5>
+                <h6>{{stage.sujet}}</h6>
               </a>
 
             </h4>
@@ -193,29 +199,24 @@
                   <td class="tableau"> {{tutor.prenom}}</td>
                   <td class="tableau"> {{tutor.Commentaire}}</td>
                   <td>
-                      <div class="custom-control custom-checkbox tableau">
-                        <input type="checkbox" class="custom-control-input" id="{{j}}" value="{{tutor.id}}" [(ngModel)]="stagesFiltered[j].checked"
-                          (change)="onCheckboxChange(tutor,$event)" name="something">
-                        <label class="custom-control-label" for="{{j}}"></label>
-                      </div>
-                    </td>
+                    <div class="custom-control custom-checkbox tableau">
+                      <input type="checkbox" class="custom-control-input" id="{{i}}{{j}}" value="tutor.nom" [(ngModel)]="stagesFiltered[i].tuteur[j].checked"
+                        (change)="onCheckboxChange(tutor,$event)" name="something">
+                      <label class="custom-control-label" for="{{i}}{{j}}"></label>
+                    </div>
+                  </td>
                 </tr>
               </table>
-
-
-
-
-
-
-
-
             </div>
           </div>
         </div>
       </div>
+      <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Confirmer</button>
+      </div>
     </div>
 
-    <br>
+
     <hr class="style18">
 
 

@@ -453,6 +453,7 @@ public openFileDialog():void {
   onCheckboxChange(option, event) {
     if(event.target.checked) {
       this.checkedList.push(option.nom);
+      
     }
     else {
     for(var i=0 ; i < this.stagesFiltered.length; i++) {
@@ -461,24 +462,42 @@ public openFileDialog():void {
      }
    }
   }
-  console.log(option);
   console.log(this.checkedList);
   }
 
 
   public tuteursFiltered = new Array;
 
-  boucle(){
+//   boucle(){
 
-    for(var i = 0; i < this.stagesFiltered.length;i++){
-    this.tuteursFiltered.push(this.stagesFiltered[i].tuteur);
-/*     this.tuteursFiltered.push(this.stagesFiltered[1].tuteur);
-    this.tuteursFiltered.push(this.stagesFiltered[2].tuteur); */
+//     for(var i = 0; i < this.stagesFiltered.length;i++){
+//     this.tuteursFiltered.push(this.stagesFiltered[i].tuteur);
+// /*     this.tuteursFiltered.push(this.stagesFiltered[1].tuteur);
+//     this.tuteursFiltered.push(this.stagesFiltered[2].tuteur); */
    
 
-   }
-   console.log(this.tuteursFiltered);
+//    }
+//    console.log(this.tuteursFiltered);
 
+//   }
+
+  filtreName() {
+
+    (<HTMLInputElement>document.getElementById('input')).addEventListener('keyup', function(e) {
+        var recherche = this.value.toLowerCase();
+        var documents = document.querySelectorAll('.search-filter');
+       
+        Array.prototype.forEach.call(documents, function(document) {
+          // On a bien trouvé les termes de recherche.
+          if (document.innerHTML.toLowerCase().indexOf(recherche) > -1) {
+            document.style.display = "";
+          } else {
+              
+            document.style.display = "none";
+          }
+        });
+      });
+  
   }
   
 
