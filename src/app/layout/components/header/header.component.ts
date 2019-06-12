@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-0
+import { LoginService } from '../../../services/login.service';
+import { NgForm } from '@angular/forms';
+
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -9,11 +11,14 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
+    private mail: String;
+    private type: String;
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router, private loginService: LoginService) {
 
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
         this.translate.setDefaultLang('en');
+        //this.mail = loginComponent.mail_adress;
         const browserLang = this.translate.getBrowserLang();
         this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
 
@@ -28,8 +33,9 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-
     ngOnInit() {
+        this.mail = this.loginService.mail_adress;
+        this.type = this.loginService.type;
     }
 
     isToggled(): boolean {

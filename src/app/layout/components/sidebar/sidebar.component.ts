@@ -1,21 +1,24 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
     isActive: boolean = false;
     collapsed: boolean = false;
     showMenu: string = '';
     pushRightClass: string = 'push-right';
+    private mail: String;
+    private type: String;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
     
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router, private loginService: LoginService) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();
@@ -30,6 +33,11 @@ export class SidebarComponent {
                 this.toggleSidebar();
             }
         });
+    }
+
+    ngOnInit(){
+        this.mail = this.loginService.mail_adress;
+        this.type = this.loginService.type;
     }
 
     eventCalled() {
@@ -70,5 +78,27 @@ export class SidebarComponent {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
+    }
+
+    statusAdministration(){
+        console.log(this.type);
+        if(this.type == "Eleve" || this.type == "Professeur")
+        {
+            console.log("Ne pas montrer Admin");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    statusCampagne(){
+        if(this.type == "Eleve")
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, VERSION } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { $ } from 'protractor';
-import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
-import { MatTableModule } from '@angular/material';
-
 @Component({
   selector: 'app-campagne',
   templateUrl: './campagne.component.html',

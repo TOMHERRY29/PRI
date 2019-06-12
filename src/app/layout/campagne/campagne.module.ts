@@ -6,7 +6,6 @@ import { CampagneRoutingModule } from './campagne-routing.module';
 import { CampagneComponent } from './campagne.component';
 import { PageHeaderModule } from '../../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material';
 
 @NgModule({
     imports: [CommonModule, Ng2Charts, CampagneRoutingModule, PageHeaderModule, FormsModule, ReactiveFormsModule],
