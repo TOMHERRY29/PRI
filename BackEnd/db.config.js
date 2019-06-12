@@ -30,6 +30,7 @@ db.piecesjointes = require('./models/piecesJointes')(sequelize, Sequelize);//
 db.semestre = require('./models/semestre')(sequelize, Sequelize);//
 db.stage = require('./models/stage')(sequelize, Sequelize);//
 db.tuteur = require('./models/tuteur')(sequelize, Sequelize);//
+db.stagePostuler = require('./models/stagePostuler')(sequelize, Sequelize);//
 // relations
 //db.pays.hasOne(db.ville);
 db.pays.hasMany(db.ville); 
@@ -40,6 +41,8 @@ db.ville.hasMany(db.stage);
 db.entreprise.hasMany(db.stage); 
 db.stage.hasMany(db.piecesjointes); 
 db.stage.hasMany(db.periode); 
+db.tuteur.hasMany(db.stagePostuler);
+db.stage.hasMany(db.stagePostuler);
 
 
 /* db.pays.hasOne(db.ville); 

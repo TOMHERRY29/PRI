@@ -13,7 +13,7 @@ module.exports = function (app) {
     const importStagesC = require('../controllers/importsStagesC');
     const globalStage = require('../controllers/globalStageC');
     const stats = require('../controllers/stats');
-
+    const stagePostule = require('../controllers/stagePostule');
 
     app.post("/stagiaires", stagiaires.create);
     app.get("/stagiaires", stagiaires.get);
@@ -32,7 +32,10 @@ module.exports = function (app) {
     app.get("/statsStageSuivi",stats.getStageSuivi);
     app.get("/statsStageTuteurCompte",stats.getStageTuteurCompte);
 
-    
+    /*** Compagne ***/
+    app.post("/stageCompagne", stagePostule.create);
+    app.get("/stageCompagneNonPostule", stagePostule.create);
+
 }
 
 

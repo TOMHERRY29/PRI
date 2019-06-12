@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, VERSION } from '@angular/core
 import { routerTransition } from '../../router.animations';
 import { $ } from 'protractor';
 import { HttpClient, HttpResponse, HttpEventType,HttpHeaders } from '@angular/common/http';
+import { AdminService } from '../../services/AdminService';
 var XLSX = require('xlsx');
 
 
@@ -182,7 +183,7 @@ public randomize(): void {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http:HttpClient,public adminService:AdminService) { }
 
   ngOnInit() {
   }
@@ -227,19 +228,10 @@ public openFileDialog():void {
    // this.evt = e;
     this.send(e);
   }
-  posthere(){
+  async posthere(){
     console.log(FileReaderCopy.resultJson)
     console.log('************');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        
-      })
-    };
-    this.http.post('http://localhost:3000/importStages', FileReaderCopy.resultJson,httpOptions)
-      .subscribe(event => {  
-        console.log('done')
-      })
+    this.adminService.setAjoutStageExcel(FileReaderCopy.resultJson);
   }
 
   async send(evt){

@@ -272,6 +272,8 @@ async function transformDate(_DATES_STAGE){ //Du 16/03/15 au 24/07/15\r\n&\r\ndu
 exports.create = async (req, res) => {  
    // console.log("req :");
     //console.log(req.body);
+    //console.log("stage");
+    //console.log(res)
     console.log("stage");
     var indexStage = 0;
     for (var stage in req.body){
@@ -429,7 +431,16 @@ exports.create = async (req, res) => {
     }
 
    // res.write(JSON.stringify(any,bien: 1,));
-   res.send("Traitement fini");
+    var o = {} // empty Object
+    var key = 'Reponse';
+    o[key] = []; // empty Array, which you can push() values into
+
+
+    var data = {
+        result: 'Vrai'
+    };
+    
+    res.json(JSON.stringify(data));
 
 };
 /* 
@@ -442,7 +453,7 @@ exports.create = async (req, res) => {
 
 exports.get=(req, res, next) => {
      
-    sequelize.query('select stages.id as idStage,stages.sujetStage,stages.addrStage,stages.soutenanceSemaine,stages.periodesStage,tuteurs.NomTuteur, tuteurs.PrenomTuteur,stagiaires.NomStagiaire,stagiaires.PrenomStagiaire ,semestres.libelleSemestre,villes.nomVille,pays.nomPays,entreprises.nomEntreprise from stages,tuteurs,stagiaires,semestres,villes,pays,entreprises where stages.tuteurId=tuteurs.id and stages.semestreId=semestres.id and stages.EntrepriseId=entreprises.id and stagiaires.id=stages.stagiaireId and stages.VilleId=villes.id and villes.PayId = pays.id UNION select stages.id,stages.sujetStage,stages.addrStage,stages.soutenanceSemaine,stages.periodesStage,\'\' as NomTuteur, \'\' as PrenomTuteur,stagiaires.NomStagiaire,stagiaires.PrenomStagiaire ,semestres.libelleSemestre,villes.nomVille,pays.nomPays,entreprises.nomEntreprise from stages,stagiaires,semestres,villes,pays,entreprises where stages.semestreId=semestres.id and stages.EntrepriseId=entreprises.id and stagiaires.id=stages.stagiaireId and stages.VilleId=villes.id and villes.PayId = pays.id;',
+    sequelize.query('select stages.id as idStage,stages.sujetStage,stages.addrStage,stages.soutenanceSemaine,stages.periodesStage,tuteurs.NomTuteur, tuteurs.PrenomTuteur,stagiaires.NomStagiaire,stagiaires.PrenomStagiaire ,semestres.libelleSemestre,villes.nomVille,pays.nomPays,entreprises.nomEntreprise from stages,tuteurs,stagiaires,semestres,villes,pays,entreprises where stages.tuteurId=tuteurs.id and stages.semestreId=semestres.id and stages.EntrepriseId=entreprises.id and stagiaires.id=stages.stagiaireId and stages.VilleId=villes.id and villes.PayId = pays.id UNION select stages.id,stages.sujetStage,stages.addrStage,stages.soutenanceSemaine,stages.periodesStage,\'\' as NomTuteur, \'\' as PrenomTuteur,stagiaires.NomStagiaire,stagiaires.PrenomStagiaire ,semestres.libelleSemestre,villes.nomVille,pays.nomPays,entreprises.nomEntreprise from stages,stagiaires,semestres,villes,pays,entreprises where stages.semestreId=semestres.id and stages.EntrepriseId=entreprises.id and stagiaires.id=stages.stagiaireId and stages.VilleId=villes.id and villes.PayId = pays.id  and stages.tuteurId is NULL;',
       { bind: ['active'], type: sequelize.QueryTypes.SELECT }
     ).then(function(projects) {
       console.log(projects)
