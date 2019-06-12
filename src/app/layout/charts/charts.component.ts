@@ -13,7 +13,7 @@ export class ChartsComponent implements OnInit {
 
 
     public show:boolean = true;
-    public show_diag:boolean = false;
+    public show_diag:boolean = true;
     public buttonName:any = 'Tableau';
     public buttonName2:any = 'Diagrammes';
 
@@ -22,56 +22,56 @@ export class ChartsComponent implements OnInit {
     stagesG: StageGlobal[] = [];
 
     //Récupérer ici toutes les informations sur les stages
-    eleves = [
+    // eleves = [
 
-        {
+    //     {
           
-          prenom: 'eazea',
-          nom: 'aeae',
-          semestre: "S10",
-          stageTrouve: "OUI",
-          entreprise: "Arinfo",
-          tuteur : "T. LE MAGUERESSE",
-          visible: 1
+    //       prenom: 'eazea',
+    //       nom: 'aeae',
+    //       semestre: "S10",
+    //       stageTrouve: "OUI",
+    //       entreprise: "Arinfo",
+    //       tuteur : "T. LE MAGUERESSE",
+    //       visible: 1
     
-        },
-        {
+    //     },
+    //     {
           
-            prenom: 'aaaa',
-            nom: 'Coucou',
-            semestre: "S10",
-            stageTrouve: "OUI",
-            entreprise: "Sopra Steria",
-            tuteur : "T. LE MAGUERESSE",
-            visible: 1
+    //         prenom: 'aaaa',
+    //         nom: 'Coucou',
+    //         semestre: "S10",
+    //         stageTrouve: "OUI",
+    //         entreprise: "Sopra Steria",
+    //         tuteur : "T. LE MAGUERESSE",
+    //         visible: 1
       
-          },
-        {
-            prenom: 'test',
-            nom: 'dupont',
-            semestre: "S10",
-            stageTrouve: "NON",
-            entreprise: "Atos",
-            tuteur : "C. CALVES",
-            visible: 1
+    //       },
+    //     {
+    //         prenom: 'test',
+    //         nom: 'dupont',
+    //         semestre: "S10",
+    //         stageTrouve: "NON",
+    //         entreprise: "Atos",
+    //         tuteur : "C. CALVES",
+    //         visible: 1
     
-        },
+    //     },
     
-      ];
+    //   ];
 
-      elevesFiltered = this.eleves;
+    //   elevesFiltered = this.eleves;
     // bar chart
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
     };
     public barChartLabels: string[] = [
-        'France',
-        'Italie',
-        'Canada',
-        'Brésil',
-        'Espagne',
-        'Angleterre'
+        // 'France',
+        // 'Italie',
+        // 'Canada',
+        // 'Brésil',
+        // 'Espagne',
+        // 'Angleterre'
     ];
     public barChartType: string = 'bar';
     public barChartLegend: boolean = true;
@@ -129,8 +129,20 @@ export class ChartsComponent implements OnInit {
             .subscribe((stagesG: StageGlobal[]) => {
                 this.stagesG = stagesG;
             });
-
+        
         setTimeout(() => console.log('get global stage', this.stagesG), 2000);
+
+        // var i = 0;
+      
+        // setTimeout(function(){ console.log(this.stagesG);}, 3000);
+        // for(let stage of this.stagesG)
+        // {
+        //   console.log("ZBLEH");
+        //   this.barChartLabels.push("Test",stage.NomStagiaire);
+        // };
+
+        // setTimeout(() => console.log("Bar",this.barChartLabels),4000);
+        // console.log("Hé!");
 
 
     }
