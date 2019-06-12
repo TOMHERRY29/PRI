@@ -91,8 +91,7 @@ onCheckboxChange(option, event) {
   }
   else {
   for(var i=0 ; i < this.stagesFiltered.length; i++) {
-    if(this.checkedList[i] == option.id) {
-      this.checkedList.splice(i,1);
+    if(this.checkedList[i] == option.id && this.checkedList[i+1] == option.Commentaire) {
       this.checkedList.splice(i,2);
    }
  }

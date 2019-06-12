@@ -381,12 +381,14 @@ public openFileDialog():void {
         checked:false,
         tuteur:[
           {
+            id:1,
             nom:'LEMAGUERESSE',
             prenom:'Thierry',
             Commentaire:"Raison expérience",
             checked:false
           },
           {
+            id:2,
             nom:'CALVES',
             prenom:'Chantal',
             Commentaire:"J'aime ce stage",
@@ -404,12 +406,14 @@ public openFileDialog():void {
       checked:false,
       tuteur:[
         {
+          id:1,
           nom:'LEMAGUERESSE',
           prenom:'Thierry',
           Commentaire:"Raison expérience",
           checked:false
         },
         {
+          id:2,
           nom:'OUSSIN',
           prenom:'Caroline',
           Commentaire:"Intéressant",
@@ -427,12 +431,14 @@ public openFileDialog():void {
         checked:false,
         tuteur:[
           {
+            id:1,
             nom:'OUSSIN',
             prenom:'Caroline',
             Commentaire:"Intéressant",
             checked:false
           },
           {
+            id:2,
             nom:'CALVES',
             prenom:'Chantal',
             Commentaire:"J'aime ce stage",
@@ -452,13 +458,15 @@ public openFileDialog():void {
 
   onCheckboxChange(option, event) {
     if(event.target.checked) {
+      this.checkedList.push(option.id);
       this.checkedList.push(option.nom);
+
       
     }
     else {
     for(var i=0 ; i < this.stagesFiltered.length; i++) {
-      if(this.checkedList[i] == option.nom) {
-        this.checkedList.splice(i,1);
+      if(this.checkedList[i] == option.id && this.checkedList[i+1] == option.nom) {
+        this.checkedList.splice(i,2);
      }
    }
   }
