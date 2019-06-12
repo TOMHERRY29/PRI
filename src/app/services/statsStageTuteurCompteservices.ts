@@ -65,7 +65,7 @@ export class statsStageTuteurCompteservices {
   }*/
 
 
-  getStageG() {
+  getStats() {
     this.http
       .get<{ stages: any }>(
         'http://localhost:3000/importStages'
@@ -97,8 +97,6 @@ export class statsStageTuteurCompteservices {
     console.log('this.stages 2', this.stages);
   }
 
-  getStageUpdateListener() {
-    return this.stagesUpdated.asObservable();
-  }
+  
 
 }
