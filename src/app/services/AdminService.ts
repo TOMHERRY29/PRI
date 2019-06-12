@@ -31,14 +31,6 @@ export class AdminService {
       .subscribe(event => {  
         console.log('done')
         console.log("event : "+event)
-          
-          
-          /*for (var key in obj){
-              var attrName = key;
-              var attrValue = obj[0];
-              console.log(attrValue)
-              console.log(key)
-          }*/
           return true;
         }, err => {
           console.log(err)
