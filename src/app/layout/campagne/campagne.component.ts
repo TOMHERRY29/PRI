@@ -52,13 +52,15 @@ stages = [
     
   ];
 
+  stagesFiltered  = [];
   
-  stagesFiltered = this.stages;
   constructor() {
    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.stagesFiltered = this.stages;
+  }
   
  filtreName() {
 

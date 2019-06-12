@@ -372,20 +372,23 @@ public openFileDialog():void {
         sujet: "Travaille en tant que développeur web-mobile.",
         Name:"name",
         checked:false,
+        semestre:"S04",
         tuteur:[
           {
             id:1,
             nom:'LEMAGUERESSE',
             prenom:'Thierry',
             Commentaire:"Raison expérience",
-            checked:false
+            checked:false,
+            numberOfStage:3
           },
           {
             id:2,
             nom:'CALVES',
             prenom:'Chantal',
             Commentaire:"J'aime ce stage",
-            checked:false
+            checked:false,
+            numberOfStage:1
           }
         ]
   
@@ -397,20 +400,23 @@ public openFileDialog():void {
       sujet: "Travaille en tant que programmateur.",
       Name:"name",
       checked:false,
+      semestre:"S10",
       tuteur:[
         {
           id:1,
           nom:'LEMAGUERESSE',
           prenom:'Thierry',
           Commentaire:"Raison expérience",
-          checked:false
+          checked:false,
+          numberOfStage:2
         },
         {
           id:2,
           nom:'OUSSIN',
           prenom:'Caroline',
           Commentaire:"Intéressant",
-          checked:false
+          checked:false,
+          numberOfStage:5
         }
       ]
   
@@ -422,20 +428,23 @@ public openFileDialog():void {
         sujet: "Travaille en tant qu'ingénieur et en méthode agile.",
         Name:"name",
         checked:false,
+        semestre:"S08",
         tuteur:[
           {
             id:1,
             nom:'OUSSIN',
             prenom:'Caroline',
             Commentaire:"Intéressant",
-            checked:false
+            checked:false,
+            numberOfStage:10
           },
           {
             id:2,
             nom:'CALVES',
             prenom:'Chantal',
             Commentaire:"J'aime ce stage",
-            checked:false
+            checked:false,
+            numberOfStage:13
           }
         ]
   

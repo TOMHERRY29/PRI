@@ -121,7 +121,7 @@
       <div _ngcontent-c3="" class="col-md-10">
         <div _ngcontent-c3="" class="card">
           <div _ngcontent-c3="" class="card-header">
-            <h5>Choix des semestres</h5>
+            <h5>Ouverture de la campagne</h5>
           </div>
           <div _ngcontent-c3="" class="card-body" style="width: 1000px;">
 
@@ -177,7 +177,8 @@
             <h4 class="panel-title">
               <a class="list-group-item list-group-item-action list-group-item-secondary search-filter" data-toggle="collapse"
                 [attr.data-parent]="'#accordion_' + i" [attr.href]="'#collapseOne_' + i">
-                <h5 class="font-weight-bold">{{stage.nom}} {{stage.prenom}}</h5>
+                <h5 class="font-weight-bold" style="color:rgb(143, 143, 143)"> Semestre {{stage.semestre}} </h5>
+                <h5 class="font-weight-bold">{{stage.nom}} {{stage.prenom}} </h5>
                 <h6>{{stage.sujet}}</h6>
               </a>
 
@@ -191,6 +192,7 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Commentaire</th>
+                    <th scope="col">Nombre de stages</th>
                     <th scope="col">Sélectionner</th>
                   </tr>
                 </thead>
@@ -198,6 +200,7 @@
                   <td class="tableau"> {{tutor.nom}}</td>
                   <td class="tableau"> {{tutor.prenom}}</td>
                   <td class="tableau"> {{tutor.Commentaire}}</td>
+                  <td class="tableau"> {{tutor.numberOfStage}}</td>
                   <td>
                     <div class="custom-control custom-checkbox tableau">
                       <input type="checkbox" class="custom-control-input" id="{{i}}{{j}}" value="tutor.nom" [(ngModel)]="stagesFiltered[i].tuteur[j].checked"
