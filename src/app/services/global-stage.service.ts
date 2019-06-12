@@ -17,56 +17,12 @@ export class GlobalStageService {
   private stagesUpdated = new Subject<StageGlobal[]>();
   // private stagesUpdatedP = new Subject<Stage[]>();
   constructor(private http: HttpClient) {
-
-    /*this.getJSON().subscribe(data => {
-      this.dataStages = data;
-      // console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaa', this.dataStages);
-    });*/
-  }
+ }
 
 
   public getJSON(): Observable<any> {
     return this.http.get('../../assets/data.json');
   }
-
-
-  /*addStageG(
-    nomStagiaire: string,
-    prenomStagiaire: string,
-    libelleSemestre: string,
-    addrStage: string,
-    nomEntreprise: string,
-    nomVille: string,
-    nomPays: string,
-    sujetStage: string,
-    soutenanceSemaine: Number,
-    DATES_STAGE: string,
-    periodesStage: string
-  ) {
-    const stage: StageGlobal = {
-      idStage: null,
-      nomStagiaire: Nom,
-      prenomStagiaire: prenomStagiaire,
-      libelleSemestre: libelleSemestre,
-      addrStage: addrStage,
-      nomEntreprise: nomEntreprise,
-      nomVille: nomVille,
-      nomPays: nomPays,
-      sujetStage: sujetStage,
-      soutenanceSemaine: soutenanceSemaine,
-      DATES_STAGES: DATES_STAGE,
-      periodesStage: periodesStage
-    };
-    this.http
-      .post<{ idStage: string }>('http://localhost:3000/importStages', stage)
-      .subscribe(responseData => {
-        const id = responseData.idStage;
-        stage.idStage = id;
-        this.stages.push(stage);
-        this.stagesUpdated.next([...this.stages]);
-      });
-  }*/
-
 
   getStageG() {
     this.http
