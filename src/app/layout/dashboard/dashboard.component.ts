@@ -28,68 +28,68 @@ export class DashboardComponent implements OnInit {
     stagesG: StageGlobal[] = [];
 
     //Récupérer ici toutes les informations sur les stages
-    stages = [
+    // stages = [
 
-        {
+    //     {
           
-          prenom: 'eazea',
-          nom: 'aeae',
-          ville: "Lyon",
-          pays: "France",
-          semestre: "S10",
-          entreprise: "Arinfo",
-          pdf: "https://nuxeo.enib.fr/nuxeo/nxdoc/default/5a424b06-a846-49ad-9106-b29d6b285f1f/view_documents",
-          visible: 1
+    //       prenom: 'eazea',
+    //       nom: 'aeae',
+    //       ville: "Lyon",
+    //       pays: "France",
+    //       semestre: "S10",
+    //       entreprise: "Arinfo",
+    //       pdf: "https://nuxeo.enib.fr/nuxeo/nxdoc/default/5a424b06-a846-49ad-9106-b29d6b285f1f/view_documents",
+    //       visible: 1
     
-        },
-        {
+    //     },
+    //     {
           
-            prenom: 'test',
-            nom: 'afaf',
-            ville: "Marseille",
-            pays: "France",
-            semestre: "S09",
-            entreprise: "Arinfo",
-            visible: 1
+    //         prenom: 'test',
+    //         nom: 'afaf',
+    //         ville: "Marseille",
+    //         pays: "France",
+    //         semestre: "S09",
+    //         entreprise: "Arinfo",
+    //         visible: 1
       
-          },
-          {
+    //       },
+    //       {
           
-            prenom: 'test',
-            nom: 'afaf',
-            ville: "Paris",
-            pays: "France",
-            semestre: "S08",
-            entreprise: "Arinfo",
-            visible: 1
+    //         prenom: 'test',
+    //         nom: 'afaf',
+    //         ville: "Paris",
+    //         pays: "France",
+    //         semestre: "S08",
+    //         entreprise: "Arinfo",
+    //         visible: 1
       
-          },
-          {
+    //       },
+    //       {
           
-            prenom: 'blabla',
-            nom: 'fdp',
-            ville: "Londres",
-            pays: "Angleterre",
-            semestre: "S10",
-            entreprise: "Arinfo",
-            visible: 1
+    //         prenom: 'blabla',
+    //         nom: 'fdp',
+    //         ville: "Londres",
+    //         pays: "Angleterre",
+    //         semestre: "S10",
+    //         entreprise: "Arinfo",
+    //         visible: 1
       
-          },
-          {
+    //       },
+    //       {
           
-            prenom: 'heeeeeeey',
-            nom: 'afaf',
-            ville: "Paris",
-            pays: "France",
-            semestre: "S10",
-            entreprise: "Sopra Steria",
-            visible: 1
+    //         prenom: 'heeeeeeey',
+    //         nom: 'afaf',
+    //         ville: "Paris",
+    //         pays: "France",
+    //         semestre: "S10",
+    //         entreprise: "Sopra Steria",
+    //         visible: 1
       
-          },
+    //       },
     
-      ];
+    //   ];
 
-      stagesFiltered = this.stages;
+    //   stagesFiltered = this.stages;
 
     constructor(public globalStageService: GlobalStageService){}
     ngOnInit() {
