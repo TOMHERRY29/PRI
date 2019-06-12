@@ -364,35 +364,7 @@ public openFileDialog():void {
 
   stages = [
 
-    {
-      
-        id:1,
-        nom: 'Jean',
-        prenom: 'Dupont',
-        sujet: "Travaille en tant que développeur web-mobile.",
-        Name:"name",
-        checked:false,
-        semestre:"S04",
-        tuteur:[
-          {
-            id:1,
-            nom:'LEMAGUERESSE',
-            prenom:'Thierry',
-            Commentaire:"Raison expérience",
-            checked:false,
-            numberOfStage:3
-          },
-          {
-            id:2,
-            nom:'CALVES',
-            prenom:'Chantal',
-            Commentaire:"J'aime ce stage",
-            checked:false,
-            numberOfStage:1
-          }
-        ]
-  
-    },
+    
     {
       id:2,
       nom: 'Sarah',

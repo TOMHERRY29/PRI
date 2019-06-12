@@ -86,4 +86,61 @@ exports.getStageNonAffecter=(req, res, next) => {
     })
 };
 
+exports.getStageNonAffecterValidation=(req, res, next) => {
+  sequelize.query('select stages.id,stages.sujetStage,stages.addrStage,stages.soutenanceSemaine,stages.periodesStage,tuteurs.NomTuteur, tuteurs.PrenomTuteur,stagiaires.NomStagiaire,stagiaires.PrenomStagiaire ,semestres.libelleSemestre,villes.nomVille,pays.nomPays,entreprises.nomEntreprise,semestres.libelleSemestre,stagepostulers.commentaire,stgpost.nmbreStage from stages,stagiaires,semestres,villes,pays,entreprises,tuteurs,stagepostulers,(SELECT count(*) as nmbreStage, stagepostulers.tuteurId FROM stagepostulers GROUP BY tuteurId) as stgpost where stages.semestreId=semestres.id and stages.EntrepriseId=entreprises.id and stagiaires.id=stages.stagiaireId and stages.VilleId=villes.id and villes.PayId = pays.id and stages.tuteurId is NULL and stagepostulers.tuteurId = tuteurs.id and stagepostulers.stageId = stages.id and stgpost.tuteurId = tuteurs.id ORDER BY stages.id',
+    { bind: ['active'], type: sequelize.QueryTypes.SELECT }
+  ).then(function(projects) {
+    var o = [] // empty Object
+    var indexProject = 0;
+    var lastId = "";
+    var tuteurs = [];
+    var data = {};
+    for(var project in projects)
+    {
+      console.log("project "+projects[indexProject].id)
+      console.log(lastId)
+      if(lastId != "" && lastId == projects[indexProject].idStage){
+        tuteurs.push({
+          "id":projects[indexProject].tuteurId,
+          "nom":projects[indexProject].NomTuteur,
+          "prenom":projects[indexProject].NomTuteur,
+          "Commentaire":projects[indexProject].NomTuteur,
+          "checked":false,
+          "numberOfStage":projects[indexProject].nmbreStage
+        })
+      }else{
+          if(indexProject != 0){
+            console.log("lastId")
+            data.tuteurs= tuteurs;
+            o.push(data);
+          }
+          tuteurs = [{
+          "id":projects[indexProject].tuteurId,
+          "nom":projects[indexProject].NomTuteur,
+          "prenom":projects[indexProject].NomTuteur,
+          "Commentaire":projects[indexProject].NomTuteur,
+          "checked":false,
+          "numberOfStage":projects[indexProject].nmbreStage
+          }];
+          data = {
+              "id": projects[indexProject].id,
+              "nom": projects[indexProject].NomStagiaire,
+              "prenom": projects[indexProject].PrenomStagiaire,
+              "sujet": projects[indexProject].sujetStage,
+              "Name":projects[indexProject].idStage,
+              "checked":false,
+              "semestre":projects[indexProject].libelleSemestre,
+              "tuteur":tuteurs
+          };
+      }
+      
+      lastId = projects[indexProject].id;
+      indexProject++;
+    }
+    o.push(data);
+    console.log(JSON.stringify({stages:o}))
+    res.status(200).send(JSON.stringify({campagnes:o}))
+  })
+};
+
 
