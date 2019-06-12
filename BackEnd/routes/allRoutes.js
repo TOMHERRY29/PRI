@@ -34,7 +34,7 @@ module.exports = function (app) {
 
     /*** Compagne ***/
     app.post("/stageCompagne", stagePostule.create);
-    app.get("/stageCompagneNonPostule", stagePostule.create);
+    app.get("/stageCompagneNonAffecte", stagePostule.getStageNonAffecter);
 
 }
 
