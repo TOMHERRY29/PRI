@@ -44,7 +44,9 @@ export class GlobalStageService {
             sujetStage: stage.sujetStage,
             soutenanceSemaine: stage.soutenanceSemaine,
             idStage: stage.idStage,
-            periodesStage: stage.periodesStage
+            periodesStage: stage.periodesStage,
+            NomTuteur: stage.NomTuteur,
+            PrenomTuteur: stage.PrenomTuteur
           });
         });
       }))

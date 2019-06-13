@@ -3,6 +3,9 @@ import { routerTransition } from '../../router.animations';
 import { $ } from 'protractor';
 import { HttpClient, HttpResponse, HttpEventType,HttpHeaders } from '@angular/common/http';
 import { AdminService } from '../../services/AdminService';
+import { AdminModelAffectation } from '../../models/AdminModelAffectation.model';
+import { Subscription } from 'rxjs';
+
 var XLSX = require('xlsx');
 
 @Component({
@@ -180,14 +183,84 @@ public randomize(): void {
      */
 }
 
-
-
+  stages = []
+  stagesFiltered = []
+  private stageGSub: Subscription;
+  stagesG: AdminModelAffectation[] = [];
   constructor(private http:HttpClient,public adminService:AdminService) { }
 
   ngOnInit() {
-    // this.boucle();
-    // console.log('je suis dans init')
-
+     /* get global stage */
+     this.adminService.getCampagne();
+     this.stageGSub = this.adminService.getCampagneUpdateListener()
+         .subscribe((stagesG: AdminModelAffectation[]) => {
+             this.stagesG = stagesG;
+             console.log("Stage G résult "+this.stagesG)
+         var o = [] // empty Object
+         var indexProject = 0;
+         var lastId = "";
+         var tuteurs = [];
+         var data = {};
+         for(var project in this.stagesG)
+         {
+           console.log("project "+this.stagesG[indexProject].id)
+           console.log(lastId)
+           if(lastId != "" && lastId == this.stagesG[indexProject].id){
+             tuteurs.push({
+               "id":this.stagesG[indexProject].tuteurId,
+               "nom":this.stagesG[indexProject].NomTuteur,
+               "prenom":this.stagesG[indexProject].PrenomTuteur,
+               "Commentaire":this.stagesG[indexProject].commentaire,
+               "checked":false,
+               "numberOfStage":this.stagesG[indexProject].nmbreStage
+             });
+             data = {
+              "id": this.stagesG[indexProject].id,
+              "nom": this.stagesG[indexProject].NomStagiaire,
+              "prenom": this.stagesG[indexProject].PrenomStagiaire,
+              "sujet": this.stagesG[indexProject].sujetStage,
+              "Name":"name",
+              "checked":false,
+              "semestre":this.stagesG[indexProject].libelleSemestre,
+              "tuteur":tuteurs
+              };
+           }else{
+               if(indexProject != 0){
+                 console.log("lastId")
+                 
+                 o.push(data);
+               }
+               tuteurs = [{
+               "id":this.stagesG[indexProject].tuteurId,
+               "nom":this.stagesG[indexProject].NomTuteur,
+               "prenom":this.stagesG[indexProject].PrenomTuteur,
+               "Commentaire":this.stagesG[indexProject].commentaire,
+               "checked":false,
+               "numberOfStage":this.stagesG[indexProject].nmbreStage
+               }];
+               data = {
+                   "id": this.stagesG[indexProject].id,
+                   "nom": this.stagesG[indexProject].NomStagiaire,
+                   "prenom": this.stagesG[indexProject].PrenomStagiaire,
+                   "sujet": this.stagesG[indexProject].sujetStage,
+                   "Name":"name",
+                   "checked":false,
+                   "semestre":this.stagesG[indexProject].libelleSemestre,
+                   "tuteur":tuteurs
+               };
+           }
+           
+           lastId = this.stagesG[indexProject].id;
+           indexProject++;
+         }
+         o.push(data);
+         console.log("StageConversion")
+         console.log(JSON.stringify({stages:o}))
+         this.stages = o;
+         this.stagesFiltered = this.stages;
+         });
+      
+        setTimeout(() => console.log('get global stage result', this.stages), 2000);
   }
 
   toggle() {
@@ -362,91 +435,33 @@ public openFileDialog():void {
       }
   }
 
-  stages = [
-
-    
-    {
-      id:2,
-      nom: 'Sarah',
-      prenom: 'Lais',
-      sujet: "Travaille en tant que programmateur.",
-      Name:"name",
-      checked:false,
-      semestre:"S10",
-      tuteur:[
-        {
-          id:1,
-          nom:'LEMAGUERESSE',
-          prenom:'Thierry',
-          Commentaire:"Raison expérience",
-          checked:false,
-          numberOfStage:2
-        },
-        {
-          id:2,
-          nom:'OUSSIN',
-          prenom:'Caroline',
-          Commentaire:"Intéressant",
-          checked:false,
-          numberOfStage:5
-        }
-      ]
-  
-      },
-      {
-        id:3,
-        nom: 'Thomas',
-        prenom: 'Lessi',
-        sujet: "Travaille en tant qu'ingénieur et en méthode agile.",
-        Name:"name",
-        checked:false,
-        semestre:"S08",
-        tuteur:[
-          {
-            id:1,
-            nom:'OUSSIN',
-            prenom:'Caroline',
-            Commentaire:"Intéressant",
-            checked:false,
-            numberOfStage:10
-          },
-          {
-            id:2,
-            nom:'CALVES',
-            prenom:'Chantal',
-            Commentaire:"J'aime ce stage",
-            checked:false,
-            numberOfStage:13
-          }
-        ]
-  
-      }
-      
-  ];
   public isCollapsed = {};
-  stagesFiltered = this.stages;
+  
 
   
 
   checkedList: any[] = [];
 
-  onCheckboxChange(option, event) {
+  onCheckboxChange(option,st, event) {
     if(event.target.checked) {
+      this.checkedList.push(st.id);
       this.checkedList.push(option.id);
-      this.checkedList.push(option.nom);
 
       
     }
     else {
     for(var i=0 ; i < this.stagesFiltered.length; i++) {
-      if(this.checkedList[i] == option.id && this.checkedList[i+1] == option.nom) {
+      if(this.checkedList[i] == st.id && this.checkedList[i+1] == option.id) {
         this.checkedList.splice(i,2);
      }
    }
   }
   console.log(this.checkedList);
   }
-
+  affectationStageTuteur(){
+      console.log("setStageTuteurAffecte")
+      this.adminService.setStageTuteurAffecte(this.checkedList);
+  }
 
   public tuteursFiltered = new Array;
 

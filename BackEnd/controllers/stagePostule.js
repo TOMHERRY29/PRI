@@ -3,6 +3,7 @@ const db = require('../db.config.js');
 const stagePostuler = db.stagePostuler;
 const tuteur = db.tuteur;
 const sequelize = db.sequelize;
+const stage = db.stage;
 
 async function  findTuteursDevice(_mail){
   
@@ -87,7 +88,7 @@ exports.getStageNonAffecter=(req, res, next) => {
 };
 
 exports.getStageNonAffecterValidation=(req, res, next) => {
-  sequelize.query('select stages.id,stages.sujetStage,stages.addrStage,stages.soutenanceSemaine,stages.periodesStage,tuteurs.NomTuteur, tuteurs.PrenomTuteur,stagiaires.NomStagiaire,stagiaires.PrenomStagiaire ,semestres.libelleSemestre,villes.nomVille,pays.nomPays,entreprises.nomEntreprise,semestres.libelleSemestre,stagepostulers.commentaire,stgpost.nmbreStage from stages,stagiaires,semestres,villes,pays,entreprises,tuteurs,stagepostulers,(SELECT count(*) as nmbreStage, stagepostulers.tuteurId FROM stagepostulers GROUP BY tuteurId) as stgpost where stages.semestreId=semestres.id and stages.EntrepriseId=entreprises.id and stagiaires.id=stages.stagiaireId and stages.VilleId=villes.id and villes.PayId = pays.id and stages.tuteurId is NULL and stagepostulers.tuteurId = tuteurs.id and stagepostulers.stageId = stages.id and stgpost.tuteurId = tuteurs.id ORDER BY stages.id',
+  sequelize.query('select stages.id,stages.sujetStage,stages.addrStage,stages.soutenanceSemaine,stages.periodesStage,tuteurs.NomTuteur, tuteurs.PrenomTuteur,stagiaires.NomStagiaire,stagiaires.PrenomStagiaire ,semestres.libelleSemestre,villes.nomVille,pays.nomPays,entreprises.nomEntreprise,semestres.libelleSemestre,stagepostulers.commentaire,stgpost.nmbreStage,stgpost.tuteurId from stages,stagiaires,semestres,villes,pays,entreprises,tuteurs,stagepostulers,(SELECT count(*) as nmbreStage, stagepostulers.tuteurId FROM stagepostulers GROUP BY tuteurId) as stgpost where stages.semestreId=semestres.id and stages.EntrepriseId=entreprises.id and stagiaires.id=stages.stagiaireId and stages.VilleId=villes.id and villes.PayId = pays.id and stages.tuteurId is NULL and stagepostulers.tuteurId = tuteurs.id and stagepostulers.stageId = stages.id and stgpost.tuteurId = tuteurs.id ORDER BY stages.id;',
     { bind: ['active'], type: sequelize.QueryTypes.SELECT }
   ).then(function(projects) {
     var o = [] // empty Object
@@ -103,22 +104,32 @@ exports.getStageNonAffecterValidation=(req, res, next) => {
         tuteurs.push({
           "id":projects[indexProject].tuteurId,
           "nom":projects[indexProject].NomTuteur,
-          "prenom":projects[indexProject].NomTuteur,
-          "Commentaire":projects[indexProject].NomTuteur,
+          "prenom":projects[indexProject].PrenomTuteur,
+          "Commentaire":projects[indexProject].commentaire,
           "checked":false,
           "numberOfStage":projects[indexProject].nmbreStage
         })
+        data = {
+          "id": projects[indexProject].id,
+          "nom": projects[indexProject].NomStagiaire,
+          "prenom": projects[indexProject].PrenomStagiaire,
+          "sujet": projects[indexProject].sujetStage,
+          "Name":"name",
+          "checked":false,
+          "semestre":projects[indexProject].libelleSemestre,
+          "tuteur":tuteurs
+        };
       }else{
           if(indexProject != 0){
             console.log("lastId")
-            data.tuteurs= tuteurs;
+            
             o.push(data);
           }
           tuteurs = [{
           "id":projects[indexProject].tuteurId,
           "nom":projects[indexProject].NomTuteur,
-          "prenom":projects[indexProject].NomTuteur,
-          "Commentaire":projects[indexProject].NomTuteur,
+          "prenom":projects[indexProject].PrenomTuteur,
+          "Commentaire":projects[indexProject].commentaire,
           "checked":false,
           "numberOfStage":projects[indexProject].nmbreStage
           }];
@@ -127,7 +138,7 @@ exports.getStageNonAffecterValidation=(req, res, next) => {
               "nom": projects[indexProject].NomStagiaire,
               "prenom": projects[indexProject].PrenomStagiaire,
               "sujet": projects[indexProject].sujetStage,
-              "Name":projects[indexProject].idStage,
+              "Name":"name",
               "checked":false,
               "semestre":projects[indexProject].libelleSemestre,
               "tuteur":tuteurs
@@ -138,9 +149,18 @@ exports.getStageNonAffecterValidation=(req, res, next) => {
       indexProject++;
     }
     o.push(data);
-    console.log(JSON.stringify({stages:o}))
-    res.status(200).send(JSON.stringify({campagnes:o}))
+    console.log(JSON.stringify({campagnes:projects}))
+    res.status(200).send(JSON.stringify({campagnes:projects}))
   })
 };
 
+exports.postStageNonAffecterValidation=(req, res, next) => {
+  _idStage = req.body.idStage;
+  _idTuteur = req.body.idTuteur;
+  console.log("_idStage "+_idStage+" _idTuteur "+_idTuteur)
+  /*stage.update({ tuteurid: _idTuteur }, 
+  { where: { id: _idStage }})*/
+  sequelize.query("UPDATE `stages` SET `tuteurid`='"+_idTuteur+"' where `id`='"+_idStage+"' ");
+  res.status(200).send(JSON.stringify({"result":"Vrai"}));
+};
 
