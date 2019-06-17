@@ -10,4 +10,6 @@ export interface StageGlobal {
     periodesStage: String;
     sujetStage: string;
     soutenanceSemaine: Number;
+    NomTuteur: string;
+    PrenomTuteur: string;
 }

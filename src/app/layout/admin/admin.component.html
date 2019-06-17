@@ -204,7 +204,7 @@
                   <td>
                     <div class="custom-control custom-checkbox tableau">
                       <input type="checkbox" class="custom-control-input" id="{{i}}{{j}}" value="tutor.nom" [(ngModel)]="stagesFiltered[i].tuteur[j].checked"
-                        (change)="onCheckboxChange(tutor,$event)" name="something">
+                        (change)="onCheckboxChange(tutor,stage,$event)" name="something">
                       <label class="custom-control-label" for="{{i}}{{j}}"></label>
                     </div>
                   </td>
@@ -215,7 +215,7 @@
         </div>
       </div>
       <div class="form-group mt-3">
-        <button type="submit" class="btn btn-primary">Confirmer</button>
+        <button type="submit" class="btn btn-primary" (click)="affectationStageTuteur()">ConfirmerH</button>
       </div>
     </div>
 

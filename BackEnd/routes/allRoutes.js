@@ -35,7 +35,8 @@ module.exports = function (app) {
     /*** Compagne ***/
     app.post("/stageCompagne", stagePostule.create);
     app.get("/stageCompagneNonAffecte", stagePostule.getStageNonAffecter);
-
+    app.get("/stageCompagneNonAffecteValidation", stagePostule.getStageNonAffecterValidation);
+    app.post("/stageCompagneNonAffecteValidation", stagePostule.postStageNonAffecterValidation);
 }
 
 
