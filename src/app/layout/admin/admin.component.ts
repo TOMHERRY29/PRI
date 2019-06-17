@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
   public buttonName:any = 'Documents';
   public buttonName2:any = 'Statistiques';
   public buttonName3:any = 'Campagnes';
+  public activate_button:boolean = false;
 
   
   percentDone: number;
@@ -233,6 +234,8 @@ public openFileDialog():void {
     console.log(FileReaderCopy.resultJson)
     console.log('************');
     this.adminService.setAjoutStageExcel(FileReaderCopy.resultJson);
+    setTimeout(() => this.reset(), 3000);
+
   }
 
   async send(evt){
