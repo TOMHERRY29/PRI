@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, from } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { statsStageTuteurCompte } from '../models/statsStageTuteurCompte';
+import { StatsStageTuteurCompte } from '../models/statsStageTuteurCompte';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,10 +11,10 @@ import { Observable } from 'rxjs';
 export class statsStageTuteurCompteservices {
 
 
-  private stages: statsStageTuteurCompte[] = [];
+  private statsTuteurs: StatsStageTuteurCompte[] = [];
   // private stagesP: Stage[] = [];
   dataStages = new Array();
-  private stagesUpdated = new Subject<statsStageTuteurCompte[]>();
+  private stagesUpdated = new Subject<StatsStageTuteurCompte[]>();
   // private stagesUpdatedP = new Subject<Stage[]>();
   constructor(private http: HttpClient) {
 
@@ -26,77 +26,32 @@ export class statsStageTuteurCompteservices {
 
 
 
-
-  /*addStageG(
-    nomStagiaire: string,
-    prenomStagiaire: string,
-    libelleSemestre: string,
-    addrStage: string,
-    nomEntreprise: string,
-    nomVille: string,
-    nomPays: string,
-    sujetStage: string,
-    soutenanceSemaine: Number,
-    DATES_STAGE: string,
-    periodesStage: string
-  ) {
-    const stage: StageGlobal = {
-      idStage: null,
-      nomStagiaire: Nom,
-      prenomStagiaire: prenomStagiaire,
-      libelleSemestre: libelleSemestre,
-      addrStage: addrStage,
-      nomEntreprise: nomEntreprise,
-      nomVille: nomVille,
-      nomPays: nomPays,
-      sujetStage: sujetStage,
-      soutenanceSemaine: soutenanceSemaine,
-      DATES_STAGES: DATES_STAGE,
-      periodesStage: periodesStage
-    };
+  getStatsTuteurs() {
     this.http
-      .post<{ idStage: string }>('http://localhost:3000/importStages', stage)
-      .subscribe(responseData => {
-        const id = responseData.idStage;
-        stage.idStage = id;
-        this.stages.push(stage);
-        this.stagesUpdated.next([...this.stages]);
-      });
-  }*/
-
-
-  getStats() {
-    this.http
-      .get<{ stages: any }>(
-        'http://localhost:3000/importStages'
+      .get<{ tuteurs: any }>(
+        'http://localhost:3000/statsStageTuteurCompte'
       )
       .pipe(map((stageData) => {
-        console.log(stageData.stages);
-        return stageData.stages.map(stage => {
-          console.log(stage)
+        return stageData.tuteurs.map(stage => {
           return ({
-            NomStagiaire: stage.NomStagiaire,
-            PrenomStagiaire: stage.PrenomStagiaire,
-            libelleSemestre: stage.libelleSemestre,
-            addrStage: stage.addrStage,
-            nomEntreprise: stage.nomEntreprise,
-            nomVille: stage.nomVille,
-            nomPays: stage.nomPays,
-            sujetStage: stage.sujetStage,
-            soutenanceSemaine: stage.soutenanceSemaine,
-            idStage: stage.idStage,
-            periodesStage: stage.periodesStage
+            NomTuteur: stage.NomTuteur,
+            PrenomTuteur: stage.PrenomTuteur,
+            nmbrStages: stage.nmbrStages,
+
           });
         });
       }))
       .subscribe(transformedStages => {
-        this.stages = transformedStages;
-        this.stagesUpdated.next([...this.stages]);
-        console.log('transformedStages', transformedStages);
+        this.statsTuteurs = transformedStages;
+        this.stagesUpdated.next([...this.statsTuteurs]);
+        console.log('STATS TUEEEEEEEEEERYUGAHDZAH', transformedStages);
       });
-    console.log('this.stages 2', this.stages);
+    //console.log('tuteur', this.statsTuteurs);
   }
 
-  
+  getStatsUpdateListener() {
+    return this.stagesUpdated.asObservable();
+  }
+
 
 }

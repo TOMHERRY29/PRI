@@ -1,4 +1,4 @@
-export interface statsTuteursAffecte {
-    stageA: Number,
-    stageNA: Number
+export interface StatsTuteursAffecte {
+    stageA: Number;
+    stageNA: Number;
 }

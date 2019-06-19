@@ -30,9 +30,7 @@ export class GlobalStageService {
         'http://localhost:3000/importStages'
       )
       .pipe(map((stageData) => {
-        console.log(stageData.stages);
         return stageData.stages.map(stage => {
-          console.log(stage)
           return ({
             NomStagiaire: stage.NomStagiaire,
             PrenomStagiaire: stage.PrenomStagiaire,
@@ -53,7 +51,6 @@ export class GlobalStageService {
         this.stagesUpdated.next([...this.stages]);
         console.log('transformedStages', transformedStages);
       });
-    console.log('this.stages 2', this.stages);
   }
 
   getStageUpdateListener() {

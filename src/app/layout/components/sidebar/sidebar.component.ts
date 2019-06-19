@@ -81,10 +81,10 @@ export class SidebarComponent implements OnInit {
     }
 
     statusAdministration(){
-        console.log(this.type);
+        //console.log(this.type);
         if(this.type == "Eleve" || this.type == "Professeur")
         {
-            console.log("Ne pas montrer Admin");
+            //console.log("Ne pas montrer Admin");
             return false;
         }
         else{

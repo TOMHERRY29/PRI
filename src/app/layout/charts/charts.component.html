@@ -73,7 +73,7 @@
                             Nombre de stagiaires par pays
                         </div>
                         <div class="card-body">
-                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                            <canvas baseChart [data]="barChartData" [labels]="barChartLabels"
                                 [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
                                 (chartClick)="chartClicked($event)">
                             </canvas>

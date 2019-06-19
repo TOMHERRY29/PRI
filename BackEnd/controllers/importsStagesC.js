@@ -466,6 +466,36 @@ exports.get=(req, res, next) => {
     //console.log("document  :",document);
 };
 
+exports.getNombreStagesMonde=(req, res, next) => {
+     
+  sequelize.query("SELECT IF(p.nomPays = 'France', 'France', 'Etranger') as nomPays, count(p.nomPays) as nombre FROM stages s LEFT JOIN villes v ON v.id = s.VilleId LEFT JOIN pays p ON p.id = v.PayId GROUP BY (case when p.nomPays = 'France' then p.nomPays else 'Etranger' end);",
+    { bind: ['active'], type: sequelize.QueryTypes.SELECT }
+  ).then(function(projects) {
+    console.log(projects)
+    /*res.send(200).json({
+      // message: "Nodes fetched successfully!",
+      stages: projects
+    });*/
+    res.status(200).send(JSON.stringify({enibiensMonde:projects}))
+  })
+  //console.log("document  :",document);
+};
+
+exports.getEnibiensParPays=(req, res, next) => {
+     
+  sequelize.query("SELECT p.nomPays, count(p.nomPays) as nombre FROM stages s LEFT JOIN villes v ON v.id = s.VilleId LEFT JOIN pays p ON p.id = v.PayId GROUP BY p.nomPays;",
+    { bind: ['active'], type: sequelize.QueryTypes.SELECT }
+  ).then(function(projects) {
+    console.log(projects)
+    /*res.send(200).json({
+      // message: "Nodes fetched successfully!",
+      stages: projects
+    });*/
+    res.status(200).send(JSON.stringify({enibiensParPays:projects}))
+  })
+  //console.log("document  :",document);
+};
+
 
       // Tuteur add : findTuteurDevice
      /* var id_tuteur = await findTuteurDevice(_nomTuteur,_prenomTuteur);

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { GlobalStageService } from '../../services/global-stage.service';
+import { ElevesService } from '../../services/eleves.service';
 import { StageGlobal } from '../../models/stageGlobal.model';
 import { Subscription } from 'rxjs';
+import { EnibiensMonde } from '../../models/enibiensMonde.model';
+import { EnibiensParPays } from '../../models/enibiensParPays.model';
 @Component({
     selector: 'app-charts',
     templateUrl: './charts.component.html',
@@ -13,79 +16,37 @@ export class ChartsComponent implements OnInit {
 
 
     public show:boolean = true;
-    public show_diag:boolean = true;
+    public show_diag:boolean = false;
     public buttonName:any = 'Tableau';
     public buttonName2:any = 'Diagrammes';
 
     /* stageGlobel */
     private stageGSub: Subscription;
+    private eleveSub: Subscription;
+    private enibienSub: Subscription;
     stagesG: StageGlobal[] = [];
+    enibiensMonde: EnibiensMonde[] = [];
+    enibiensParPays: EnibiensParPays[] = [];
 
-    //Récupérer ici toutes les informations sur les stages
-    // eleves = [
-
-    //     {
-          
-    //       prenom: 'eazea',
-    //       nom: 'aeae',
-    //       semestre: "S10",
-    //       stageTrouve: "OUI",
-    //       entreprise: "Arinfo",
-    //       tuteur : "T. LE MAGUERESSE",
-    //       visible: 1
-    
-    //     },
-    //     {
-          
-    //         prenom: 'aaaa',
-    //         nom: 'Coucou',
-    //         semestre: "S10",
-    //         stageTrouve: "OUI",
-    //         entreprise: "Sopra Steria",
-    //         tuteur : "T. LE MAGUERESSE",
-    //         visible: 1
-      
-    //       },
-    //     {
-    //         prenom: 'test',
-    //         nom: 'dupont',
-    //         semestre: "S10",
-    //         stageTrouve: "NON",
-    //         entreprise: "Atos",
-    //         tuteur : "C. CALVES",
-    //         visible: 1
-    
-    //     },
-    
-    //   ];
-
-    //   elevesFiltered = this.eleves;
     // bar chart
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
     };
-    public barChartLabels: string[] = [
-        // 'France',
-        // 'Italie',
-        // 'Canada',
-        // 'Brésil',
-        // 'Espagne',
-        // 'Angleterre'
-    ];
+    public barChartLabels: string[] = [''];
     public barChartType: string = 'bar';
     public barChartLegend: boolean = true;
 
-    public barChartData: any[] = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Nombre de stagiaires' }
-    ];
+    public barData : Number [] = [0];
+    
+    public barChartData: any[] = [this.barData];
 
     // Doughnut
-    public doughnutChartLabels: string[] = [
-        'Étranger',
-        'France'
-    ];
-    public doughnutChartData: number[] = [350, 450];
+
+    public doughnutData : Number [] = [];
+
+    public doughnutChartLabels: string[] = [];
+    public doughnutChartData: any[] = [this.doughnutData];
     public doughnutChartType: string = 'doughnut';
     
     // events
@@ -120,7 +81,7 @@ export class ChartsComponent implements OnInit {
     }
     
 
-    constructor(public globalStageService: GlobalStageService){}
+    constructor(public globalStageService: GlobalStageService, public enibiensMondeService: ElevesService, public enibiensParPaysService: ElevesService){}
 
     ngOnInit() {
         /* get global stage */
@@ -129,21 +90,35 @@ export class ChartsComponent implements OnInit {
             .subscribe((stagesG: StageGlobal[]) => {
                 this.stagesG = stagesG;
             });
-        
-        setTimeout(() => console.log('get global stage', this.stagesG), 2000);
 
-        // var i = 0;
-      
-        // setTimeout(function(){ console.log(this.stagesG);}, 3000);
-        // for(let stage of this.stagesG)
-        // {
-        //   console.log("ZBLEH");
-        //   this.barChartLabels.push("Test",stage.NomStagiaire);
-        // };
+            
+            this.enibiensMondeService.getNombreStagesMonde();
+            this.eleveSub = this.enibiensMondeService.getEnibiensMondeListener()
+            .subscribe((enibiensMonde: EnibiensMonde[]) => {
+                this.enibiensMonde = enibiensMonde;
+              
+                for(var i = 0; i < this.enibiensMonde.length; i++)
+                {
+                  this.doughnutData.push(this.enibiensMonde[i].nombre);
+                  this.doughnutChartLabels.push(this.enibiensMonde[i].nomPays);
+                };
+            });
 
-        // setTimeout(() => console.log("Bar",this.barChartLabels),4000);
-        // console.log("Hé!");
+            this.enibiensParPaysService.getEnibiensParPays();
+            this.enibienSub = this.enibiensParPaysService.getEnibiensParPaysListener()
+            .subscribe((enibiensParPays: EnibiensParPays[]) => {
+                this.enibiensParPays = enibiensParPays;
+              
+                for(var i = 0; i < this.enibiensParPays.length; i++)
+                {
+                  this.barData.push(this.enibiensParPays[i].nombre);
+                  this.barChartLabels.push(this.enibiensParPays[i].nomPays);
+                };
 
+                console.log("enibiensParPays",this.enibiensParPays);
+                console.log("barData",this.barData);
+                console.log("barChartLabels",this.barChartLabels);
+            });
 
     }
 

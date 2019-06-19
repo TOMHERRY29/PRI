@@ -48,161 +48,161 @@ DELIMITER ;
 -- Structure de la table `entreprise`
 --
 
-DROP TABLE IF EXISTS `entreprise`;
-CREATE TABLE `entreprise` (
-  `idEntreprise` varchar(60) NOT NULL,
-  `nomEntreprise` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `entreprise`;
+-- CREATE TABLE `entreprise` (
+--   `idEntreprise` varchar(60) NOT NULL,
+--   `nomEntreprise` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `entreprise`
---
+-- --
+-- -- Déchargement des données de la table `entreprise`
+-- --
 
-INSERT INTO `entreprise` (`idEntreprise`, `nomEntreprise`) VALUES
-('ENT_ATOS', 'ATOS'),
-('ENT_SOPRASTERIA', 'SOPRA STERIA');
+-- INSERT INTO `entreprise` (`idEntreprise`, `nomEntreprise`) VALUES
+-- ('ENT_ATOS', 'ATOS'),
+-- ('ENT_SOPRASTERIA', 'SOPRA STERIA');
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `pays`
---
+-- --
+-- -- Structure de la table `pays`
+-- --
 
-DROP TABLE IF EXISTS `pays`;
-CREATE TABLE `pays` (
-  `idPays` varchar(60) NOT NULL,
-  `nomPays` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `pays`;
+-- CREATE TABLE `pays` (
+--   `idPays` varchar(60) NOT NULL,
+--   `nomPays` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `pays`
---
+-- --
+-- -- Déchargement des données de la table `pays`
+-- --
 
-INSERT INTO `pays` (`idPays`, `nomPays`) VALUES
-('FR', 'FRANCE'),
-('MAR', 'MAROC');
+-- INSERT INTO `pays` (`idPays`, `nomPays`) VALUES
+-- ('FR', 'FRANCE'),
+-- ('MAR', 'MAROC');
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `periode`
---
+-- --
+-- -- Structure de la table `periode`
+-- --
 
-DROP TABLE IF EXISTS `periode`;
-CREATE TABLE `periode` (
-  `idPeriode` int(11) NOT NULL,
-  `dateDebut` date NOT NULL,
-  `dateFin` date NOT NULL,
-  `idStage` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `periode`;
+-- CREATE TABLE `periode` (
+--   `idPeriode` int(11) NOT NULL,
+--   `dateDebut` date NOT NULL,
+--   `dateFin` date NOT NULL,
+--   `idStage` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `piecesjointes`
---
+-- --
+-- -- Structure de la table `piecesjointes`
+-- --
 
-DROP TABLE IF EXISTS `piecesjointes`;
-CREATE TABLE `piecesjointes` (
-  `idPiecesJointes` varchar(60) NOT NULL,
-  `titre` varchar(60) NOT NULL,
-  `url` varchar(60) NOT NULL,
-  `idStage` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `piecesjointes`;
+-- CREATE TABLE `piecesjointes` (
+--   `idPiecesJointes` varchar(60) NOT NULL,
+--   `titre` varchar(60) NOT NULL,
+--   `url` varchar(60) NOT NULL,
+--   `idStage` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `semestre`
---
+-- --
+-- -- Structure de la table `semestre`
+-- --
 
-DROP TABLE IF EXISTS `semestre`;
-CREATE TABLE `semestre` (
-  `idSemestre` varchar(60) NOT NULL,
-  `libelle` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `semestre`;
+-- CREATE TABLE `semestre` (
+--   `idSemestre` varchar(60) NOT NULL,
+--   `libelle` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `semestre`
---
+-- --
+-- -- Déchargement des données de la table `semestre`
+-- --
 
-INSERT INTO `semestre` (`idSemestre`, `libelle`) VALUES
-('S08', 'Semestre 8'),
-('S10', 'Semestre 10');
+-- INSERT INTO `semestre` (`idSemestre`, `libelle`) VALUES
+-- ('S08', 'Semestre 8'),
+-- ('S10', 'Semestre 10');
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `stage`
---
+-- --
+-- -- Structure de la table `stage`
+-- --
 
-DROP TABLE IF EXISTS `stage`;
-CREATE TABLE `stage` (
-  `idStage` varchar(60) NOT NULL,
-  `sujet` varchar(60) NOT NULL,
-  `addr` varchar(60) NOT NULL,
-  `soutenanceSemaine` int(11) NOT NULL,
-  `idTuteur` varchar(60) NOT NULL,
-  `idStagiaire` varchar(60) NOT NULL,
-  `idSemestre` varchar(60) NOT NULL,
-  `idVille` varchar(60) NOT NULL,
-  `idEntreprise` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `stage`;
+-- CREATE TABLE `stage` (
+--   `idStage` varchar(60) NOT NULL,
+--   `sujet` varchar(60) NOT NULL,
+--   `addr` varchar(60) NOT NULL,
+--   `soutenanceSemaine` int(11) NOT NULL,
+--   `idTuteur` varchar(60) NOT NULL,
+--   `idStagiaire` varchar(60) NOT NULL,
+--   `idSemestre` varchar(60) NOT NULL,
+--   `idVille` varchar(60) NOT NULL,
+--   `idEntreprise` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `stagiaire`
---
+-- --
+-- -- Structure de la table `stagiaire`
+-- --
 
-DROP TABLE IF EXISTS `stagiaire`;
-CREATE TABLE `stagiaire` (
-  `idStagiaire` varchar(60) NOT NULL,
-  `Nom` varchar(60) NOT NULL,
-  `Prenom` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `stagiaire`;
+-- CREATE TABLE `stagiaire` (
+--   `idStagiaire` varchar(60) NOT NULL,
+--   `Nom` varchar(60) NOT NULL,
+--   `Prenom` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `stagiaire`
---
+-- --
+-- -- Déchargement des données de la table `stagiaire`
+-- --
 
-INSERT INTO `stagiaire` (`idStagiaire`, `Nom`, `Prenom`) VALUES
-('h6rafaa', 'RAFAA', 'Hamza'),
-('y6lassir', 'LASSIRI', 'Yahya');
+-- INSERT INTO `stagiaire` (`idStagiaire`, `Nom`, `Prenom`) VALUES
+-- ('h6rafaa', 'RAFAA', 'Hamza'),
+-- ('y6lassir', 'LASSIRI', 'Yahya');
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `tuteur`
---
+-- --
+-- -- Structure de la table `tuteur`
+-- --
 
-DROP TABLE IF EXISTS `tuteur`;
-CREATE TABLE `tuteur` (
-  `idTuteur` varchar(60) NOT NULL,
-  `Nom` varchar(60) NOT NULL,
-  `Prenom` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `tuteur`;
+-- CREATE TABLE `tuteur` (
+--   `idTuteur` varchar(60) NOT NULL,
+--   `Nom` varchar(60) NOT NULL,
+--   `Prenom` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `tuteur`
---
+-- --
+-- -- Déchargement des données de la table `tuteur`
+-- --
 
-INSERT INTO `tuteur` (`idTuteur`, `Nom`, `Prenom`) VALUES
-('HOROQUARTZ_ROSELIER_BRICE', 'ROSELIER', 'BRICE'),
-('SOPRASTERIA_CHAMO_LEO', 'CHAMO', 'LEO');
+-- INSERT INTO `tuteur` (`idTuteur`, `Nom`, `Prenom`) VALUES
+-- ('HOROQUARTZ_ROSELIER_BRICE', 'ROSELIER', 'BRICE'),
+-- ('SOPRASTERIA_CHAMO_LEO', 'CHAMO', 'LEO');
 
--- --------------------------------------------------------
+-- -- --------------------------------------------------------
 
---
--- Structure de la table `ville`
---
+-- --
+-- -- Structure de la table `ville`
+-- --
 
-DROP TABLE IF EXISTS `ville`;
-CREATE TABLE `ville` (
-  `idVille` varchar(60) NOT NULL,
-  `nomVille` varchar(60) NOT NULL,
-  `idPays` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `ville`;
+-- CREATE TABLE `ville` (
+--   `idVille` varchar(60) NOT NULL,
+--   `nomVille` varchar(60) NOT NULL,
+--   `idPays` varchar(60) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ville`

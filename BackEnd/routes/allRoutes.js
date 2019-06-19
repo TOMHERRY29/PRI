@@ -23,6 +23,9 @@ module.exports = function (app) {
 
     app.post("/importStages", importStagesC.create);
     app.get("/importStages", importStagesC.get);
+    // app.get("/importStagesA", importStagesC.getA);
+    app.get("/getNombreStagesMonde",importStagesC.getNombreStagesMonde);
+    app.get("/getEnibiensParPays",importStagesC.getEnibiensParPays);
 
     /* get & post de globalStage */
     app.post("/globalStage", globalStage.create);
