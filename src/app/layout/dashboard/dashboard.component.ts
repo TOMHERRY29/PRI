@@ -75,6 +75,14 @@ export class DashboardComponent implements OnInit {
 
     }
 
+    // getLien(stage){
+    //     return "https://nuxeo.enib.fr/nuxeo/nxpath/default/default-domain/workspaces/RE-Stagesetcontrats/Nouveaudossier/Nouveaudossier/"+stage.NomStagiaire.replace(" ","")+"_"+stage.PrenomStagiaire+stage.libelleSemestre+"2018@view_documents"
+    //   }
+
+    getLien(stage){
+        return "https://nuxeo.enib.fr/nuxeo/nxpath/default/Enseignement/workspaces/PRI/2018-2019/Automne/Stages/fiches_synthese/HERRY_THOMAS_2018P_FS@view_documents?fbclid=IwAR2B0Uj0HOxESwpYDNGq-HyhnFpDd8EqTLcnB14ohm2XBxE_aT-PH9cMpow";
+    }
+
 
 
     isVisible(visible) {

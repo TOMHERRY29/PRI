@@ -8,10 +8,11 @@ import { AdminService } from '../../services/AdminService';
 import { StatsStageTuteurCompte } from '../../models/statsStageTuteurCompte';
 import { statsStageTuteurCompteservices } from '../../services/statsStageTuteurCompteservices';
 
-
-import { Subscription } from 'rxjs';
 var XLSX = require('xlsx');
+import { AdminModelAffectation } from '../../models/AdminModelAffectation.model';
+import { Subscription } from 'rxjs';
 
+var XLSX = require('xlsx');
 
 @Component({
   selector: 'app-admin',
@@ -30,6 +31,7 @@ export class AdminComponent implements OnInit {
   public buttonName:any = 'Documents';
   public buttonName2:any = 'Statistiques';
   public buttonName3:any = 'Campagnes';
+  public activate_button:boolean = false;
 
   
 
@@ -101,35 +103,110 @@ public randomize(): void {
 
 }
 
+  stages = []
+  stagesFiltered = []
+  private stageGSub: Subscription;
+  stagesG: AdminModelAffectation[] = [];
   constructor(private http:HttpClient,public adminService:AdminService, public statsStageTuteurCompteService : statsStageTuteurCompteservices) { }
 
   ngOnInit() {
 
-        this.adminService.getStats();
-        this.statsGSub = this.adminService.getStatsUpdateListener()
-            .subscribe((stat: StatsTuteursAffecte[]) => {
-                this.statsStages = stat;
-                  this.doughnutData.push(this.statsStages[0].stageA);
-                  this.doughnutData.push(this.statsStages[0].stageNA);
-                
-            });
+    this.adminService.getStats();
+    this.statsGSub = this.adminService.getStatsUpdateListener()
+        .subscribe((stat: StatsTuteursAffecte[]) => {
+            this.statsStages = stat;
+              this.doughnutData.push(this.statsStages[0].stageA);
+              this.doughnutData.push(this.statsStages[0].stageNA);
+            
+        });
 
-        
+    
 
-        this.statsStageTuteurCompteService.getStatsTuteurs();
-        this.statsGSubTuteurs = this.statsStageTuteurCompteService.getStatsUpdateListener()
-            .subscribe((stat: StatsStageTuteurCompte[]) => {
-                this.statsTuteur = stat;
-                for(var i = 0; i < this.statsTuteur.length; i++)
-                {
-                  this.barData.push(this.statsTuteur[i].nmbrStages);
-                  this.barChartLabels.push(this.statsTuteur[i].PrenomTuteur + " - " + this.statsTuteur[i].NomTuteur);
-                }
-            });
+    this.statsStageTuteurCompteService.getStatsTuteurs();
+    this.statsGSubTuteurs = this.statsStageTuteurCompteService.getStatsUpdateListener()
+        .subscribe((stat: StatsStageTuteurCompte[]) => {
+            this.statsTuteur = stat;
+            for(var i = 0; i < this.statsTuteur.length; i++)
+            {
+              this.barData.push(this.statsTuteur[i].nmbrStages);
+              this.barChartLabels.push(this.statsTuteur[i].PrenomTuteur + " - " + this.statsTuteur[i].NomTuteur);
+            }
+        });
 
-        // setTimeout(() => console.log("barData", this.barData),1000);
-        // setTimeout(() => console.log("barChartLabels", this.barChartLabels),1000);
 
+
+     /* get global stage */
+     this.adminService.getCampagne();
+     this.stageGSub = this.adminService.getCampagneUpdateListener()
+         .subscribe((stagesG: AdminModelAffectation[]) => {
+             this.stagesG = stagesG;
+             console.log("stagesG "+stagesG)
+             console.log("this.stagesG "+this.stagesG)
+         var o = [] // empty Object
+         var indexProject = 0;
+         var lastId = "";
+         var tuteurs = [];
+         var data = {};
+         for(var project in this.stagesG)
+         {
+           console.log("project "+this.stagesG[indexProject].id)
+           console.log(lastId)
+           if(lastId != "" && lastId == this.stagesG[indexProject].id){
+             tuteurs.push({
+               "id":this.stagesG[indexProject].tuteurId,
+               "nom":this.stagesG[indexProject].NomTuteur,
+               "prenom":this.stagesG[indexProject].PrenomTuteur,
+               "Commentaire":this.stagesG[indexProject].commentaire,
+               "checked":false,
+               "numberOfStage":this.stagesG[indexProject].nmbreStage
+             });
+             data = {
+              "id": this.stagesG[indexProject].id,
+              "nom": this.stagesG[indexProject].NomStagiaire,
+              "prenom": this.stagesG[indexProject].PrenomStagiaire,
+              "sujet": this.stagesG[indexProject].sujetStage,
+              "Name":"name",
+              "checked":false,
+              "semestre":this.stagesG[indexProject].libelleSemestre,
+              "tuteur":tuteurs
+              };
+           }else{
+               if(indexProject != 0){
+                 console.log("lastId")
+                 
+                 o.push(data);
+               }
+               tuteurs = [{
+               "id":this.stagesG[indexProject].tuteurId,
+               "nom":this.stagesG[indexProject].NomTuteur,
+               "prenom":this.stagesG[indexProject].PrenomTuteur,
+               "Commentaire":this.stagesG[indexProject].commentaire,
+               "checked":false,
+               "numberOfStage":this.stagesG[indexProject].nmbreStage
+               }];
+               data = {
+                   "id": this.stagesG[indexProject].id,
+                   "nom": this.stagesG[indexProject].NomStagiaire,
+                   "prenom": this.stagesG[indexProject].PrenomStagiaire,
+                   "sujet": this.stagesG[indexProject].sujetStage,
+                   "Name":"name",
+                   "checked":false,
+                   "semestre":this.stagesG[indexProject].libelleSemestre,
+                   "tuteur":tuteurs
+               };
+           }
+           
+           lastId = this.stagesG[indexProject].id;
+           indexProject++;
+         }
+         o.push(data);
+         console.log("StageConversion")
+         console.log(JSON.stringify({stages:o}))
+         this.stages = o;
+         this.stagesFiltered = this.stages;
+         });
+      
+        setTimeout(() => console.log('get global stage result', this.stages), 2000);
   }
 
   toggle() {
@@ -151,7 +228,6 @@ public openFileDialog():void {
   }
 
   @ViewChild('form') form;
-
 
   reset() {
     this.form.nativeElement.reset();
@@ -176,6 +252,8 @@ public openFileDialog():void {
     console.log(FileReaderCopy.resultJson)
     console.log('************');
     this.adminService.setAjoutStageExcel(FileReaderCopy.resultJson);
+    setTimeout(() => this.reset(), 3000);
+
   }
 
   async send(evt){
@@ -305,9 +383,71 @@ public openFileDialog():void {
       }
   }
 
+  public isCollapsed = {};
+  
+
+  
+
+  checkedList: any[] = [];
+
+  onCheckboxChange(option,st, event) {
+    if(event.target.checked) {
+      this.checkedList.push(st.id);
+      this.checkedList.push(option.id);
+
+      
+    }
+    else {
+    for(var i=0 ; i < this.stagesFiltered.length; i++) {
+      if(this.checkedList[i] == st.id && this.checkedList[i+1] == option.id) {
+        this.checkedList.splice(i,2);
+     }
+   }
+  }
+  console.log(this.checkedList);
+  }
+  affectationStageTuteur(){
+      console.log("setStageTuteurAffecte")
+      this.adminService.setStageTuteurAffecte(this.checkedList);
+  }
+
+  public tuteursFiltered = new Array;
+
+//   boucle(){
+
+//     for(var i = 0; i < this.stagesFiltered.length;i++){
+//     this.tuteursFiltered.push(this.stagesFiltered[i].tuteur);
+// /*     this.tuteursFiltered.push(this.stagesFiltered[1].tuteur);
+//     this.tuteursFiltered.push(this.stagesFiltered[2].tuteur); */
+   
+
+//    }
+//    console.log(this.tuteursFiltered);
+
+//   }
+
+  filtreName() {
+
+    (<HTMLInputElement>document.getElementById('input')).addEventListener('keyup', function(e) {
+        var recherche = this.value.toLowerCase();
+        var documents = document.querySelectorAll('.search-filter');
+       
+        Array.prototype.forEach.call(documents, function(document) {
+          // On a bien trouvé les termes de recherche.
+          if (document.innerHTML.toLowerCase().indexOf(recherche) > -1) {
+            document.style.display = "";
+          } else {
+              
+            document.style.display = "none";
+          }
+        });
+      });
+  
+  }
   
 
 }
 class FileReaderCopy extends FileReader{
   public static resultJson:JSON;
 }
+

@@ -1,4 +1,4 @@
-export interface StageGlobal {
+export interface Campagne {
     idStage: string;
     NomStagiaire: string;
     PrenomStagiaire: string;
@@ -10,6 +10,9 @@ export interface StageGlobal {
     periodesStage: String;
     sujetStage: string;
     soutenanceSemaine: Number;
-    NomTuteur: string;
-    PrenomTuteur: string;
+    semestre: String;
+    commentaire: String;
+    checked:boolean;
+    isCollapsed:boolean;
 }
+

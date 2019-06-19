@@ -32,22 +32,22 @@
               </tr>
             </thead>
             <tr class="table" id="displayTable" *ngFor="let stage of stagesFiltered; let i=index">
-              <td class="tableau"> {{stage.nom}}</td>
-              <td class="tableau"> {{stage.prenom}}</td>
-              <td class="tableau"> {{stage.sujet}}</td>
+              <td class="tableau"> {{stage.NomStagiaire}}</td>
+              <td class="tableau"> {{stage.PrenomStagiaire}}</td>
+              <td class="tableau"> {{stage.sujetStage}}</td>
               <td>
                 <div class="custom-control custom-checkbox tableau">
-                  <input type="checkbox" class="custom-control-input" id="{{i}}" value="{{stage.id}}" [(ngModel)]="stagesFiltered[i].checked"
+                  <input type="checkbox" class="custom-control-input" id="{{i}}" value="{{stage.idStage}}" [(ngModel)]="stagesFiltered[i].checked"
                     (change)="onCheckboxChange(stage,$event)" name="something">
                   <label class="custom-control-label" for="{{i}}"></label>
                 </div>
               </td>
               <td>
                 <!--Textarea with icon prefix-->
-                <div class="md-form" *ngIf="stage.checked">
-                  <i class="fas fa-pencil-alt prefix"></i>
-                  <input type="text" id="{{i}}" value="{{stage.id}}"  class="md-textarea form-control" style="font-size: 15px; width: 100px;" 
-                  [(ngModel)]="stagesFiltered[i].Commentaire" (change)="onCheckboxChangeCom(stage,$event)" name="test">
+                <div class="md-form" *ngIf="stage.checked" >
+                  <i class="fas fa-pencil-alt prefix" id="{{i}}"></i>
+                  <textarea type="text" id="{{i}}" value="{{stage.id}}"  class="md-textarea form-control" style="font-size: 15px;" 
+                  [(ngModel)]="stagesFiltered[i].commentaire" (change)="onCheckboxChangeCom(stage,$event)" name="{{i}}"></textarea>
 <!--                   <label class="md-form" for="{{i}}"></label>
  -->                </div>
               </td>
@@ -59,7 +59,7 @@
   </div>
 
   <div class="form-group mt-3" style="width:220px;">
-      <button type="submit" class="btn btn-primary pull-right">Confirmer</button>
+      <button type="submit" class="btn btn-primary pull-right" (click)="submitChoice()">Confirmer</button>
       <button type="reset" class="btn btn-danger" (click)="checkedEvnt(false)">Supprimer</button>
     </div>
 
